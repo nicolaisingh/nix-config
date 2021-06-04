@@ -72,6 +72,7 @@ in {
   fonts = {
     fonts = with pkgs; [
       source-code-pro source-serif-pro source-sans-pro
+      lmodern
     ];
   };
 

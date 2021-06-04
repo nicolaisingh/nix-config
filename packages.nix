@@ -21,7 +21,21 @@ let
     '';
   };
 
+  idea-community-pkg = with pkgs; jetbrains.idea-community.override {
+    jdk = jdk; # JDK isn't detected without this
+  };
+
+  texlive-pkg = with pkgs; texlive.combine {
+    inherit (texlive)
+      geometry
+      hyperref
+      ly1
+      mathdesign
+      scheme-medium;
+  };
+
 in with pkgs; [
+
   appimage-run
   ark
   bandwhich
@@ -40,7 +54,6 @@ in with pkgs; [
   feh
   ffmpeg-full
   file
-  firefox
   gcc
   genymotion
   gimp
@@ -57,6 +70,7 @@ in with pkgs; [
   hicolor-icon-theme
   home-manager
   htop
+  idea-community-pkg
   imagemagick
   inetutils
   inkscape
@@ -83,6 +97,7 @@ in with pkgs; [
   ncurses
   neofetch
   nodejs
+  nomacs
   okular
   openvpn
   p7zip
@@ -95,6 +110,7 @@ in with pkgs; [
   syncthing
   tcpdump
   tdesktop
+  texlive-pkg
   thermald
   tlp
   tor-browser-bundle-bin
@@ -118,10 +134,6 @@ in with pkgs; [
   zip
   zlib
   zoom-us
-
-  (jetbrains.idea-community.override {
-    jdk = jdk; # JDK isn't detected without this
-  })
 
   # Spotify
   nur.repos.instantos.spotify-adblock

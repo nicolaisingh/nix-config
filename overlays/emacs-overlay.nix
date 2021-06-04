@@ -23,7 +23,7 @@ in {
     pname = "emacs-${version}";
     patches = [
       ./patches/clean-env.patch
-	    ./patches/tramp-detect-wrapped-gvfsd.patch
+      ./patches/tramp-detect-wrapped-gvfsd.patch
     ];
     src = /ssd/emacs;
   });
