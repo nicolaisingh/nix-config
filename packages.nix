@@ -27,8 +27,10 @@ let
 
   texlive-pkg = with pkgs; texlive.combine {
     inherit (texlive)
+      cabin
       geometry
       hyperref
+      libertine
       ly1
       mathdesign
       scheme-medium;
@@ -49,7 +51,6 @@ in with pkgs; [
   dbus-broker
   ditaa
   dragon
-  emacs-localbuild
   exiv2
   feh
   ffmpeg-full
@@ -83,7 +84,6 @@ in with pkgs; [
   kcolorchooser
   kde-gtk-config
   kdenlive
-  kdesu
   killall
   kmenuedit
   ktimer

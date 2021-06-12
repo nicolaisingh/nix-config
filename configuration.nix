@@ -72,6 +72,7 @@ in {
   fonts = {
     fonts = with pkgs; [
       source-code-pro source-serif-pro source-sans-pro
+      libertine
       lmodern
     ];
   };
@@ -119,7 +120,10 @@ in {
 
   services = {
     # Emacs
-    # emacs.enable = true;
+    emacs = {
+      enable = true;
+      package = pkgs.emacs-localbuild;
+    };
 
     # Syncthing
     syncthing = {
@@ -204,15 +208,13 @@ in {
 
   users.users."${current.user.username}" = {
     isNormalUser = true;
+    isSystemUser = false;
     extraGroups = [ "wheel" "networkmanager" "audio" "syncthing" "adbusers" ];
   };
 
   environment.systemPackages = with pkgs; [
     # Needs to be installed in the system config
     ntfs3g
-
-    # KDE stuff
-    kdeFrameworks.qqc2-desktop-style #FIXME
   ];
 
   environment.shellAliases = {
