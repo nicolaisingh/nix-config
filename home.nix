@@ -49,6 +49,11 @@ in {
         #sidebar-switcher-arrow {
           transform: rotate(180deg);
         }
+
+        /* hide sidebar close button */
+        #sidebar-close {
+          visibility: collapse;
+        }
         '';
       };
     };
