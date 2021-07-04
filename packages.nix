@@ -3,14 +3,6 @@
 let
   current = import <current>;
 
-  spotify-oldver = (import (pkgs.fetchzip {
-    # Version: 1.1.26.501.gbe11e53b-15
-    url = "https://github.com/nixos/nixpkgs/archive/388ed4e09f3bf9de1b14d043cc0ba5b03183b09b.zip";
-    sha256 = "1cac7x3bfbffkcpa1wz03gn4l1w1x8fyhav523vp098nx0klm3l5";
-  }) {
-    config = pkgs.config;
-  }).spotify;
-
   freezer-extracted = pkgs.appimageTools.extractType2 {
     name = "freezer";
     src = /. + builtins.toPath "/home/${current.user.username}/sw/Freezer-1.1.21.AppImage";
@@ -155,17 +147,4 @@ in with pkgs; [
   zip
   zlib
   zoom-us
-
-  # Spotify
-  nur.repos.instantos.spotify-adblock
-  libgnurl
-  (pkgs.writeShellScriptBin "spotify-noads" ''
-        LD_PRELOAD=~/.nix-profile/lib/spotify-adblock.so:~/.nix-profile/lib/libgnurl.so spotify >/dev/null &
-      '')
-  (spotify-oldver.overrideAttrs (oldAttrs: {
-    postInstall = ''
-        substituteInPlace $out/share/applications/spotify.desktop \
-          --replace "Exec=spotify" "Exec=spotify-noads"
-        '';
-  }))
 ]
