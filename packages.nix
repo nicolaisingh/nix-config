@@ -11,6 +11,26 @@ let
     config = pkgs.config;
   }).spotify;
 
+  freezer-extracted = pkgs.appimageTools.extractType2 {
+    name = "freezer";
+    src = /. + builtins.toPath "/home/${current.user.username}/sw/Freezer-1.1.21.AppImage";
+  };
+
+  freezer = pkgs.appimageTools.wrapType2 {
+    name = "freezer";
+    src = /. + builtins.toPath "/home/${current.user.username}/sw/Freezer-1.1.21.AppImage";
+    profile = with pkgs; ''
+      export XDG_DATA_DIRS=${gsettings-desktop-schemas}/share/gsettings-schemas/${gsettings-desktop-schemas.name}:${gtk3}/share/gsettings-schemas/${gtk3.name}:$XDG_DATA_DIRS
+    '';
+
+    extraInstallCommands = ''
+      install -m 444 -D ${freezer-extracted}/freezer.png $out/share/icons/hicolor/256x256/apps/freezer.png
+      ${pkgs.desktop-file-utils}/bin/desktop-file-install --dir $out/share/applications \
+        --set-key Exec --set-value $out/bin/freezer \
+        ${freezer-extracted}/freezer.desktop
+    '';
+  };
+
   guarda = pkgs.appimageTools.wrapType2 {
     # Use wrapType1 if `file -k' on the AppImage shows an ISO 9660
     # CD-ROM filesystem
@@ -55,6 +75,7 @@ in with pkgs; [
   feh
   ffmpeg-full
   file
+  freezer
   gcc
   genymotion
   gimp
