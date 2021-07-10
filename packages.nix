@@ -69,7 +69,6 @@ in with pkgs; [
   file
   freezer
   gcc
-  genymotion
   gimp
   glxinfo
   gnome3.adwaita-icon-theme
