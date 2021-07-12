@@ -104,6 +104,7 @@ in with pkgs; [
   lm_sensors
   lshw
   lsof
+  mitscheme
   mp3gain
   ncat
   ncurses
