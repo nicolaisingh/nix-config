@@ -56,8 +56,10 @@ in {
     users."${current.user.username}" = (import ./home.nix);
   };
 
+  # acpi_osi flag:
+  # https://github.com/Bumblebee-Project/Bumblebee/issues/764#issuecomment-234494238
   boot = {
-    kernelParams = [ "pci=noaer" ];
+    kernelParams = [ "pci=noaer" "acpi_osi=\"!Windows 2015\"" ];
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -222,6 +224,7 @@ in {
 
   environment.shellAliases = {
     ".." = "cd ..";
+    "df" = "df -h";
   };
 
   programs.adb.enable = true;
