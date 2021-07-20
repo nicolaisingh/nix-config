@@ -6,9 +6,9 @@ let entities = import <entities>;
     doesNotMatch = regex: str: builtins.match regex str == null;
 
     homeManagerTarball = fetchTarball {
-      url = "https://github.com/rycee/home-manager/archive/release-21.05.tar.gz";
+      url = "https://github.com/rycee/home-manager/archive/release-20.09.tar.gz";
       # To get sha256: nix-prefetch-url --unpack URL
-      sha256 = "06w327cvbqpi2fpl5rqk664vrl0ls0jqfkzx8vgvbcn1pmxsl0y3";
+      sha256 = "07f903ij0czyhly8kvwjazvz3s6kflxzh5fs6j8781lkxsy47i9f";
     };
 
     nurTarball = fetchTarball {
@@ -176,12 +176,9 @@ in {
       # Touchpad
       libinput = {
         enable = true;
-
-        touchpad = {
-          tappingDragLock = false;
-          disableWhileTyping = true;
-          naturalScrolling = true;
-        };
+        tappingDragLock = false;
+        disableWhileTyping = true;
+        naturalScrolling = true;
       };
 
       # Keymap
