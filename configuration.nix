@@ -160,9 +160,19 @@ in {
         ${pkgs.xlibs.xset}/bin/xset r rate 250 50
       '';
 
+      desktopManager = {
+        xterm.enable = false;
+      };
+
       # Use plasma5 DE
       displayManager.sddm.enable = true;
       desktopManager.plasma5.enable = true;
+
+      # Enable i3 window manager
+      windowManager.i3 = {
+        enable = true;
+        package = pkgs.i3-gaps;
+      };
 
       # Autologin user
       displayManager = {
