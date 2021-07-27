@@ -107,7 +107,7 @@ in {
     };
 
     defaultGateway = { address = entities.cypress.gatewayAddress; interface = "wlp3s0"; };
-    nameservers = [ "1.1.1.1" ];
+    nameservers = [ "1.1.1.1" "8.8.8.8" ];
 
     # Configure network proxy if necessary
     # proxy.default = "http://user:password@proxy:port/";
