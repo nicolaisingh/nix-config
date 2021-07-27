@@ -1,5 +1,8 @@
 { config, lib, pkgs, ... }:
 
+# home-manager options:
+# https://nix-community.github.io/home-manager/options.html
+
 let current = import <current>;
 in {
   home = {
