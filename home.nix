@@ -73,6 +73,16 @@ in {
   };
 
   xsession.windowManager.i3 = {
+  programs.rofi = {
+    enable = true;
+    cycle = true;
+    font = "Noto Sans 10";
+    theme = "Arc-Dark";
+    extraConfig = ''
+      rofi.modi: window,run,ssh,drun
+    '';
+  };
+
     # https://github.com/nix-community/home-manager/blob/master/modules/services/window-managers/i3-sway/i3.nix#blob-path
     enable = true;
 
@@ -174,7 +184,7 @@ in {
       };
 
       # keycodebindings = {};
-      menu = "${pkgs.plasma-workspace}/bin/krunner";
+      menu = "${pkgs.rofi}/bin/rofi -show drun";
       # modes = {};
       modifier = "Mod4";
       terminal = "konsole";
