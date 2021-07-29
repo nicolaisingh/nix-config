@@ -117,6 +117,7 @@ in with pkgs; [
   parted
   pciutils
   picard
+  picom
   qt5Full
   shntool
   smartmontools

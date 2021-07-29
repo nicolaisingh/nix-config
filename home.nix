@@ -72,7 +72,6 @@ in {
     };
   };
 
-  xsession.windowManager.i3 = {
   programs.rofi = {
     enable = true;
     cycle = true;
@@ -83,13 +82,16 @@ in {
     '';
   };
 
+  xsession.windowManager.i3 = let
+    mod = "Mod4";
+    borderWidth = 3;
+  in {
     # https://github.com/nix-community/home-manager/blob/master/modules/services/window-managers/i3-sway/i3.nix#blob-path
     enable = true;
 
     config = {
       # assigns = {};
       bars = [];
-      # defaultWorkspace = "workspace number 0";
 
       colors = {
         background = "#ffffff";
@@ -137,19 +139,19 @@ in {
       };
 
       floating = {
-        border = 2;
+        border = borderWidth;
         # criteria = [];
         titlebar = true;
       };
 
-      # focus = {
-        # followMouse = true;
+      focus = {
+        followMouse = false;
         # forceWrapping = false;
         # mouseWarping = true;
         # newWindow = "smart";
-      # };
+      };
 
-      # fonts
+      fonts = [ "Noto Sans 9" ];
 
       gaps = {
         inner = 5;
@@ -164,9 +166,7 @@ in {
         # smartGaps = false;
       };
 
-      keybindings = let
-        mod = config.xsession.windowManager.i3.config.modifier;
-      in lib.mkOptionDefault {
+      keybindings = lib.mkOptionDefault {
         "${mod}+h" = "focus left";
         "${mod}+j" = "focus down";
         "${mod}+k" = "focus up";
@@ -186,11 +186,17 @@ in {
       # keycodebindings = {};
       menu = "${pkgs.rofi}/bin/rofi -show drun";
       # modes = {};
-      modifier = "Mod4";
+      modifier = "${mod}";
+
+      startup = [
+        { command = "feh --bg-scale ${current.user.wallpaper}"; always = false; notification = false; }
+        { command = "i3-msg 'workspace number 1'"; always = false; notification = false; }
+      ];
+
       terminal = "konsole";
 
       window = {
-        border = 2;
+        border = borderWidth;
         titlebar = true;
       };
 
@@ -218,7 +224,7 @@ in {
       for_window [class="Klipper"] floating enable; border none
       for_window [class="Plasmoidviewer"] floating enable; border none
       for_window [class="(?i)*nextcloud*"] floating disable
-      for_window [class="plasmashell" window_type="notification"] border none, move right 700px, move down 450px
+      # for_window [class="plasmashell" window_type="notification"] border none, move right 700px, move down 450px
       no_focus [class="plasmashell" window_type="notification"]
     '';
   };
