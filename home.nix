@@ -181,6 +181,9 @@ in {
 
         # Use KDE logoff screen
         "${mod}+Shift+e" = "exec --no-startup-id qdbus org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1";
+
+        "${mod}+Shift+Return" = "exec --no-startup-id emacsclient -c";
+        "${mod}+Shift+d" = "exec --no-startup-id ${pkgs.rofi}/bin/rofi -show window";
       };
 
       # keycodebindings = {};
