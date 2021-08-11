@@ -217,7 +217,7 @@ in {
       for_window [window_role="task_dialog"] floating enable
 
       for_window [class="yakuake"] floating enable
-      for_window [class="systemsettings"] floating enable
+      # for_window [class="systemsettings"] floating enable
       for_window [class="plasmashell"] floating enable;
       for_window [class="Plasma"] floating enable; border none
       for_window [title="plasma-desktop"] floating enable; border none

@@ -16,7 +16,11 @@ let entities = import <entities>;
       sha256 = "1a4lgg02g5vsg8ci40mnhizsqywa9jn6zh0nakvcp8ywa86krbz9";
     };
 
-    unstableTarball = fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
+    # unstableTarball = fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
+    unstableTarball = fetchTarball {
+      url = "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
+      sha256 = "0z99hwxgrvlf0psicwd97kdqqcc3qngfzmcz7k68q6q868y8582y";
+    };
 in {
   imports = [
     (import "${homeManagerTarball}/nixos")
@@ -180,7 +184,8 @@ in {
           enable = true;
           user = current.user.username;
         };
-        defaultSession = "plasma5";
+        # defaultSession = "plasma5";
+        defaultSession = "plasma5+i3";
       };
 
       # Touchpad

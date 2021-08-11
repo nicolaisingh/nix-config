@@ -143,6 +143,7 @@ in with pkgs; [
   xorg.libXft
   xorg.libXpm
   xorg.xev
+  xorg.xwininfo
   xsel
   youtube-dl
   zip
