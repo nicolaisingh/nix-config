@@ -101,6 +101,7 @@ in with pkgs; [
   ktimer
   ktorrent
   libreoffice
+  libressl
   lm_sensors
   lshw
   lsof
