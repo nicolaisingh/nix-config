@@ -175,7 +175,7 @@ in {
       # Enable i3 window manager
       windowManager.i3 = {
         enable = true;
-        package = pkgs.i3-gaps;
+        # package = pkgs.i3-gaps;
       };
 
       # Autologin user

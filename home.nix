@@ -153,9 +153,10 @@ in {
 
       fonts = [ "Noto Sans 9" ];
 
-      gaps = {
-        inner = 5;
-        outer = 5;
+      # gaps = {
+        # inner = 5;
+        # outer = 5;
+
         # horizontal = null;
         # vertical = null;
         # left = null;
@@ -164,7 +165,7 @@ in {
         # bottom = null;
         # smartBorders = "off";
         # smartGaps = false;
-      };
+      # };
 
       keybindings = lib.mkOptionDefault {
         "${mod}+h" = "focus left";
