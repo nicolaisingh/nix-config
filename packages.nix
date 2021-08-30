@@ -105,7 +105,6 @@ in with pkgs; [
   lm_sensors
   lshw
   lsof
-  masterpdfeditor
   mitscheme
   mp3gain
   ncat
