@@ -52,10 +52,12 @@ in with pkgs; [
 
   appimage-run
   ark
+  at
   bandwhich
   bc
   binutils
   breeze-gtk
+  calc
   calibre
   chromium
   cifs-utils
