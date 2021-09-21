@@ -178,14 +178,35 @@ in {
         # package = pkgs.i3-gaps;
       };
 
-      # Autologin user
+      # Enable herbstluftwm window manager (hlwm)
+      windowManager.herbstluftwm = {
+        enable = true;
+        configFile = ./herbstluftwm-autostart;
+      };
+
       displayManager = {
+        # Autologin user
         autoLogin= {
           enable = true;
           user = current.user.username;
         };
+        session = [
+          {
+            manage = "window";
+            name = "my-herbstluftwm";
+            # The default session doesn't run hlwm in the background
+            start = let
+              hlwmConfig = "herbstluftwm-autostart";
+              configFileClause = lib.optionalString (hlwmConfig != null)
+                ''-c "${configPath}/${hlwmConfig}"'';
+            in
+              "${pkgs.herbstluftwm}/bin/herbstluftwm ${configFileClause} &";
+          }
+        ];
+        # See nixos-option `displayManager.session` for possible values
         # defaultSession = "plasma5";
-        defaultSession = "plasma5+i3";
+        # defaultSession = "plasma5+i3";
+        defaultSession = "plasma5+my-herbstluftwm";
       };
 
       # Touchpad
