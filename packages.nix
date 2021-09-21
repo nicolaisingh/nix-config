@@ -122,6 +122,7 @@ in with pkgs; [
   picard
   picom
   qt5Full
+  racket
   shntool
   smartmontools
   syncthing
