@@ -15,11 +15,16 @@ let entities = import <entities>;
       url = "https://github.com/nix-community/NUR/archive/master.tar.gz";
       sha256 = "1a4lgg02g5vsg8ci40mnhizsqywa9jn6zh0nakvcp8ywa86krbz9";
     };
+    nurPkgs = import nurTarball {
+      inherit pkgs;
+    };
 
-    # unstableTarball = fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
     unstableTarball = fetchTarball {
       url = "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
       sha256 = "0z99hwxgrvlf0psicwd97kdqqcc3qngfzmcz7k68q6q868y8582y";
+    };
+    unstablePkgs = import unstableTarball {
+      config = config.nixpkgs.config;
     };
 in {
   imports = [
@@ -39,14 +44,10 @@ in {
 
       packageOverrides = pkgs: rec {
         # Load nixos-unstable
-        unstable = import unstableTarball {
-          config = config.nixpkgs.config;
-        };
+        unstable = unstablePkgs;
 
         # Load NUR
-        nur = import nurTarball {
-          inherit pkgs;
-        };
+        nur = nurPkgs;
       };
     };
 
