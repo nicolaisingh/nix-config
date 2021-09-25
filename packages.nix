@@ -153,4 +153,11 @@ in with pkgs; [
   zip
   zlib
   zoom-us
+
+  # bitcoin
+  bitcoin
+  clightning
+  cpuminer
+  electrum
+  wasabiwallet
 ]
