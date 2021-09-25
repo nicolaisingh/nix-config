@@ -259,6 +259,7 @@ in {
   environment.shellAliases = {
     ".." = "cd ..";
     "df" = "df -h";
+    "hc" = "herbstclient ";
   };
 
   programs.adb.enable = true;
