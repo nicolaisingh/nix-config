@@ -12,7 +12,7 @@ hc set frame_bg_active_color '#565656'
 hc set frame_border_width 1
 hc set frame_bg_transparent on
 hc set frame_transparent_width 0
-hc set frame_gap 8
+hc set frame_gap 4
 
 hc attr theme.padding_top 0
 hc attr theme.padding_right 0
@@ -41,5 +41,5 @@ hc attr theme.background_color   '#fcfcfc'
 hc set window_gap 0
 hc set frame_padding 0
 hc set smart_window_surroundings off
-hc set smart_frame_surroundings on
+hc set smart_frame_surroundings off
 hc set mouse_recenter_gap 0
