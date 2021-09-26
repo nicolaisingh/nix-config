@@ -55,8 +55,8 @@ hc keybind $Mod-Shift-bracketleft	 shift_edge -i left
 hc keybind $Mod-Shift-bracketright	 shift_edge -i right
 
 # splitting frames
-hc keybind $Mod-u       split   bottom  0.5
-hc keybind $Mod-o       split   right   0.5
+hc keybind $Mod-o       chain , split right 0.5 , focus right
+hc keybind $Mod-u       chain , split bottom 0.5 , focus down
 hc keybind $Mod-Shift-o chain , split right 0.5 , shift right
 hc keybind $Mod-Shift-u chain , split bottom 0.5 , shift down
 hc keybind $Mod-Control-space split explode
