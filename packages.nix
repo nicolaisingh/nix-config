@@ -21,6 +21,8 @@ let
         --set-key Exec --set-value $out/bin/freezer \
         ${freezer-extracted}/freezer.desktop
     '';
+
+    extraPkgs = pkgs: with pkgs; [ xorg.libxshmfence ];
   };
 
   guarda = pkgs.appimageTools.wrapType2 {
