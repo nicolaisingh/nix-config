@@ -201,7 +201,11 @@ in {
               configFileClause = lib.optionalString (hlwmConfig != null)
                 ''-c "${configPath}/${hlwmConfig}"'';
             in
-              "${pkgs.herbstluftwm}/bin/herbstluftwm ${configFileClause} &";
+              ''
+                # Enable this if using KDE with a custom WM
+                export KDEWM="${pkgs.herbstluftwm}/bin/herbstluftwm"
+                ${pkgs.herbstluftwm}/bin/herbstluftwm ${configFileClause} &
+              '';
           }
         ];
         # See nixos-option `displayManager.session` for possible values
