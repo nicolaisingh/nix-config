@@ -5,15 +5,15 @@ let entities = import <entities>;
     configPath = "/home/${current.user.username}/nix";
     doesNotMatch = regex: str: builtins.match regex str == null;
 
+    # To get sha256: nix-prefetch-url --unpack URL
     homeManagerTarball = fetchTarball {
-      url = "https://github.com/rycee/home-manager/archive/release-20.09.tar.gz";
-      # To get sha256: nix-prefetch-url --unpack URL
-      sha256 = "07f903ij0czyhly8kvwjazvz3s6kflxzh5fs6j8781lkxsy47i9f";
+      url = "https://github.com/rycee/home-manager/archive/release-21.05.tar.gz";
+      sha256 = "18kmvzinsi9xgm81dk5kyd03m3y5nn125kmbkxf66xasrg13yqdv";
     };
 
     nurTarball = fetchTarball {
       url = "https://github.com/nix-community/NUR/archive/master.tar.gz";
-      sha256 = "1a4lgg02g5vsg8ci40mnhizsqywa9jn6zh0nakvcp8ywa86krbz9";
+      sha256 = "0s8ryc5yyv22lhar2mp8pk46ylrblcz87gjgqr27zmfxgh4i4a3b";
     };
     nurPkgs = import nurTarball {
       inherit pkgs;
@@ -21,7 +21,7 @@ let entities = import <entities>;
 
     unstableTarball = fetchTarball {
       url = "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
-      sha256 = "0z99hwxgrvlf0psicwd97kdqqcc3qngfzmcz7k68q6q868y8582y";
+      sha256 = "0xv47cpgaxb4j46ggjx9gkg299m9cdfzar27xw5h5k2lg5d3dljg";
     };
     unstablePkgs = import unstableTarball {
       config = config.nixpkgs.config;
@@ -213,9 +213,11 @@ in {
       # Touchpad
       libinput = {
         enable = true;
-        tappingDragLock = false;
-        disableWhileTyping = true;
-        naturalScrolling = true;
+        touchpad = {
+          tappingDragLock = false;
+          disableWhileTyping = true;
+          naturalScrolling = true;
+        };
       };
 
       # Keymap

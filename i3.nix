@@ -68,7 +68,10 @@ in {
       # newWindow = "smart";
     };
 
-    fonts = [ "Noto Sans 9" ];
+    fonts = {
+      names = [ "Noto Sans" ];
+      size = 9.0;
+    };
 
     # gaps = {
     # inner = 5;

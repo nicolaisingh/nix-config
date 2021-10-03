@@ -77,9 +77,9 @@ in {
     cycle = true;
     font = "Noto Sans 10";
     theme = "Arc-Dark";
-    extraConfig = ''
-      rofi.modi: window,run,ssh,drun
-    '';
+    extraConfig = {
+      modi = "window,run,ssh,drun";
+    };
   };
 
   xsession.windowManager.i3 = import ./i3.nix {
