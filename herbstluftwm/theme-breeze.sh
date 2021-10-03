@@ -14,6 +14,11 @@ hc set frame_bg_transparent on
 hc set frame_transparent_width 0
 hc set frame_gap 4
 
+hc attr theme.active.title_height 0
+hc attr theme.active.title_font "Noto Sans:size=9"
+hc attr theme.active.title_color "#ffffff"
+hc keybind $Mod-Control-Shift-t cycle_value theme.active.title_height 0 15
+
 hc attr theme.padding_top 0
 hc attr theme.padding_right 0
 hc attr theme.padding_bottom 0

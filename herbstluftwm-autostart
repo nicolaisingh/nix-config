@@ -149,7 +149,7 @@ hc rule focus=on # normally focus new clients
 # give focus to most common terminals
 # hc rule class~'(.*[Rr]xvt.*|.*[Tt]erm|[Kk]onsole)' focus=on
 
-hc rule class~'plasmashell' floating=on
+hc rule class~'plasmashell' floating=on floatplacement=center
 hc rule class='krunner' pseudotile=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
