@@ -119,7 +119,8 @@ hc keybind $Mod-space \
                      . cycle_layout +1 vertical horizontal max vertical grid \
                , cycle_layout +1
 
-hc keybind $Mod-m spawn "${configpath}/herbstluftwm/layout-max-toggle.sh"
+hc keybind $Mod-m spawn "${configpath}/herbstluftwm/tag-max-toggle.sh"
+hc keybind $Mod-Shift-m spawn "${configpath}/herbstluftwm/layout-max-toggle.sh"
 
 # mouse
 hc mouseunbind --all
