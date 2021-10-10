@@ -125,11 +125,21 @@ in {
     # firewall.enable = false;
   };
 
+  # Recommended when using pipewire
+  security.rtkit.enable = true;
+
   services = {
     # Emacs
     emacs = {
       enable = true;
       package = pkgs.emacs-localbuild;
+    };
+
+    # Pipewire
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      pulse.enable = true;
     };
 
     # Syncthing
@@ -238,8 +248,9 @@ in {
 
   hardware = {
     # Audio
+    # Switched to pipewire (see services.pipewire)
     pulseaudio = {
-      enable = true;
+      enable = false;
       package = pkgs.pulseaudioFull;
     };
 
