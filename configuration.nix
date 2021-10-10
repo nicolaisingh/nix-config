@@ -66,6 +66,7 @@ in {
   boot = {
     kernelParams = [ "pci=noaer" "acpi_osi=\"!Windows 2015\"" ];
     loader = {
+      timeout = 3;
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
