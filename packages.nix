@@ -67,11 +67,13 @@ in with pkgs; [
   dbus-broker
   ditaa
   dragon
+  exfat
   exiv2
   feh
   ffmpeg-full
   file
   freezer
+  fuse_exfat
   gcc
   gimp
   glxinfo
@@ -110,6 +112,7 @@ in with pkgs; [
   lshw
   lsof
   mitscheme
+  mmc-utils
   mp3gain
   ncat
   ncurses
