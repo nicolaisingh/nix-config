@@ -87,7 +87,15 @@ for i in "${!tag_names[@]}" ; do
 done
 
 hc keybind $Mod-period use_index +1 --skip-visible
+hc keybind $Mod-Shift-period \
+   and . move_index +1 --skip-visible \
+       . use_index +1 --skip-visible
+
 hc keybind $Mod-comma  use_index -1 --skip-visible
+hc keybind $Mod-Shift-comma \
+   and . move_index -1 --skip-visible \
+       . use_index -1 --skip-visible
+
 hc keybind $Mod-slash use_previous
 
 # temporary monitor toggle
@@ -96,6 +104,9 @@ temp_monitor="temp_monitor"
 
 hc add $temp_tag
 hc keybind $Mod-Shift-grave move $temp_tag
+
+# r=( $(hc monitor_rect) )
+# monitor_rect="${r[2]}x${r[3]}+${r[0]}+${r[1]}"
 
 hc keybind $Mod-grave \
    or ! remove_monitor $temp_monitor \
