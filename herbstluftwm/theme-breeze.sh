@@ -6,6 +6,7 @@ hc attr theme.floating.reset 1
 
 hc set always_show_frame on
 hc set frame_border_active_color '#da4453'
+# hc set frame_border_active_color '#2196f3'
 hc set frame_border_normal_color '#7f8c8d'
 hc set frame_bg_normal_color '#565656'
 hc set frame_bg_active_color '#565656'
@@ -32,6 +33,9 @@ hc attr theme.outer_width 1
 hc attr theme.normal.color       '#eff0f1'
 hc attr theme.normal.inner_color '#475057'
 hc attr theme.normal.outer_color '#eff0f1'
+# hc attr theme.active.color       '#2196f3'
+# hc attr theme.active.inner_color '#2196f3'
+# hc attr theme.active.outer_color '#2196f3'
 hc attr theme.active.color       '#ef4b5b'
 hc attr theme.active.inner_color '#ef4b5b'
 hc attr theme.active.outer_color '#ef4b5b'
