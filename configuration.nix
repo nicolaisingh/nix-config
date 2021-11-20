@@ -8,12 +8,12 @@ let entities = import <entities>;
     # To get sha256: nix-prefetch-url --unpack URL
     homeManagerTarball = fetchTarball {
       url = "https://github.com/rycee/home-manager/archive/release-21.05.tar.gz";
-      sha256 = "18kmvzinsi9xgm81dk5kyd03m3y5nn125kmbkxf66xasrg13yqdv";
+      sha256 = "0nznlb2xgkvdav6d4qls2w81m3p3h4hdbwbp2nwqkiszkp7j1bln";
     };
 
     nurTarball = fetchTarball {
       url = "https://github.com/nix-community/NUR/archive/master.tar.gz";
-      sha256 = "0s8ryc5yyv22lhar2mp8pk46ylrblcz87gjgqr27zmfxgh4i4a3b";
+      sha256 = "1j735jpgnjdcp2z4ka1hsb2v9aq0nb2fqj5ncj0piy8nn1c8yz2n";
     };
     nurPkgs = import nurTarball {
       inherit pkgs;
@@ -21,7 +21,7 @@ let entities = import <entities>;
 
     unstableTarball = fetchTarball {
       url = "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
-      sha256 = "0xv47cpgaxb4j46ggjx9gkg299m9cdfzar27xw5h5k2lg5d3dljg";
+      sha256 = "152kxfk11mgwg8gx0s1rgykyydfb7s746yfylvbwk5mk5cv4z9nv";
     };
     unstablePkgs = import unstableTarball {
       config = config.nixpkgs.config;

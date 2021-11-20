@@ -136,7 +136,7 @@ in with pkgs; [
   texlive-pkg
   thermald
   tlp
-  tor-browser-bundle-bin
+  unstable.tor-browser-bundle-bin
   tree
   unstable.android-studio
   unstable.quodlibet-full
