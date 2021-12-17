@@ -111,6 +111,7 @@ in with pkgs; [
   lm_sensors
   lshw
   lsof
+  masterpdfeditor
   mitscheme
   mmc-utils
   mp3gain
