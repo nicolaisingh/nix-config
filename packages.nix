@@ -131,6 +131,9 @@ in with pkgs; [
   racket
   shntool
   smartmontools
+  sweethome3d.application
+  # sweethome3d.furniture-editor
+  # sweethome3d.textures-editor
   syncthing
   tcpdump
   tdesktop

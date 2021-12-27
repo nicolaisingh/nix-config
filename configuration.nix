@@ -243,7 +243,7 @@ in {
     dbus.enable = true;
     flatpak.enable = true;
     openssh.enable = true;
-    printing.enable = true; # CUPS
+    printing.enable = false; # CUPS
     thermald.enable = true;
   };
 
