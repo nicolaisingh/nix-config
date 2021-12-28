@@ -91,8 +91,9 @@ in {
 
     networkmanager = {
       enable = true;
-      wifi.macAddress = "random";
-      ethernet.macAddress = "random";
+      # Setting random will prevent connecting to some Bluetooth devices
+      # wifi.macAddress = "random";
+      # ethernet.macAddress = "random";
 
       # Don't mess with the static nameservers
       dns = "none";
