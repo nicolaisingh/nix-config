@@ -65,6 +65,9 @@ in {
   # https://github.com/Bumblebee-Project/Bumblebee/issues/764#issuecomment-234494238
   boot = {
     kernelParams = [ "pci=noaer" "acpi_osi=\"!Windows 2015\"" ];
+    kernel.sysctl = {
+      "kernel.sysrq" = 1;
+    };
     loader = {
       timeout = 3;
       systemd-boot.enable = true;

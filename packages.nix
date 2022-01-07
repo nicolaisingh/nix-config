@@ -57,6 +57,7 @@ in with pkgs; [
   at
   bandwhich
   bc
+  bind
   binutils
   breeze-gtk
   calc
@@ -150,6 +151,7 @@ in with pkgs; [
   vivaldi
   vorbisgain
   wget
+  wirelesstools
   xclip
   xlibsWrapper
   xorg.libXaw
