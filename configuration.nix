@@ -31,6 +31,8 @@ in {
     (import "${homeManagerTarball}/nixos")
     ./hardware-configuration.nix
     ./nvidia.nix
+    ./kde.nix
+    ./herbstluftwm.nix
   ];
 
   nix.nixPath = (builtins.filter (x: doesNotMatch "nixos-config=.+" x) options.nix.nixPath.default) ++
@@ -230,21 +232,11 @@ in {
         xterm.enable = false;
       };
 
-      # Use plasma5 DE
-      displayManager.sddm.enable = true;
-      desktopManager.plasma5.enable = true;
-
       # Enable i3 window manager
-      windowManager.i3 = {
-        enable = true;
+      # windowManager.i3 = {
+        # enable = true;
         # package = pkgs.i3-gaps;
-      };
-
-      # Enable herbstluftwm window manager (hlwm)
-      windowManager.herbstluftwm = {
-        enable = true;
-        configFile = ./herbstluftwm-autostart;
-      };
+      # };
 
       displayManager = {
         # Autologin user
@@ -252,27 +244,13 @@ in {
           enable = true;
           user = current.user.username;
         };
-        session = [
-          {
-            manage = "window";
-            name = "my-herbstluftwm";
-            # The default session doesn't run hlwm in the background
-            start = let
-              hlwmConfig = "herbstluftwm-autostart";
-              configFileClause = lib.optionalString (hlwmConfig != null)
-                ''-c "${configPath}/${hlwmConfig}"'';
-            in
-              ''
-                # Enable this if using KDE with a custom WM
-                export KDEWM="${pkgs.herbstluftwm}/bin/herbstluftwm"
-                ${pkgs.herbstluftwm}/bin/herbstluftwm ${configFileClause} &
-              '';
-          }
-        ];
+
         # See nixos-option `displayManager.session` for possible values
         # defaultSession = "plasma5";
         # defaultSession = "plasma5+i3";
-        defaultSession = "plasma5+my-herbstluftwm";
+        # defaultSession = "plasma5+my-herbstluftwm";
+        # defaultSession = "plasma+my-herbstluftwm";
+        defaultSession = "plasma";
       };
 
       # Touchpad
