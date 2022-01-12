@@ -212,6 +212,10 @@ in {
         DISK_DEVICES = ''"nvme0n1 sda"'';
         DISK_APM_LEVEL_ON_AC = ''"254 128"'';
         DISK_APM_LEVEL_ON_BAT = ''"254 127"'';
+
+        # Disable wifi power saving
+        WIFI_PWR_ON_AC = ''"off"'';
+        WIFI_PWR_ON_BAT = ''"off"'';
       };
     };
 
