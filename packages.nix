@@ -109,6 +109,7 @@ in with pkgs; [
   neofetch
   nodejs
   nomacs
+  nyxt
   openvpn
   p7zip
   parted
