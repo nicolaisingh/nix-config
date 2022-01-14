@@ -32,6 +32,7 @@ in {
     ./hardware-configuration.nix
     ./nvidia.nix
     ./kde.nix
+    # ./gnome.nix
     ./herbstluftwm.nix
   ];
 

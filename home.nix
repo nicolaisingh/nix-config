@@ -4,11 +4,13 @@
 # https://nix-community.github.io/home-manager/options.html
 
 let current = import <current>;
+    kdePackages = pkgs.callPackage ./packages-kde.nix {};
+    myPackages = pkgs.callPackage ./packages.nix {};
 in {
   home = {
     username = current.user.username;
     homeDirectory = "/home/${current.user.username}";
-    packages = pkgs.callPackage ./packages.nix {};
+    packages = myPackages ++ kdePackages;
   };
 
   programs.home-manager.enable = true;

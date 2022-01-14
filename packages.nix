@@ -53,13 +53,11 @@ let
 in with pkgs; [
 
   appimage-run
-  ark
   at
   bandwhich
   bc
   bind
   binutils
-  breeze-gtk
   calc
   calibre
   chromium
@@ -96,17 +94,7 @@ in with pkgs; [
   inkscape
   jansson
   jq
-  k3b
-  kate
-  kcalc
-  kcharselect
-  kcolorchooser
-  kde-gtk-config
-  kdenlive
   killall
-  kmenuedit
-  ktimer
-  ktorrent
   libreoffice
   libressl
   lm_sensors
@@ -121,7 +109,6 @@ in with pkgs; [
   neofetch
   nodejs
   nomacs
-  okular
   openvpn
   p7zip
   parted
