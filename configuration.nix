@@ -31,8 +31,9 @@ in {
     (import "${homeManagerTarball}/nixos")
     ./hardware-configuration.nix
     ./nvidia.nix
-    ./kde.nix
+    # ./kde.nix
     # ./gnome.nix
+    ./xfce.nix
     ./herbstluftwm.nix
   ];
 
