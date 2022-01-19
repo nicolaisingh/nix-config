@@ -271,7 +271,7 @@ in {
 
       # Keymap
       layout = "us";
-      # xkbOptions = "eurosign:e";
+      xkbOptions = "ctrl:nocaps,shift:both_capslock";
     };
 
     dbus.enable = true;
