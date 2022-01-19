@@ -159,7 +159,7 @@ in {
           ];
           actions = {
             "update-props" = {
-              "bluez5.reconnect-profiles" = [ "hfp_hf" "hsp_hs" "a2dp_sink" ];
+              # "bluez5.reconnect-profiles" = [ "hfp_hf" "hsp_hs" "a2dp_sink" ];
               "bluez5.msbc-support" = true;
               "bluez5.sbc-xq-support" = true;
 
@@ -168,11 +168,11 @@ in {
               # hq (High Quality, 990/909kbps)
               # sq (Standard Quality, 660/606kbps)
               # mq (Mobile use Quality, 330/303kbps)
-              "bluez5.a2dp.ldac.quality" = "hq";
+              # "bluez5.a2dp.ldac.quality" = "hq";
 
               # AAC variable bitrate mode
               # 0 (cbr, default), 1-5 (quality level)
-              "bluez5.a2dp.aac.bitratemode" = 4;
+              # "bluez5.a2dp.aac.bitratemode" = 4;
 
             };
           };
