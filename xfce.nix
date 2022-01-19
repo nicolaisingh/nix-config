@@ -18,5 +18,8 @@ in {
     };
   };
 
+  # Compositor
+  services.picom.enable = true;
+
   xdg.portal.enable = true;
 }

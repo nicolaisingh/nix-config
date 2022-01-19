@@ -166,6 +166,10 @@ hc rule class='krunner' pseudotile=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
+## XFCE-specific
+hc rule class~'Xfce4-appfinder' floating=on floatplacement=center
+hc rule class~'Wrapper-2.0' floating=on floatplacement=center
+hc rule class~'Xfdesktop-settings' floating=on floatplacement=center
 
 hc set tree_style '╾│ ├└╼─┐'
 hc unlock # just to be sure

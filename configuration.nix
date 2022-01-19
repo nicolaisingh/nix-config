@@ -256,7 +256,8 @@ in {
         # defaultSession = "plasma5+i3";
         # defaultSession = "plasma5+my-herbstluftwm";
         # defaultSession = "plasma+my-herbstluftwm";
-        defaultSession = "plasma";
+        # defaultSession = "plasma";
+        defaultSession = "xfce+my-herbstluftwm";
       };
 
       # Touchpad
