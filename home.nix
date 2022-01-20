@@ -6,12 +6,11 @@
 let current = import <current>;
     kdePackages = pkgs.callPackage ./packages-kde.nix {};
     myPackages = pkgs.callPackage ./packages.nix {};
-    xfcePackages = pkgs.callPackage ./packages-xfce.nix {};
 in {
   home = {
     username = current.user.username;
     homeDirectory = "/home/${current.user.username}";
-    packages = myPackages ++ xfcePackages;
+    packages = myPackages;
   };
 
   programs.home-manager.enable = true;

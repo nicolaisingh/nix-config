@@ -22,4 +22,7 @@ in {
   services.picom.enable = true;
 
   xdg.portal.enable = true;
+
+  # XFCE panel plugins work only when installed in systemPackages
+  environment.systemPackages = pkgs.callPackage ./packages-xfce.nix {};
 }
