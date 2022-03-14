@@ -301,7 +301,7 @@ in {
   users.users."${current.user.username}" = {
     isNormalUser = true;
     isSystemUser = false;
-    extraGroups = [ "wheel" "networkmanager" "audio" "syncthing" "adbusers" ];
+    extraGroups = [ "wheel" "networkmanager" "audio" "syncthing" "adbusers" "transmission" ];
   };
 
   environment.systemPackages = with pkgs; [
