@@ -145,6 +145,7 @@ hc keybind $Mod-Tab         cycle_all +1
 hc keybind $Mod-Shift-Tab   cycle_all -1
 hc keybind $Mod-c cycle
 hc keybind $Mod-i jumpto urgent
+hc keybind $Mod-Shift-BackSpace shift_to_monitor +1
 
 # theme
 . "${configpath}/herbstluftwm/theme-breeze.sh"
@@ -169,6 +170,7 @@ hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 ## XFCE-specific
 hc rule class~'Xfce4-appfinder' floating=on floatplacement=center
 hc rule class~'Wrapper-2.0' floating=on floatplacement=center
+hc rule class~'Wrapper-2.0' title="Whisker Menu" pseudotile=true
 hc rule class~'Xfdesktop-settings' floating=on floatplacement=center
 
 hc set tree_style '╾│ ├└╼─┐'
