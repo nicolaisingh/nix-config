@@ -58,6 +58,7 @@ in with pkgs; [
   bc
   bind
   binutils
+  blueman
   calc
   calibre
   chromium
@@ -66,6 +67,7 @@ in with pkgs; [
   dbus-broker
   ditaa
   dragon
+  evince
   exfat
   exiv2
   feh
@@ -104,6 +106,7 @@ in with pkgs; [
   mitscheme
   mmc-utils
   mp3gain
+  mupdf
   ncat
   ncurses
   neofetch
@@ -129,6 +132,7 @@ in with pkgs; [
   texlive-pkg
   thermald
   tlp
+  transmission
   unstable.tor-browser-bundle-bin
   tree
   unstable.android-studio

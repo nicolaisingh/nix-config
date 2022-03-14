@@ -24,7 +24,6 @@ in with pkgs; [
   xfce.gigolo
 
   pavucontrol
-  blueman
   xscreensaver
 
   qogir-theme
