@@ -13,7 +13,7 @@ hc set frame_bg_active_color '#565656'
 hc set frame_border_width 1
 hc set frame_bg_transparent on
 hc set frame_transparent_width 0
-hc set frame_gap 4
+hc set frame_gap 3
 
 hc attr theme.active.title_height 0
 hc attr theme.active.title_font "Noto Sans:size=9"
@@ -26,7 +26,7 @@ hc attr theme.padding_bottom 0
 hc attr theme.padding_left 0
 
 hc attr theme.border_width 5
-hc attr theme.inner_width 3
+hc attr theme.inner_width 2
 hc attr theme.outer_width 1
 
 # border colors
@@ -50,5 +50,5 @@ hc attr theme.background_color   '#fcfcfc'
 hc set window_gap 0
 hc set frame_padding 0
 hc set smart_window_surroundings off
-hc set smart_frame_surroundings off
+hc set smart_frame_surroundings on
 hc set mouse_recenter_gap 0
