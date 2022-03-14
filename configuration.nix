@@ -218,6 +218,24 @@ in {
         # Disable wifi power saving
         WIFI_PWR_ON_AC = ''"off"'';
         WIFI_PWR_ON_BAT = ''"off"'';
+
+        # Disable sound power saving
+        SOUND_POWER_SAVE_ON_AC = ''"0"'';
+        SOUND_POWER_SAVE_ON_BAT = ''"0"'';
+        SOUND_POWER_SAVE_CONTROLLER = ''"N"'';
+
+        # Disable USB autosuspending
+        USB_AUTOSUSPEND = ''"0"'';
+      };
+    };
+
+    transmission = {
+      enable = true;
+      settings = {
+        download-dir = "/home/${current.user.username}/Downloads/torrent/completed";
+
+        incomplete-dir-enabled = true;
+        incomplete-dir = "/home/${current.user.username}/Downloads/torrent";
       };
     };
 
