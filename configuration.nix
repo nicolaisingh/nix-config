@@ -71,6 +71,8 @@ in {
     kernelParams = [ "pci=noaer" "acpi_osi=\"!Windows 2015\"" ];
     kernel.sysctl = {
       "kernel.sysrq" = 1;
+      "kernel.nmi_watchdog" = 0;
+      "kernel.watchdog" = 0;
     };
     loader = {
       timeout = 3;

@@ -145,6 +145,7 @@ in with pkgs; [
   vivaldi
   vivaldi-ffmpeg-codecs
   vorbisgain
+  webcamoid
   wget
   wirelesstools
   xclip
