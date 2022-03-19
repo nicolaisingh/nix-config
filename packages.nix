@@ -97,6 +97,7 @@ in with pkgs; [
   jansson
   jq
   killall
+  libnotify
   libreoffice
   libressl
   lm_sensors
