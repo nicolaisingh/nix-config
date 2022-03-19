@@ -122,6 +122,7 @@ in with pkgs; [
   picom
   qt5Full
   racket
+  rar
   shntool
   smartmontools
   sweethome3d.application
@@ -142,6 +143,7 @@ in with pkgs; [
   usbutils
   vim
   vivaldi
+  vivaldi-ffmpeg-codecs
   vorbisgain
   wget
   wirelesstools

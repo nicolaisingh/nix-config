@@ -22,6 +22,10 @@ in with pkgs; [
   xfce.xfce4-whiskermenu-plugin
   xfce.catfish
   xfce.gigolo
+  xfce.thunar
+  xfce.thunar-archive-plugin
+  xfce.thunar-volman
+  xarchiver
 
   pavucontrol
   xscreensaver
