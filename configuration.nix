@@ -37,10 +37,11 @@ in {
     ./herbstluftwm.nix
   ];
 
-  nix.nixPath = (builtins.filter (x: doesNotMatch "nixos-config=.+" x) options.nix.nixPath.default) ++
+  nix.nixPath = (builtins.filter (x: doesNotMatch "(nixos-config=.+)|(nixpkgs=.+)" x) options.nix.nixPath.default) ++
                 [ "nixos-config=${configPath}/configuration.nix" ] ++
                 [ "entities=${configPath}/entities.nix" ] ++
-                [ "current=${configPath}/current.nix" ];
+                [ "current=${configPath}/current.nix" ] ++
+                [ "nixpkgs=${configPath}/nixpkgs" ];
 
   nixpkgs = {
     config = {

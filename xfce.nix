@@ -21,7 +21,12 @@ in {
   # Compositor
   services.picom.enable = true;
 
-  xdg.portal.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+    ];
+  };
 
   # XFCE panel plugins work only when installed in systemPackages
   environment.systemPackages = pkgs.callPackage ./packages-xfce.nix {};
