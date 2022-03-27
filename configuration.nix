@@ -66,10 +66,12 @@ in {
     users."${current.user.username}" = (import ./home.nix);
   };
 
+  # pci=nocrs flag:
+  # From dmesg: Using host bridge windows from ACPI; if necessary, use "pci=nocrs" and report a bug
   # acpi_osi flag:
   # https://github.com/Bumblebee-Project/Bumblebee/issues/764#issuecomment-234494238
   boot = {
-    kernelParams = [ "pci=noaer" "acpi_osi=\"!Windows 2015\"" ];
+    kernelParams = [ "pci=noaer" "pci=nocrs" "acpi_osi=\"!Windows 2015\"" ];
     kernel.sysctl = {
       "kernel.sysrq" = 1;
       "kernel.nmi_watchdog" = 0;
