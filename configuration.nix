@@ -149,7 +149,7 @@ in {
 
     # Pipewire
     pipewire = {
-      enable = true;
+      enable = false;
       alsa.enable = true;
       pulse.enable = true;
       media-session.config.bluez-monitor.rules = [
@@ -307,7 +307,7 @@ in {
     # Audio
     # Switched to pipewire (see services.pipewire)
     pulseaudio = {
-      enable = false;
+      enable = true;
       package = pkgs.pulseaudioFull;
     };
 
