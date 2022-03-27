@@ -96,6 +96,7 @@ in with pkgs; [
   inkscape
   jansson
   jq
+  kde-gtk-config
   killall
   libnotify
   libreoffice
@@ -123,6 +124,7 @@ in with pkgs; [
   qt5Full
   racket
   rar
+  scrcpy
   shntool
   smartmontools
   sweethome3d.application
