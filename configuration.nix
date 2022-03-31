@@ -7,7 +7,7 @@ let entities = import <entities>;
 
     # To get sha256: nix-prefetch-url --unpack URL
     homeManagerTarball = fetchTarball {
-      url = "https://github.com/rycee/home-manager/archive/release-21.05.tar.gz";
+      url = "https://github.com/rycee/home-manager/archive/release-21.11.tar.gz";
       sha256 = "18lda6l5zdvi6jyy14rcawbdbk0axb8wghip0xb4bqiz6c13hn03";
     };
 
