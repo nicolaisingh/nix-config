@@ -80,6 +80,7 @@ in {
     loader = {
       timeout = 3;
       systemd-boot.enable = true;
+      systemd-boot.memtest86.enable = true;
       efi.canTouchEfiVariables = true;
     };
   };
@@ -91,9 +92,17 @@ in {
 
   fonts = {
     fonts = with pkgs; [
-      source-code-pro source-serif-pro source-sans-pro
+      dina-font
+      gohufont
+      fantasque-sans-mono
+      fira
+      hermit
+      inconsolata
       libertine
       lmodern
+      source-code-pro
+      source-sans-pro
+      source-serif-pro
     ];
   };
 
