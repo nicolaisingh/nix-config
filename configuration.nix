@@ -56,9 +56,9 @@ in {
       };
     };
 
-    overlays = [
-      (import ./overlays/emacs-overlay.nix)
-    ];
+    # overlays = [
+      # (import ./overlays/emacs-overlay.nix)
+    # ];
   };
 
   home-manager = {
@@ -155,7 +155,7 @@ in {
     # Emacs
     emacs = {
       enable = true;
-      package = pkgs.emacs-localbuild;
+      # package = pkgs.emacs-localbuild;
     };
 
     # Pipewire
