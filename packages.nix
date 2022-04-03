@@ -121,6 +121,8 @@ in with pkgs; [
   pciutils
   picard
   picom
+  python
+  python3
   qt5Full
   racket
   rar
