@@ -42,6 +42,7 @@ let
   texlive-pkg = with pkgs; texlive.combine {
     inherit (texlive)
       cabin
+      enumitem
       geometry
       hyperref
       libertine
