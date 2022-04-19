@@ -39,6 +39,14 @@ let
     jdk = jdk; # JDK isn't detected without this
   };
 
+  radix-wallet = pkgs.appimageTools.wrapType2 {
+    name = "radix-wallet";
+    src = /. + builtins.toPath "/home/${current.user.username}/ct/Radix-Wallet-1.3.3.AppImage";
+    profile = with pkgs; ''
+      export XDG_DATA_DIRS=${gsettings-desktop-schemas}/share/gsettings-schemas/${gsettings-desktop-schemas.name}:${gtk3}/share/gsettings-schemas/${gtk3.name}:$XDG_DATA_DIRS
+    '';
+  };
+
   texlive-pkg = with pkgs; texlive.combine {
     inherit (texlive)
       cabin
@@ -120,12 +128,14 @@ in with pkgs; [
   p7zip
   parted
   pciutils
+  pcmanfm
   picard
   picom
   python
   python3
   qt5Full
   racket
+  radix-wallet
   rar
   scrcpy
   shntool
