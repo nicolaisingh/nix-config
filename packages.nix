@@ -113,6 +113,7 @@ in with pkgs; [
   lm_sensors
   lshw
   lsof
+  lxmenu-data
   masterpdfeditor
   mitscheme
   mmc-utils
@@ -182,4 +183,12 @@ in with pkgs; [
   cpuminer
   electrum
   wasabiwallet
+
+  # golang
+  go
+  go-swagger
+  gocode # Code completion
+  godef  # Code definition
+  gopls  # Language server
+
 ]
