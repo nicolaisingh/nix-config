@@ -61,6 +61,8 @@ let
 
 in with pkgs; [
 
+  # sweethome3d.furniture-editor
+  # sweethome3d.textures-editor
   appimage-run
   at
   bandwhich
@@ -72,6 +74,7 @@ in with pkgs; [
   calibre
   chromium
   cifs-utils
+  colorpicker
   dbus
   dbus-broker
   ditaa
@@ -86,12 +89,12 @@ in with pkgs; [
   fuse_exfat
   gcc
   gimp
-  google-cloud-sdk
   glxinfo
   gnome3.adwaita-icon-theme
   gnumake
   gnupg
   gnutls
+  google-cloud-sdk
   gparted
   guarda
   gwenview
@@ -125,7 +128,6 @@ in with pkgs; [
   neofetch
   nodejs
   nomacs
-  unstable.nyxt
   openvpn
   p7zip
   parted
@@ -143,8 +145,6 @@ in with pkgs; [
   shntool
   smartmontools
   sweethome3d.application
-  # sweethome3d.furniture-editor
-  # sweethome3d.textures-editor
   syncthing
   tcpdump
   tdesktop
@@ -152,10 +152,11 @@ in with pkgs; [
   thermald
   tlp
   transmission
-  unstable.tor-browser-bundle-bin
   tree
   unstable.android-studio
+  unstable.nyxt
   unstable.quodlibet-full
+  unstable.tor-browser-bundle-bin
   unzip
   usbutils
   vim
