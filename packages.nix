@@ -86,6 +86,7 @@ in with pkgs; [
   fuse_exfat
   gcc
   gimp
+  google-cloud-sdk
   glxinfo
   gnome3.adwaita-icon-theme
   gnumake

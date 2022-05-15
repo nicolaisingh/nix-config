@@ -34,6 +34,10 @@ in {
       myprofile = {
         id = 0;
         settings = {
+          # http://kb.mozillazine.org/Accessibility.tabfocus
+          # Make Tab focus only on text and form fields
+          "accessibility.tabfocus" = 3;
+
           "browser.search.suggest.enabled" = false;
           "browser.startup.homepage" = "about:blank";
           "general.smoothScroll" = false;
