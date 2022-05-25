@@ -79,6 +79,7 @@ in with pkgs; [
   dbus-broker
   ditaa
   dragon
+  emacs-localbuild
   evince
   exfat
   exiv2

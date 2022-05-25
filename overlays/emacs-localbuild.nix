@@ -19,12 +19,13 @@ in {
     srcRepo = true;
   }).overrideAttrs (oldAttrs: rec {
     version = "localbuild";
-    name = "emacs-${version}";
-    pname = "emacs-${version}";
-    patches = [
-      ./patches/clean-env.patch
-      ./patches/tramp-detect-wrapped-gvfsd.patch
-    ];
+
+    # Don't forget to run first 'git clean -fdx' (from INSTALL.REPO)
     src = /ssd/emacs;
+
+    postFixup = oldAttrs.postFixup + ''
+      ln -s "emacs" "$out/bin/emacs-${version}"
+      ln -s "emacsclient" "$out/bin/emacsclient-${version}"
+    '';
   });
 }
