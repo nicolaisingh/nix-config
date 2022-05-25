@@ -82,7 +82,7 @@ in {
     enable = true;
     cycle = true;
     font = "Noto Sans 10";
-    theme = "Arc-Dark";
+    theme = "Arc";
     extraConfig = {
       modi = "window,run,ssh,drun";
     };

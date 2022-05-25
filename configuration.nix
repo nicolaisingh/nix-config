@@ -21,7 +21,7 @@ let entities = import <entities>;
 
     unstableTarball = fetchTarball {
       url = "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
-      sha256 = "01j7nhxbb2kjw38yk4hkjkkbmz50g3br7fgvad6b1cjpdvfsllds";
+      sha256 = "1ipd1k1gvxh9sbg4w4cpa3585q09gvsq8xbjvxnnmfjib6r6xx4i";
     };
     unstablePkgs = import unstableTarball {
       config = config.nixpkgs.config;
