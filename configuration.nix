@@ -41,7 +41,8 @@ in {
                 [ "nixos-config=${configPath}/configuration.nix" ] ++
                 [ "entities=${configPath}/entities.nix" ] ++
                 [ "current=${configPath}/current.nix" ] ++
-                [ "nixpkgs=${configPath}/nixpkgs" ];
+                [ "nixpkgs=${configPath}/nixpkgs" ] ++
+                [ "nixpkgs-overlays=${configPath}/overlays/"];
 
   nixpkgs = {
     config = {
