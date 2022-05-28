@@ -3,6 +3,10 @@
 let
   current = import <current>;
 
+  emacs-default = pkgs.writeShellScriptBin "emacs-default" ''
+    exec ${pkgs.emacs}/bin/emacs "$@"
+  '';
+
   freezer-extracted = pkgs.appimageTools.extractType2 {
     name = "freezer";
     src = /. + builtins.toPath "/home/${current.user.username}/sw/Freezer-1.1.21.AppImage";
@@ -79,6 +83,7 @@ in with pkgs; [
   dbus-broker
   ditaa
   dragon
+  emacs-default
   emacs-localbuild
   evince
   exfat

@@ -59,7 +59,6 @@ in {
 
     overlays = [
       (import ./overlays/emacs-localbuild.nix)
-      (import ./overlays/emacs-default.nix)
     ];
   };
 
