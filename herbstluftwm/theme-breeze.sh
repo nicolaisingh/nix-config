@@ -5,7 +5,6 @@ hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
 
 hc set always_show_frame on
-# hc set frame_border_active_color '#da4453'
 hc set frame_border_active_color '#3b6ba3'
 hc set frame_border_normal_color '#7f8c8d'
 hc set frame_bg_normal_color '#565656'
@@ -16,13 +15,11 @@ hc set frame_transparent_width 0
 hc set frame_gap 3
 
 hc attr theme.title_depth 2
-hc attr theme.title_height 13
-hc attr theme.title_font "Noto Sans:size=8:style=bold"
+hc attr theme.title_height 15
+hc attr theme.title_font "Noto Sans:size=9"
 hc attr theme.title_align left
 hc attr theme.active.title_color "#ffffff"
 hc attr theme.normal.title_color "#475057"
-
-hc keybind $Mod-Control-Shift-t cycle_value theme.title_height 13 0
 
 hc attr theme.padding_top 0
 hc attr theme.padding_right 0
@@ -40,9 +37,6 @@ hc attr theme.normal.outer_color '#eff0f1'
 hc attr theme.active.color       '#5294e2'
 hc attr theme.active.inner_color '#5294e2'
 hc attr theme.active.outer_color '#5294e2'
-# hc attr theme.active.color       '#ef4b5b'
-# hc attr theme.active.inner_color '#ef4b5b'
-# hc attr theme.active.outer_color '#ef4b5b'
 hc attr theme.urgent.color       '#f67400'
 hc attr theme.urgent.inner_color '#f67400'
 hc attr theme.urgent.outer_color '#f67400'

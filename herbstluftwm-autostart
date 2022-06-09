@@ -147,6 +147,7 @@ hc keybind $Mod-BackSpace   cycle_monitor
 hc keybind $Mod-Tab         cycle_all +1
 hc keybind $Mod-Shift-Tab   cycle_all -1
 hc keybind $Mod-c cycle
+hc keybind $Mod-Shift-c cycle -1
 hc keybind $Mod-i jumpto urgent
 hc keybind $Mod-Shift-BackSpace shift_to_monitor +1
 
@@ -156,6 +157,7 @@ hc keybind $Mod-Shift-BackSpace shift_to_monitor +1
 # other binds
 hc keybind $Mod-Control-Shift-b cycle_value frame_border_width 0 1 2
 hc keybind $Mod-Control-Shift-r rotate
+hc keybind $Mod-Control-Shift-t cycle_value theme.title_height 0 15
 
 # rules
 hc unrule -F
