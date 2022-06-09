@@ -21,6 +21,9 @@ in {
   # Compositor
   services.picom.enable = true;
 
+  # Bluetooth
+  services.blueman.enable = true;
+
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [

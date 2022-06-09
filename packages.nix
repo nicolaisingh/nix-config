@@ -73,7 +73,6 @@ in with pkgs; [
   bc
   bind
   binutils
-  blueman
   calc
   calibre
   chromium
