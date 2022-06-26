@@ -29,7 +29,7 @@ hc keybind $Mod-Alt-l spawn xflock4
 hc keybind $Mod-Return spawn xfce4-terminal
 hc keybind $Mod-Shift-Return spawn emacsclient -c
 hc keybind $Mod-d spawn rofi -show drun
-hc keybind $Mod-Shift-d spawn rofi -show window
+hc keybind $Mod-w spawn rofi -show window
 hc keybind $Mod-F2 spawn "${configpath}/herbstluftwm/rename-tag.sh"
 
 # focusing clients
@@ -107,12 +107,15 @@ temp_monitor="temp_monitor"
 hc add $temp_tag
 hc keybind $Mod-Shift-grave move $temp_tag
 
-# r=( $(hc monitor_rect) )
-# monitor_rect="${r[2]}x${r[3]}+${r[0]}+${r[1]}"
+rect=( $(hc monitor_rect) )
+mon_offset=100
+mon_w=$(( ${rect[2]} - $mon_offset - $mon_offset ))
+mon_h=$(( ${rect[3]} - $mon_offset ))
+temp_monitor_rect="${mon_w}x${mon_h}+${mon_offset}+${mon_offset}"
 
 hc keybind $Mod-grave \
    or ! remove_monitor $temp_monitor \
-      ! and . or , add_monitor 1280x768+100+100 $temp_tag $temp_monitor \
+      ! and . or , add_monitor $temp_monitor_rect $temp_tag $temp_monitor \
                  , raise_monitor $temp_monitor \
 			. focus_monitor $temp_monitor
 
@@ -172,6 +175,10 @@ hc rule class='krunner' pseudotile=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
+
+# Google Meet's small screen sharing popup
+hc rule title~'meet\.google\.com is sharing.*.' floating=on floatplacement=center
+
 ## XFCE-specific
 hc rule class~'Xfce4-appfinder' floating=on floatplacement=center
 hc rule class~'Wrapper-2.0' floating=on floatplacement=center

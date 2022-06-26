@@ -153,10 +153,23 @@ in {
   security.rtkit.enable = true;
 
   services = {
+    # btrfs autoscrub
+    btrfs.autoScrub = {
+      enable = true;
+      fileSystems = [ "/home" "/ssd" ];
+      interval = "monthly";
+    };
+
     # Emacs
     emacs = {
       enable = true;
       package = pkgs.emacs-localbuild;
+    };
+
+    # Mysql
+    mysql = {
+      enable = true;
+      package = pkgs.mysql;
     };
 
     # Pipewire

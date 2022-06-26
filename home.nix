@@ -29,7 +29,7 @@ in {
 
   programs.firefox = {
     enable = true;
-    package = pkgs.firefox-bin;
+    package = pkgs.firefox;
     profiles = {
       myprofile = {
         id = 0;
@@ -68,6 +68,10 @@ in {
     };
   };
 
+  programs.chromium = {
+    enable = true;
+  };
+
   programs.bash = {
     enable = true;
     shellAliases = {
@@ -81,10 +85,13 @@ in {
   programs.rofi = {
     enable = true;
     cycle = true;
-    font = "Noto Sans 10";
+    font = "TeX Gyre Heros 10";
     theme = "Arc";
     extraConfig = {
       modi = "window,run,ssh,drun";
+      show-icons = true;
+      kb-row-up = "Control+p,Control+r,Control+comma";
+      kb-row-down = "Control+n,Control+s,Control+period";
     };
   };
 

@@ -67,6 +67,7 @@ in with pkgs; [
 
   # sweethome3d.furniture-editor
   # sweethome3d.textures-editor
+  ag
   appimage-run
   at
   bandwhich
@@ -75,7 +76,6 @@ in with pkgs; [
   binutils
   calc
   calibre
-  chromium
   cifs-utils
   colorpicker
   dbus
@@ -172,6 +172,7 @@ in with pkgs; [
   wget
   wirelesstools
   xclip
+  xdotool
   xlibsWrapper
   xorg.libXaw
   xorg.libXft

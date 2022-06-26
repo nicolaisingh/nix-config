@@ -16,7 +16,7 @@ hc set frame_gap 3
 
 hc attr theme.title_depth 2
 hc attr theme.title_height 15
-hc attr theme.title_font "Noto Sans:size=9"
+hc attr theme.title_font "TeX Gyre Heros:size=9:style=regular"
 hc attr theme.title_align left
 hc attr theme.active.title_color "#ffffff"
 hc attr theme.normal.title_color "#475057"
