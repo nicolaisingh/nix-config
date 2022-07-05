@@ -90,8 +90,8 @@ in {
     extraConfig = {
       modi = "window,run,ssh,drun";
       show-icons = true;
-      kb-row-up = "Control+p,Control+r,Control+comma";
-      kb-row-down = "Control+n,Control+s,Control+period";
+      kb-row-up = "Control+p,Control+r,Control+comma,Up";
+      kb-row-down = "Control+n,Control+s,Control+period,Down";
     };
   };
 
