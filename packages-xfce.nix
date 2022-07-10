@@ -26,6 +26,7 @@ in with pkgs; [
   xscreensaver
 
   arc-theme
+  flat-remix-icon-theme
   matcha-gtk-theme
   qogir-theme
   qogir-icon-theme
