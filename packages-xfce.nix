@@ -25,6 +25,7 @@ in with pkgs; [
   pavucontrol
   xscreensaver
 
+  arc-theme
   matcha-gtk-theme
   qogir-theme
   qogir-icon-theme
