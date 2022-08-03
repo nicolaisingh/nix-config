@@ -94,6 +94,7 @@ in with pkgs; [
   fuse_exfat
   gcc
   gimp
+  git-filter-repo
   glxinfo
   gnome3.adwaita-icon-theme
   gnumake
@@ -140,6 +141,7 @@ in with pkgs; [
   pcmanfm
   picard
   picom
+  plantuml
   python
   python3
   qt5Full
