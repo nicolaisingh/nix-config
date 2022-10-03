@@ -70,6 +70,7 @@ in with pkgs; [
   ag
   appimage-run
   at
+  awscli2
   bandwhich
   bc
   bind
@@ -78,9 +79,11 @@ in with pkgs; [
   calibre
   cifs-utils
   colorpicker
+  dbeaver
   dbus
   dbus-broker
   ditaa
+  dmidecode
   dragon
   emacs-default
   emacs-localbuild
@@ -117,6 +120,7 @@ in with pkgs; [
   jq
   kde-gtk-config
   killall
+  libavif
   libnotify
   libreoffice
   libressl
@@ -142,6 +146,7 @@ in with pkgs; [
   picard
   picom
   plantuml
+  postman
   python
   python3
   qt5Full

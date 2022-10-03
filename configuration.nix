@@ -225,6 +225,12 @@ in {
       ];
     };
 
+    # PostgreSQL
+    postgresql = {
+      enable = false;
+      package = pkgs.postgresql;
+    };
+
     # Syncthing
     syncthing = {
       enable = false; # don't start on boot
