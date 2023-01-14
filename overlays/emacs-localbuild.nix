@@ -12,6 +12,7 @@ self: super:
 
 let
   nixos = import <nixpkgs/nixos> {};
+  host = import <host-config>;
   unstable = nixos.pkgs.unstable;
 in {
   emacs-localbuild = (unstable.emacs.override {
@@ -20,8 +21,10 @@ in {
   }).overrideAttrs (oldAttrs: rec {
     version = "localbuild";
 
+    dontUnpack = true;
+
     # Don't forget to run first 'git clean -fdx' (from INSTALL.REPO)
-    src = /ssd/emacs;
+    src = "/home/${host.username}/src/emacs";
 
     postFixup = oldAttrs.postFixup + ''
       ln -s "emacs" "$out/bin/emacs-${version}"

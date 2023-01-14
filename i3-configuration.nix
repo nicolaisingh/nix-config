@@ -1,7 +1,9 @@
+# FIXME
 { current, lib, pkgs }:
 
-let mod = "Mod4";
-    borderWidth = 3;
+let
+  mod = "Mod4";
+  borderWidth = 3;
 in {
   # https://github.com/nix-community/home-manager/blob/master/modules/services/window-managers/i3-sway/i3.nix#blob-path
   enable = true;

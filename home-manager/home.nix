@@ -3,22 +3,35 @@
 # home-manager options:
 # https://nix-community.github.io/home-manager/options.html
 
-let current = import <current>;
-    kdePackages = pkgs.callPackage ./packages-kde.nix {};
-    myPackages = pkgs.callPackage ./packages.nix {};
+let
+  host = import <host-config>;
+  packages = pkgs.callPackage ./packages.nix {};
 in {
-  home = {
-    username = current.user.username;
-    homeDirectory = "/home/${current.user.username}";
-    packages = myPackages;
-  };
+  home.username = host.username;
+  home.homeDirectory = "/home/${host.username}";
+  home.packages = packages;
+
+  # This value determines the Home Manager release that your
+  # configuration is compatible with. This helps avoid breakage
+  # when a new Home Manager release introduces backwards
+  # incompatible changes.
+  #
+  # You can update Home Manager without changing this value. See
+  # the Home Manager release notes for a list of state version
+  # changes in each release.
+  home.stateVersion = "22.11";
 
   programs.home-manager.enable = true;
 
+  programs.java.enable = true;
+  programs.java.package = pkgs.jdk;
+
+  programs.emacs.enable = true;
+
   programs.git = {
     enable = true;
-    userName = current.user.name;
-    userEmail = current.user.email;
+    userName = host.fullname;
+    userEmail = host.email;
     aliases = {
       s = "status";
       plog = "log --graph --format=format:'%C(red)%h%C(reset)%C(auto)%d%C(reset) %s%C(blue) -- %an %C(magenta)(%ar)%C(reset)'";
@@ -78,6 +91,7 @@ in {
       "e" = "emacsclient";
       "ee" = "emacsclient -c -a ''";
       "grep" = "grep --color=auto";
+      "hc" = "herbstclient ";
       "Less" = "less";
     };
   };
@@ -85,7 +99,7 @@ in {
   programs.rofi = {
     enable = true;
     cycle = true;
-    font = "TeX Gyre Heros 10";
+    font = "Source Sans Pro 10";
     theme = "Arc";
     extraConfig = {
       modi = "window,run,ssh,drun";
@@ -95,17 +109,8 @@ in {
     };
   };
 
-  xsession.windowManager.i3 = import ./i3.nix {
-    inherit current lib pkgs;
+  services.gpg-agent = {
+    enable = true;
+    enableSshSupport = true;
   };
-
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
-  home.stateVersion = "20.09";
 }

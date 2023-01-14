@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-configpath="$(dirname "$0")"
+configpath=${HOME}/nix
 
 hc() {
     herbstclient "$@"
@@ -24,13 +24,28 @@ Mod=Mod4 # Mod4=super; Mod1=alt
 # hc keybind $Mod-Shift-q quit
 hc keybind $Mod-Shift-r reload
 hc keybind $Mod-Shift-q close_or_remove
-hc keybind $Mod-Alt-l spawn xflock4
 
-hc keybind $Mod-Return spawn xfce4-terminal
+# lockscreen
+if [ -n "$(command -v xflock4)" ]; then
+	hc keybind $Mod-Alt-l spawn xflock4
+fi
+
+# terminal
+if [ -n "$(command -v xfce4-terminal)" ]; then
+	hc keybind $Mod-Return spawn xfce4-terminal
+elif [ -n "$(command -v xterm)" ]; then
+	hc keybind $Mod-Return spawn xterm
+fi
+
+# emacs
 hc keybind $Mod-Shift-Return spawn emacsclient -c
-hc keybind $Mod-d spawn rofi -show drun
-hc keybind $Mod-w spawn rofi -show window
-hc keybind $Mod-F2 spawn "${configpath}/herbstluftwm/rename-tag.sh"
+
+# rofi
+if [ -n "$(command -v rofi)" ]; then
+	hc keybind $Mod-d spawn rofi -show drun
+	hc keybind $Mod-w spawn rofi -show window
+	hc keybind $Mod-F2 spawn "${configpath}/herbstluftwm/rename-tag.sh"
+fi
 
 # focusing clients
 hc keybind $Mod-Left			focus left
@@ -187,6 +202,11 @@ hc rule class~'Xfdesktop-settings' floating=on floatplacement=center
 
 hc set tree_style '╾│ ├└╼─┐'
 hc unlock # just to be sure
+
+# set plain bg
+if [ -n "$(command -v hsetroot)" ]; then
+	hsetroot -solid '#c0c0c0'
+fi
 
 # monitors
 hc detect_monitors

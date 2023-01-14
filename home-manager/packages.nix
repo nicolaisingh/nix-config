@@ -1,39 +1,39 @@
 { pkgs }:
 
 let
-  current = import <current>;
+  host = import <host-config>;
 
-  emacs-default = pkgs.writeShellScriptBin "emacs-default" ''
-    exec ${pkgs.emacs}/bin/emacs "$@"
-  '';
+  # emacs-default = pkgs.writeShellScriptBin "emacs-default" ''
+  #   exec ${pkgs.emacs}/bin/emacs "$@"
+  # '';
 
-  freezer-extracted = pkgs.appimageTools.extractType2 {
-    name = "freezer";
-    src = /. + builtins.toPath "/home/${current.user.username}/sw/Freezer-1.1.21.AppImage";
-  };
+  # freezer-extracted = pkgs.appimageTools.extractType2 {
+  #   name = "freezer";
+  #   src = /. + builtins.toPath "/home/${host.username}/sw/Freezer-1.1.21.AppImage";
+  # };
 
-  freezer = pkgs.appimageTools.wrapType2 {
-    name = "freezer";
-    src = /. + builtins.toPath "/home/${current.user.username}/sw/Freezer-1.1.21.AppImage";
-    profile = with pkgs; ''
-      export XDG_DATA_DIRS=${gsettings-desktop-schemas}/share/gsettings-schemas/${gsettings-desktop-schemas.name}:${gtk3}/share/gsettings-schemas/${gtk3.name}:$XDG_DATA_DIRS
-    '';
+  # freezer = pkgs.appimageTools.wrapType2 {
+  #   name = "freezer";
+  #   src = /. + builtins.toPath "/home/${host.username}/sw/Freezer-1.1.21.AppImage";
+  #   profile = with pkgs; ''
+  #     export XDG_DATA_DIRS=${gsettings-desktop-schemas}/share/gsettings-schemas/${gsettings-desktop-schemas.name}:${gtk3}/share/gsettings-schemas/${gtk3.name}:$XDG_DATA_DIRS
+  #   '';
 
-    extraInstallCommands = ''
-      install -m 444 -D ${freezer-extracted}/freezer.png $out/share/icons/hicolor/256x256/apps/freezer.png
-      ${pkgs.desktop-file-utils}/bin/desktop-file-install --dir $out/share/applications \
-        --set-key Exec --set-value $out/bin/freezer \
-        ${freezer-extracted}/freezer.desktop
-    '';
+  #   extraInstallCommands = ''
+  #     install -m 444 -D ${freezer-extracted}/freezer.png $out/share/icons/hicolor/256x256/apps/freezer.png
+  #     ${pkgs.desktop-file-utils}/bin/desktop-file-install --dir $out/share/applications \
+  #       --set-key Exec --set-value $out/bin/freezer \
+  #       ${freezer-extracted}/freezer.desktop
+  #   '';
 
-    extraPkgs = pkgs: with pkgs; [ xorg.libxshmfence ];
-  };
+  #   extraPkgs = pkgs: with pkgs; [ xorg.libxshmfence ];
+  # };
 
   guarda = pkgs.appimageTools.wrapType2 {
     # Use wrapType1 if `file -k' on the AppImage shows an ISO 9660
     # CD-ROM filesystem
     name = "guarda";
-    src = /. + builtins.toPath "/home/${current.user.username}/ct/Guarda-1.0.12.AppImage";
+    src = /. + builtins.toPath "/home/${host.username}/ct/Guarda-1.0.12.AppImage";
     profile = with pkgs; ''
       export XDG_DATA_DIRS=${gsettings-desktop-schemas}/share/gsettings-schemas/${gsettings-desktop-schemas.name}:${gtk3}/share/gsettings-schemas/${gtk3.name}:$XDG_DATA_DIRS
     '';
@@ -45,7 +45,7 @@ let
 
   radix-wallet = pkgs.appimageTools.wrapType2 {
     name = "radix-wallet";
-    src = /. + builtins.toPath "/home/${current.user.username}/ct/Radix-Wallet-1.3.3.AppImage";
+    src = /. + builtins.toPath "/home/${host.username}/ct/Radix-Wallet-1.3.3.AppImage";
     profile = with pkgs; ''
       export XDG_DATA_DIRS=${gsettings-desktop-schemas}/share/gsettings-schemas/${gsettings-desktop-schemas.name}:${gtk3}/share/gsettings-schemas/${gtk3.name}:$XDG_DATA_DIRS
     '';
@@ -64,10 +64,6 @@ let
   };
 
 in with pkgs; [
-
-  # sweethome3d.furniture-editor
-  # sweethome3d.textures-editor
-  ag
   appimage-run
   at
   awscli2
@@ -85,16 +81,15 @@ in with pkgs; [
   ditaa
   dmidecode
   dragon
-  emacs-default
-  emacs-localbuild
+  # emacs-default
+  # emacs-localbuild
   evince
   exfat
   exiv2
   feh
   ffmpeg-full
   file
-  freezer
-  fuse_exfat
+  # freezer
   gcc
   gimp
   git-filter-repo
@@ -111,6 +106,7 @@ in with pkgs; [
   hdparm
   hicolor-icon-theme
   home-manager
+  hsetroot
   htop
   idea-community-pkg
   imagemagick
@@ -132,10 +128,12 @@ in with pkgs; [
   mitscheme
   mmc-utils
   mp3gain
+  mtr
   mupdf
-  ncat
   ncurses
   neofetch
+  nixos-option
+  nmap
   nodejs
   nomacs
   openvpn
@@ -149,12 +147,12 @@ in with pkgs; [
   postman
   python
   python3
-  qt5Full
   racket
   radix-wallet
   rar
   scrcpy
   shntool
+  silver-searcher
   smartmontools
   sweethome3d.application
   syncthing
@@ -166,6 +164,7 @@ in with pkgs; [
   transmission
   tree
   unstable.android-studio
+  unstable.android-tools
   unstable.nyxt
   unstable.quodlibet-full
   unstable.tor-browser-bundle-bin

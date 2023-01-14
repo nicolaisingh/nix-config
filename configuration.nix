@@ -1,95 +1,83 @@
-{ config, lib, pkgs, options, ... }:
+{ config, pkgs, lib, options, ... }:
 
-let entities = import <entities>;
-    current = import <current>;
-    configPath = "/home/${current.user.username}/nix";
-    doesNotMatch = regex: str: builtins.match regex str == null;
+let
+  host = import <host-config>;
+  doesNotMatch = regex: str: builtins.match regex str == null;
+  configPath = "/home/${host.username}/nix";
 
-    # To get sha256: nix-prefetch-url --unpack URL
-    homeManagerTarball = fetchTarball {
-      url = "https://github.com/rycee/home-manager/archive/release-21.11.tar.gz";
-      sha256 = "18lda6l5zdvi6jyy14rcawbdbk0axb8wghip0xb4bqiz6c13hn03";
-    };
+  # NUR
+  # To get sha256: nix-prefetch-url --unpack URL
+  nurPkgs = import (fetchTarball {
+    url = "https://github.com/nix-community/NUR/archive/master.tar.gz";
+    sha256 = "0afbs7xwxp24ivl48gskfbhrf5cn41p99fcab0bj6rd74ddxs2vf";
+  }) {
+    inherit pkgs;
+  };
 
-    nurTarball = fetchTarball {
-      url = "https://github.com/nix-community/NUR/archive/master.tar.gz";
-      sha256 = "0pqhq9x94ggbhs74lhwd6m2kwva145kicapbx5jic0vfcigkm8iy";
-    };
-    nurPkgs = import nurTarball {
-      inherit pkgs;
-    };
-
-    unstableTarball = fetchTarball {
-      url = "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
-      sha256 = "1ipd1k1gvxh9sbg4w4cpa3585q09gvsq8xbjvxnnmfjib6r6xx4i";
-    };
-    unstablePkgs = import unstableTarball {
-      config = config.nixpkgs.config;
-    };
+  # nixos-unstable
+  unstablePkgs = import (fetchTarball {
+    url = "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
+    sha256 = "0rr6qp2zk1yp3z1sz3zxm1gmqpyy0vnbxs14qgpq9m6977ngjgm3";
+  }) {
+    config = config.nixpkgs.config;
+  };
 in {
   imports = [
-    (import "${homeManagerTarball}/nixos")
     ./hardware-configuration.nix
-    ./nvidia.nix
-    # ./kde.nix
-    # ./gnome.nix
-    ./xfce.nix
-    ./herbstluftwm.nix
+    ./nvidia-configuration.nix
+
+    # herbstluftwm (hlwm) + XFCE desktop
+    ./herbstluftwm-configuration.nix
+    ./xfce-configuration.nix
+
+    ./home-manager-configuration.nix
   ];
 
-  nix.nixPath = (builtins.filter (x: doesNotMatch "(nixos-config=.+)|(nixpkgs=.+)" x) options.nix.nixPath.default) ++
+  nix.nixPath = (builtins.filter (x: doesNotMatch "(nixos-config=.+)" x) options.nix.nixPath.default) ++
                 [ "nixos-config=${configPath}/configuration.nix" ] ++
-                [ "entities=${configPath}/entities.nix" ] ++
-                [ "current=${configPath}/current.nix" ] ++
-                [ "nixpkgs=${configPath}/nixpkgs" ] ++
-                [ "nixpkgs-overlays=${configPath}/overlays/"];
+                [ "host-config=${configPath}/host-configuration.nix" ];
 
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-
-      packageOverrides = pkgs: rec {
-        # Load nixos-unstable
-        unstable = unstablePkgs;
-
-        # Load NUR
-        nur = nurPkgs;
-      };
-    };
-
-    overlays = [
-      (import ./overlays/emacs-localbuild.nix)
-    ];
-  };
-
-  home-manager = {
-    useGlobalPkgs = true;
-    users."${current.user.username}" = (import ./home.nix);
-  };
-
-  # pci=nocrs flag:
-  # From dmesg: Using host bridge windows from ACPI; if necessary, use "pci=nocrs" and report a bug
-  # acpi_osi flag:
-  # https://github.com/Bumblebee-Project/Bumblebee/issues/764#issuecomment-234494238
-  boot = {
-    kernelParams = [ "pci=noaer" "pci=nocrs" "acpi_osi=\"!Windows 2015\"" ];
-    kernel.sysctl = {
-      "kernel.sysrq" = 1;
-      "kernel.nmi_watchdog" = 0;
-      "kernel.watchdog" = 0;
-    };
-    loader = {
-      timeout = 3;
-      systemd-boot.enable = true;
-      systemd-boot.memtest86.enable = true;
-      efi.canTouchEfiVariables = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    packageOverrides = pkgs: rec {
+      unstable = unstablePkgs;
+      nur = nurPkgs;
     };
   };
+
+  nixpkgs.overlays = [
+    # (import ./overlays/emacs-localbuild.nix)
+  ];
+
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.timeout = 3;
+
+  # Kernel parameters
+  boot.kernel.sysctl = {
+    "kernel.sysrq" = 1;
+    "kernel.nmi_watchdog" = 0;
+    "kernel.watchdog" = 0;
+  };
+
+  # Networking
+  networking.hostName = "yaldabaoth";
+  networking.networkmanager.enable = true;
+
+  ## Setting random will prevent connecting to some Bluetooth devices
+  # networking.networkmanager.wifi.macAddress = "random";
+  # networking.networkmanager.ethernet.macAddress = "random";
+  networking.networkmanager.dns = "none";
+  networking.nameservers = [ "1.1.1.1" "8.8.8.8" ];
 
   time.timeZone = "Asia/Manila";
   i18n.defaultLocale = "en_US.UTF-8";
-  console.font = "lat2-14";
-  console.keyMap = "us";
+  console = {
+    #   font = "Lat2-Terminus16";
+    #   keyMap = "us";
+    useXkbConfig = true; # use xkbOptions in tty.
+  };
 
   fonts = {
     fonts = with pkgs; [
@@ -107,280 +95,122 @@ in {
     ];
   };
 
-  networking = {
-    hostName = current.machine.hostname;
-    #wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  services.dbus.enable = true;
 
-    networkmanager = {
-      enable = true;
-      # Setting random will prevent connecting to some Bluetooth devices
-      # wifi.macAddress = "random";
-      # ethernet.macAddress = "random";
+  services.emacs.enable = true;
 
-      # Don't mess with the static nameservers
-      dns = "none";
-    };
+  services.flatpak.enable = true;
 
-    hosts = {} // entities.hosts;
+  services.openssh.enable = true;
 
-    # Force to false, flag is now deprecated
-    useDHCP = false;
+  services.postgresql.enable = false;
+  services.postgresql.package = pkgs.postgresql;
 
-    interfaces.enp2s0 = {
-      useDHCP = false;
-    };
+  services.printing.enable = false;
 
-    interfaces.wlp3s0 = {
-      useDHCP = false;
-      ipv4.addresses = [{ address = current.machine.address; prefixLength = 24; }];
-    };
-
-    defaultGateway = { address = entities.cypress.gatewayAddress; interface = "wlp3s0"; };
-    nameservers = [ "1.1.1.1" "8.8.8.8" ];
-
-    # Configure network proxy if necessary
-    # proxy.default = "http://user:password@proxy:port/";
-    # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-    # Open ports in the firewall
-    # firewall.allowedTCPPorts = [ 80 443 ];
-    # firewall.allowedUDPPorts = [ ... ];
-    # Or disable the firewall altogether.
-    # firewall.enable = false;
+  services.syncthing = {
+    enable = false; # don't start on boot
+    user = builtins.getEnv "USER";
+    dataDir = "/home/${host.username}/sync";
   };
 
-  # Recommended when using pipewire
-  security.rtkit.enable = true;
+  services.thermald.enable = true;
 
-  services = {
-    # btrfs autoscrub
-    btrfs.autoScrub = {
-      enable = true;
-      fileSystems = [ "/home" "/ssd" ];
-      interval = "monthly";
-    };
-
-    # Emacs
-    emacs = {
-      enable = true;
-      package = pkgs.emacs-localbuild;
-    };
-
-    # Mysql
-    mysql = {
-      enable = true;
-      package = pkgs.mysql;
-    };
-
-    # Pipewire
-    pipewire = {
-      enable = false;
-      alsa.enable = true;
-      pulse.enable = true;
-      media-session.config.bluez-monitor.rules = [
-        {
-          matches = [
-            {
-              # Matches all cards
-              "device.name" = "~bluez_card.*";
-            }
-          ];
-          actions = {
-            "update-props" = {
-              # "bluez5.reconnect-profiles" = [ "hfp_hf" "hsp_hs" "a2dp_sink" ];
-              "bluez5.msbc-support" = true;
-              "bluez5.sbc-xq-support" = true;
-
-              # LDAC encoding quality
-              # auto (Adaptive Bitrate, default)
-              # hq (High Quality, 990/909kbps)
-              # sq (Standard Quality, 660/606kbps)
-              # mq (Mobile use Quality, 330/303kbps)
-              # "bluez5.a2dp.ldac.quality" = "hq";
-
-              # AAC variable bitrate mode
-              # 0 (cbr, default), 1-5 (quality level)
-              # "bluez5.a2dp.aac.bitratemode" = 4;
-
-            };
-          };
-        }
-        {
-          matches = [
-            {
-              # Matches all sources
-              "node.name" = "~bluez_input.*";
-            }
-            {
-              # Matches all outputs
-              "node.name" = "~bluez_output.*";
-            }
-          ];
-          actions = {
-            "update-props" = {
-              "node.pause-on-idle" = false;
-            };
-          };
-        }
-      ];
-    };
-
-    # PostgreSQL
-    postgresql = {
-      enable = false;
-      package = pkgs.postgresql;
-    };
-
-    # Syncthing
-    syncthing = {
-      enable = false; # don't start on boot
-      user = builtins.getEnv "USER";
-      dataDir = ''/home/${builtins.getEnv "USER"}/sync'';
-    };
-
-    # TLP
-    tlp = {
-      enable = true;
-      settings = {
-        TLP_DEFAULT_MODE = ''"AC"'';
-
-        # Permit disk spin down for HDD on battery
-        DISK_DEVICES = ''"nvme0n1 sda"'';
-        DISK_APM_LEVEL_ON_AC = ''"254 128"'';
-        DISK_APM_LEVEL_ON_BAT = ''"254 127"'';
-
-        # Disable wifi power saving
-        WIFI_PWR_ON_AC = ''"off"'';
-        WIFI_PWR_ON_BAT = ''"off"'';
-
-        # Disable sound power saving
-        SOUND_POWER_SAVE_ON_AC = ''"0"'';
-        SOUND_POWER_SAVE_ON_BAT = ''"0"'';
-        SOUND_POWER_SAVE_CONTROLLER = ''"N"'';
-
-        # Disable USB autosuspending
-        USB_AUTOSUSPEND = ''"0"'';
-      };
-    };
-
-    transmission = {
-      enable = true;
-      settings = {
-        download-dir = "/home/${current.user.username}/Downloads/torrent/completed";
-
-        incomplete-dir-enabled = true;
-        incomplete-dir = "/home/${current.user.username}/Downloads/torrent";
-      };
-    };
-
-    # X11 windowing system
-    xserver = {
-      enable = true;
-
-      # Key repetition rate
-      autoRepeatDelay = 250;
-      autoRepeatInterval = 50;
-      # Settings above are not being respected (in KDE, set keyboard
-      # settings to `Leave unchanged' for this to take effect)
-      displayManager.sessionCommands = ''
-        ${pkgs.xlibs.xset}/bin/xset r rate 250 50
-      '';
-
-      desktopManager = {
-        xterm.enable = false;
-      };
-
-      # Enable i3 window manager
-      # windowManager.i3 = {
-        # enable = true;
-        # package = pkgs.i3-gaps;
-      # };
-
-      displayManager = {
-        # Autologin user
-        autoLogin= {
-          enable = true;
-          user = current.user.username;
-        };
-
-        # See nixos-option `displayManager.session` for possible values
-        # defaultSession = "plasma5";
-        # defaultSession = "plasma5+i3";
-        # defaultSession = "plasma5+my-herbstluftwm";
-        # defaultSession = "plasma+my-herbstluftwm";
-        # defaultSession = "plasma";
-        defaultSession = "xfce+my-herbstluftwm";
-      };
-
-      # Touchpad
-      libinput = {
-        enable = true;
-        touchpad = {
-          tappingDragLock = false;
-          disableWhileTyping = true;
-          naturalScrolling = true;
-        };
-      };
-
-      # Keymap
-      layout = "us";
-      xkbOptions = "ctrl:nocaps,shift:both_capslock";
-    };
-
-    dbus.enable = true;
-    flatpak.enable = true;
-    openssh.enable = true;
-    printing.enable = false; # CUPS
-    thermald.enable = true;
+  services.transmission.enable = true;
+  services.transmission.settings = {
+    download-dir = "/home/${host.username}/Downloads/torrent/completed";
+    incomplete-dir-enabled = true;
+    incomplete-dir = "/home/${host.username}/Downloads/torrent";
   };
 
-  hardware = {
-    # Audio
-    # Switched to pipewire (see services.pipewire)
-    pulseaudio = {
-      enable = true;
-      package = pkgs.pulseaudioFull;
-    };
+  services.tlp.enable = true;
+  services.tlp.settings = {
+    TLP_DEFAULT_MODE = ''"AC"'';
 
-    # Bluetooth
-    bluetooth = {
-      enable = true;
-      package = pkgs.bluezFull;
-      powerOnBoot = false;
-    };
+    # Permit disk spin down for HDD (set to 128 to disable)
+    DISK_DEVICES = ''"nvme0n1 sda"'';
+    DISK_APM_LEVEL_ON_AC = ''"254 127"'';
+    DISK_APM_LEVEL_ON_BAT = ''"254 127"'';
+
+    # Disable wifi power saving
+    WIFI_PWR_ON_AC = ''"off"'';
+    WIFI_PWR_ON_BAT = ''"off"'';
+
+    # Disable sound power saving
+    SOUND_POWER_SAVE_ON_AC = ''"0"'';
+    SOUND_POWER_SAVE_ON_BAT = ''"0"'';
+    SOUND_POWER_SAVE_CONTROLLER = ''"N"'';
+
+    # Disable USB autosuspending
+    USB_AUTOSUSPEND = ''"0"'';
   };
 
-  users.users."${current.user.username}" = {
+  # X11 windowing system
+  services.xserver = {
+    enable = true;
+
+    # Keymap
+    layout = "us";
+    xkbOptions = "ctrl:nocaps,shift:both_capslock";
+
+    # See nixos-option `displayManager.session` for possible values
+    displayManager.defaultSession = "xfce+my-herbstluftwm";
+
+    # Autologin
+    displayManager.autoLogin.enable = true;
+    displayManager.autoLogin.user = host.username;
+
+    # Key repetition rate
+    autoRepeatDelay = 250;
+    autoRepeatInterval = 50;
+    displayManager.sessionCommands = ''
+      ${pkgs.xorg.xset}/bin/xset r rate 250 50
+    '';
+
+    # Touchpad
+    libinput.enable = true;
+    libinput.touchpad.tappingDragLock = false;
+    libinput.touchpad.disableWhileTyping = true;
+    libinput.touchpad.naturalScrolling = true;
+  };
+
+  # Sound
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.package = pkgs.pulseaudioFull;
+
+  # Bluetooth
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.package = pkgs.bluezFull;
+  hardware.bluetooth.powerOnBoot = false;
+
+  users.users."${host.username}" = {
     isNormalUser = true;
-    isSystemUser = false;
-    extraGroups = [ "wheel" "networkmanager" "audio" "syncthing" "adbusers" "transmission" ];
+    createHome = true;
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "audio"
+      "syncthing"
+      "adbusers"
+      "transmission"
+    ];
   };
 
   environment.systemPackages = with pkgs; [
-    # Needs to be installed in the system config
-    ntfs3g
+    ntfs3g # Needs to be installed in the system config
   ];
 
   environment.shellAliases = {
     ".." = "cd ..";
     "df" = "df -h";
-    "hc" = "herbstclient ";
+    "ll" = "ls -lh";
   };
 
-  programs.adb.enable = true;
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
-
-  programs.java = {
-    enable = true;
-    package = pkgs.jdk;
-  };
+  # Copy the NixOS configuration file and link it from the resulting system
+  # (/run/current-system/configuration.nix). This is useful in case you
+  # accidentally delete configuration.nix.
+  system.copySystemConfiguration = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -388,5 +218,5 @@ in {
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "20.09"; # Did you read the comment?
+  system.stateVersion = "22.11"; # Did you read the comment?
 }

@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
 
-let entities = import <entities>;
-    current = import <current>;
-    configPath = "/home/${current.user.username}/nix";
+let
+  host = import <host-config>;
+  configPath = "/home/${host.username}/nix";
 in {
   # X11 windowing system
   services.xserver = {
