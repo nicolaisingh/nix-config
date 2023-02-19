@@ -75,6 +75,7 @@ in with pkgs; [
   calibre
   cifs-utils
   colorpicker
+  cura
   dbeaver
   dbus
   dbus-broker
@@ -101,7 +102,6 @@ in with pkgs; [
   google-cloud-sdk
   gparted
   guarda
-  gwenview
   harfbuzz
   hdparm
   hicolor-icon-theme
@@ -153,6 +153,7 @@ in with pkgs; [
   scrcpy
   shntool
   silver-searcher
+  slic3r
   smartmontools
   sweethome3d.application
   syncthing
