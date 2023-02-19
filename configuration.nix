@@ -24,6 +24,7 @@ let
 in {
   imports = [
     ./hardware-configuration.nix
+    ./luks-configuration.nix
     ./nvidia-configuration.nix
 
     # herbstluftwm (hlwm) + XFCE desktop
