@@ -100,7 +100,7 @@ in {
     enable = true;
     cycle = true;
     font = "Source Sans Pro 10";
-    theme = "Arc";
+    theme = "android_notification";
     extraConfig = {
       modi = "window,run,ssh,drun";
       show-icons = true;
@@ -112,5 +112,11 @@ in {
   services.gpg-agent = {
     enable = true;
     enableSshSupport = true;
+  };
+
+  xfconf.settings = {
+    xsettings = {
+      "Gtk/KeyThemeName" = "Emacs";
+    };
   };
 }

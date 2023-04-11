@@ -170,7 +170,7 @@ hc keybind $Mod-i jumpto urgent
 hc keybind $Mod-Shift-BackSpace shift_to_monitor +1
 
 # theme
-. "${configpath}/herbstluftwm/theme-arc.sh"
+. "${configpath}/herbstluftwm/theme-matcha-aliz.sh"
 
 # other binds
 hc keybind $Mod-Control-Shift-b cycle_value frame_border_width 0 1 2
@@ -205,7 +205,7 @@ hc unlock # just to be sure
 
 # set plain bg
 if [ -n "$(command -v hsetroot)" ]; then
-	hsetroot -solid '#c0c0c0'
+	hsetroot -solid '#f7f7f7'
 fi
 
 # monitors
