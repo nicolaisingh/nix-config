@@ -136,6 +136,7 @@ in with pkgs; [
   nmap
   nodejs
   nomacs
+  obs-studio
   openvpn
   p7zip
   parted
