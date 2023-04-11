@@ -3,6 +3,16 @@
 let
   host = import <host-config>;
 
+  cura-appimage = pkgs.appimageTools.wrapType2 {
+    name = "cura";
+    src = pkgs.fetchurl {
+      url = "https://github.com/Ultimaker/Cura/releases/download/5.3.0/UltiMaker-Cura-5.3.0-linux-modern.AppImage";
+      sha256 = "sha256-AM3WxPzlcKooo/pqvqR6euYM7rJWNGfzK1pK5kTujlc=";
+    };
+    profile = with pkgs; ''
+      export XDG_DATA_DIRS=${gsettings-desktop-schemas}/share/gsettings-schemas/${gsettings-desktop-schemas.name}:${gtk3}/share/gsettings-schemas/${gtk3.name}:$XDG_DATA_DIRS
+    '';
+  };
   # emacs-default = pkgs.writeShellScriptBin "emacs-default" ''
   #   exec ${pkgs.emacs}/bin/emacs "$@"
   # '';
@@ -75,7 +85,7 @@ in with pkgs; [
   calibre
   cifs-utils
   colorpicker
-  cura
+  cura-appimage
   dbeaver
   dbus
   dbus-broker
@@ -90,6 +100,7 @@ in with pkgs; [
   feh
   ffmpeg-full
   file
+  freecad
   # freezer
   gcc
   gimp
