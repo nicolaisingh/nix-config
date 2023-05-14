@@ -43,7 +43,7 @@ let
     # Use wrapType1 if `file -k' on the AppImage shows an ISO 9660
     # CD-ROM filesystem
     name = "guarda";
-    src = /. + builtins.toPath "/home/${host.username}/ct/Guarda-1.0.12.AppImage";
+    src = /. + builtins.toPath "/home/${host.username}/ct/Guarda-1.0.20.AppImage";
     profile = with pkgs; ''
       export XDG_DATA_DIRS=${gsettings-desktop-schemas}/share/gsettings-schemas/${gsettings-desktop-schemas.name}:${gtk3}/share/gsettings-schemas/${gtk3.name}:$XDG_DATA_DIRS
     '';
@@ -55,7 +55,7 @@ let
 
   radix-wallet = pkgs.appimageTools.wrapType2 {
     name = "radix-wallet";
-    src = /. + builtins.toPath "/home/${host.username}/ct/Radix-Wallet-1.3.3.AppImage";
+    src = /. + builtins.toPath "/home/${host.username}/ct/Radix-Wallet-1.5.0.AppImage";
     profile = with pkgs; ''
       export XDG_DATA_DIRS=${gsettings-desktop-schemas}/share/gsettings-schemas/${gsettings-desktop-schemas.name}:${gtk3}/share/gsettings-schemas/${gtk3.name}:$XDG_DATA_DIRS
     '';
