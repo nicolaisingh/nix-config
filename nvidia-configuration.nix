@@ -37,10 +37,24 @@ let
       "application/x-cd-image"
     ];
   };
+
+  freecadDesktopItem = pkgs.makeDesktopItem {
+    desktopName = "FreeCAD - nvidia offload";
+    genericName = "CAD - nvidia offload";
+    name = "freecad";
+    exec = "nvidia-offload freecad %F";
+    categories = [ "Graphics" "Science" "Education" "Engineering" ];
+    icon = "org.freecadweb.FreeCAD";
+    mimeTypes = [ "application/x-extension-fcstd" ];
+    startupNotify = true;
+    terminal = false;
+    type = "Application";
+  };
 in {
   environment.systemPackages = [
     nvidia-offload
     dragonDesktopItem
+    freecadDesktopItem
   ];
 
   services.xserver.videoDrivers = [ "nvidia" ];

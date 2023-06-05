@@ -109,6 +109,23 @@ in {
 
   services.printing.enable = false;
 
+  services.samba = {
+    enable = true;
+    enableNmbd = false;
+    openFirewall = true;
+    extraConfig = ''
+    # Don't forget to do smbpasswd -a USER to set the user's samba password.
+    [global]
+      server role = standalone server
+      hosts allow = 192.168.70.100 127.
+    [public]
+      comment = Public stuff
+      path = /hdd/pub
+      writable = no
+      printable = no
+    '';
+  };
+
   services.syncthing = {
     enable = false; # don't start on boot
     user = builtins.getEnv "USER";
