@@ -27,6 +27,7 @@ in {
   programs.java.package = pkgs.jdk;
 
   programs.emacs.enable = true;
+  programs.emacs.package = pkgs.emacs29;
 
   programs.git = {
     enable = true;
