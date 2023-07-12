@@ -157,7 +157,6 @@ in with pkgs; [
   picom
   plantuml
   postman
-  python
   python3
   racket
   radix-wallet
@@ -192,7 +191,6 @@ in with pkgs; [
   wirelesstools
   xclip
   xdotool
-  xlibsWrapper
   xorg.libXaw
   xorg.libXft
   xorg.libXpm

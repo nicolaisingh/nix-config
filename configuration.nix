@@ -9,7 +9,7 @@ let
   # To get sha256: nix-prefetch-url --unpack URL
   nurPkgs = import (fetchTarball {
     url = "https://github.com/nix-community/NUR/archive/master.tar.gz";
-    sha256 = "0a0x03fsk8x6926720wyrzzfg4pf3dlm877smyr9x9q2zr6j8a32";
+    sha256 = "159ym0xfrn1pbs88vmm1n2i4krbvwbry5a1y1n62qkw4h17rx2yg";
   }) {
     inherit pkgs;
   };
