@@ -6,8 +6,8 @@ let
   cura-appimage = pkgs.appimageTools.wrapType2 {
     name = "cura";
     src = pkgs.fetchurl {
-      url = "https://github.com/Ultimaker/Cura/releases/download/5.3.0/UltiMaker-Cura-5.3.0-linux-modern.AppImage";
-      sha256 = "sha256-AM3WxPzlcKooo/pqvqR6euYM7rJWNGfzK1pK5kTujlc=";
+      url = "https://github.com/Ultimaker/Cura/releases/download/5.4.0/UltiMaker-Cura-5.4.0-linux-modern.AppImage";
+      sha256 = "sha256-QVv7Wkfo082PH6n6rpsB79st2xK2+Np9ivBg/PYZd74=";
     };
     profile = with pkgs; ''
       export XDG_DATA_DIRS=${gsettings-desktop-schemas}/share/gsettings-schemas/${gsettings-desktop-schemas.name}:${gtk3}/share/gsettings-schemas/${gtk3.name}:$XDG_DATA_DIRS
