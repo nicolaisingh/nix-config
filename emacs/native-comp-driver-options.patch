@@ -1,0 +1,16 @@
+diff --git a/lisp/emacs-lisp/comp.el b/lisp/emacs-lisp/comp.el
+index 22fb08e4688..4ea6d381a24 100644
+--- a/lisp/emacs-lisp/comp.el
++++ b/lisp/emacs-lisp/comp.el
+@@ -187,8 +187,9 @@ native-comp-compiler-options
+   :version "28.1")
+
+ (defcustom native-comp-driver-options
+-  (cond ((eq system-type 'darwin) '("-Wl,-w"))
+-        ((eq system-type 'cygwin) '("-Wl,-dynamicbase")))
++  (append (cond ((eq system-type 'darwin) '("-Wl,-w"))
++                ((eq system-type 'cygwin) '("-Wl,-dynamicbase")))
++          '(@backendPath@))
+   "Options passed verbatim to the native compiler's back-end driver.
+ Note that not all options are meaningful; typically only the options
+ affecting the assembler and linker are likely to be useful.

@@ -13,9 +13,6 @@ let
       export XDG_DATA_DIRS=${gsettings-desktop-schemas}/share/gsettings-schemas/${gsettings-desktop-schemas.name}:${gtk3}/share/gsettings-schemas/${gtk3.name}:$XDG_DATA_DIRS
     '';
   };
-  # emacs-default = pkgs.writeShellScriptBin "emacs-default" ''
-  #   exec ${pkgs.emacs}/bin/emacs "$@"
-  # '';
 
   # freezer-extracted = pkgs.appimageTools.extractType2 {
   #   name = "freezer";
@@ -92,8 +89,6 @@ in with pkgs; [
   ditaa
   dmidecode
   dragon
-  # emacs-default
-  # emacs-localbuild
   evince
   exfat
   exiv2

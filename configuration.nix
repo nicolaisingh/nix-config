@@ -99,6 +99,8 @@ in {
   services.dbus.enable = true;
 
   services.emacs.enable = true;
+  # services.emacs.package = pkgs.emacs29;
+  services.emacs.package = pkgs.callPackage ./emacs/emacs-dev.nix {};
 
   services.flatpak.enable = true;
 
