@@ -170,7 +170,7 @@ in with pkgs; [
   tlp
   transmission
   tree
-  unstable.android-studio
+  unstable.androidStudioPackages.beta # android-studio
   unstable.android-tools
   unstable.nyxt
   unstable.quodlibet-full
