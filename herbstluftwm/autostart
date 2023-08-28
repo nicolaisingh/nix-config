@@ -188,6 +188,7 @@ hc rule focus=on # normally focus new clients
 hc rule class~'plasmashell' floating=on floatplacement=center focus=off
 hc rule class='krunner' pseudotile=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on floatplacement=center
+hc rule class='jetbrains-studio' title='splash' floating=on floatplacement=center
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 
