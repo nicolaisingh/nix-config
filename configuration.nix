@@ -72,6 +72,9 @@ in {
   networking.networkmanager.dns = "none";
   networking.nameservers = [ "1.1.1.1" "8.8.8.8" ];
 
+  networking.firewall.enable = true;
+  networking.firewall.allowedTCPPorts = [ 8080 ];
+
   time.timeZone = "Asia/Manila";
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
