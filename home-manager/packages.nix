@@ -80,7 +80,10 @@ in with pkgs; [
   binutils
   calc
   calibre
+  ccl
   cifs-utils
+  clisp
+  clojure
   colorpicker
   cura-appimage
   dbeaver
@@ -156,6 +159,7 @@ in with pkgs; [
   racket
   radix-wallet
   rar
+  sbcl
   scrcpy
   shntool
   silver-searcher
