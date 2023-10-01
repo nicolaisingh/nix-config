@@ -52,7 +52,7 @@ let
 
   radix-wallet = pkgs.appimageTools.wrapType2 {
     name = "radix-wallet";
-    src = /. + builtins.toPath "/home/${host.username}/ct/Radix-Wallet-1.5.0.AppImage";
+    src = /. + builtins.toPath "/home/${host.username}/ct/Radix-Wallet-1.6.0.AppImage";
     profile = with pkgs; ''
       export XDG_DATA_DIRS=${gsettings-desktop-schemas}/share/gsettings-schemas/${gsettings-desktop-schemas.name}:${gtk3}/share/gsettings-schemas/${gtk3.name}:$XDG_DATA_DIRS
     '';
