@@ -110,6 +110,7 @@ in with pkgs; [
   gnutls
   google-cloud-sdk
   gparted
+  graphviz
   guarda
   harfbuzz
   hdparm
