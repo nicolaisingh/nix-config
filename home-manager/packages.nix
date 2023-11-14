@@ -94,6 +94,7 @@ in with pkgs; [
   dragon
   evince
   exfat
+  exiftool
   exiv2
   feh
   ffmpeg-full
@@ -138,6 +139,7 @@ in with pkgs; [
   mitscheme
   mmc-utils
   mp3gain
+  mpg321
   mtr
   mupdf
   ncurses
@@ -150,12 +152,14 @@ in with pkgs; [
   openvpn
   p7zip
   parted
+  pass
   pciutils
   pcmanfm
   picard
   picom
   plantuml
   postman
+  protonmail-bridge
   python3
   racket
   radix-wallet
@@ -166,12 +170,14 @@ in with pkgs; [
   silver-searcher
   slic3r
   smartmontools
+  sqlite
   sweethome3d.application
   syncthing
   tcpdump
   tdesktop
   texlive-pkg
   thermald
+  thunderbird
   tlp
   transmission
   tree
@@ -185,6 +191,8 @@ in with pkgs; [
   vim
   vivaldi
   vivaldi-ffmpeg-codecs
+  vlc
+  vorbis-tools
   vorbisgain
   webcamoid
   wget
