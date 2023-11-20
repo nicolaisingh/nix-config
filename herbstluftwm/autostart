@@ -192,6 +192,10 @@ hc rule class='jetbrains-studio' title='splash' floating=on floatplacement=cente
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 
+hc rule windowrole='browser' tag=2
+hc rule instance='Mail' tag=3
+hc rule class='.quodlibet-wrapped' tag=3
+
 # Google Meet's small screen sharing popup
 hc rule title~'meet\.google\.com is sharing.*.' floating=on floatplacement=center
 

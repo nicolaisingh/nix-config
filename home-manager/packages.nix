@@ -141,6 +141,7 @@ in with pkgs; [
   mp3gain
   mpg321
   mtr
+  multimarkdown
   mupdf
   ncurses
   neofetch
