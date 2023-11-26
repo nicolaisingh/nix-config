@@ -107,6 +107,33 @@ in {
     };
   };
 
+  programs.msmtp.enable = true;
+
+  accounts.email = {
+    accounts.proton = {
+      primary = true;
+      userName = "nicolaisingh@pm.me";
+      address = "nicolaisingh@pm.me";
+      aliases = [ "nicolaisingh@protonmail.com" ];
+      passwordCommand = "gpg --quiet --no-tty --for-your-eyes-only -d /home/${host.username}/.proton.gpg | grep -v '^#'";
+
+      smtp = {
+        host = "127.0.0.1";
+        port = 1025;
+        tls = {
+          enable = true;
+          useStartTls = true;
+        };
+      };
+
+      msmtp = {
+        enable = true;
+        # msmtp --serverinfo --tls --tls-certcheck=off
+        tls.fingerprint = "8B:02:B8:FA:8E:21:84:16:F0:D8:D1:E1:D5:77:7B:23:0E:FA:9A:76:BA:20:3A:9B:EA:1B:CA:02:2A:74:B6:95";
+      };
+    };
+  };
+
   services.gpg-agent = {
     enable = true;
     enableSshSupport = true;
