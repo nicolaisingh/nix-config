@@ -123,7 +123,7 @@ hc add $temp_tag
 hc keybind $Mod-Shift-grave move $temp_tag
 
 rect=( $(hc monitor_rect) )
-mon_offset=100
+mon_offset=50
 mon_w=$(( ${rect[2]} - $mon_offset - $mon_offset ))
 mon_h=$(( ${rect[3]} - $mon_offset ))
 temp_monitor_rect="${mon_w}x${mon_h}+${mon_offset}+${mon_offset}"

@@ -115,7 +115,7 @@ in {
       userName = "nicolaisingh@pm.me";
       address = "nicolaisingh@pm.me";
       aliases = [ "nicolaisingh@protonmail.com" ];
-      passwordCommand = "gpg --quiet --no-tty --for-your-eyes-only -d /home/${host.username}/.proton.gpg | grep -v '^#'";
+      passwordCommand = ["echo" "${host.secrets.proton}"];
 
       smtp = {
         host = "127.0.0.1";
