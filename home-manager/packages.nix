@@ -81,6 +81,7 @@ in with pkgs; [
   calc
   calibre
   ccl
+  chiaki
   cifs-utils
   clisp
   clojure
@@ -162,6 +163,8 @@ in with pkgs; [
   postman
   protonmail-bridge
   python3
+  python310Packages.pip
+  python310Packages.pyflakes
   racket
   radix-wallet
   rar
