@@ -60,20 +60,25 @@ let
 
   texlive-pkg = with pkgs; texlive.combine {
     inherit (texlive)
+      booktabs
       cabin
+      capt-of
       enumitem
       geometry
       hyperref
       libertine
+      lipsum
       ly1
       mathdesign
-      scheme-medium;
+      scheme-medium
+      wrapfig;
   };
 
 in with pkgs; [
   appimage-run
   at
   awscli2
+  aws-sam-cli
   bandwhich
   bc
   bind
@@ -92,6 +97,7 @@ in with pkgs; [
   dbus-broker
   ditaa
   dmidecode
+  docker-compose
   dragon
   evince
   exfat
@@ -162,9 +168,7 @@ in with pkgs; [
   plantuml
   postman
   protonmail-bridge
-  python3
-  python310Packages.pip
-  python310Packages.pyflakes
+  (python39.withPackages(ps: with ps; [pip pyflakes tomlkit]))
   racket
   radix-wallet
   rar
