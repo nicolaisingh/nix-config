@@ -166,7 +166,6 @@ in with pkgs; [
   picard
   picom
   plantuml
-  postman
   protonmail-bridge
   (python39.withPackages(ps: with ps; [pip pyflakes tomlkit]))
   racket

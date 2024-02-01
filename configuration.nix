@@ -9,7 +9,7 @@ let
   # To get sha256: nix-prefetch-url --unpack URL
   nurPkgs = import (fetchTarball {
     url = "https://github.com/nix-community/NUR/archive/master.tar.gz";
-    sha256 = "159ym0xfrn1pbs88vmm1n2i4krbvwbry5a1y1n62qkw4h17rx2yg";
+    sha256 = "1m0j5qd7nsw2ayyx6lg6za944fs4xkl9n6hj6d3hnv3l86dsf9jv";
   }) {
     inherit pkgs;
   };
@@ -84,7 +84,7 @@ in {
   };
 
   fonts = {
-    fonts = with pkgs; [
+    packages = with pkgs; [
       dina-font
       gohufont
       fantasque-sans-mono
@@ -112,7 +112,12 @@ in {
   services.postgresql.enable = false;
   services.postgresql.package = pkgs.postgresql;
 
-  services.printing.enable = false;
+  services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+    openFirewall = true;
+  };
 
   services.samba = {
     enable = true;
@@ -204,7 +209,6 @@ in {
 
   # Bluetooth
   hardware.bluetooth.enable = true;
-  hardware.bluetooth.package = pkgs.bluezFull;
   hardware.bluetooth.powerOnBoot = false;
 
   users.users."${host.username}" = {
