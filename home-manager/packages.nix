@@ -74,6 +74,15 @@ let
       wrapfig;
   };
 
+  # Downgrade gnupg temporarily due to an issue with Emacs org-crypt
+  gnupg-oldver = with pkgs; gnupg.overrideAttrs (oldAttrs: rec {
+    version = "2.4.0";
+    src = pkgs.fetchurl {
+      url = "mirror://gnupg/gnupg/gnupg-2.4.0.tar.bz2";
+      hash = "sha256-HXkVjdAdmSQx3S4/rLif2slxJ/iXhOosthDGAPsMFIM=";
+    };
+  });
+
 in with pkgs; [
   appimage-run
   at
@@ -114,7 +123,7 @@ in with pkgs; [
   glxinfo
   gnome3.adwaita-icon-theme
   gnumake
-  gnupg
+  gnupg-oldver
   gnutls
   google-cloud-sdk
   gparted
