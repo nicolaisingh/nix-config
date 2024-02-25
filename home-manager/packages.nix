@@ -163,7 +163,9 @@ in with pkgs; [
   neofetch
   nixos-option
   nmap
+  nicotine-plus
   nodejs
+  nodePackages.pyright
   nomacs
   obs-studio
   openvpn
@@ -176,7 +178,7 @@ in with pkgs; [
   picom
   plantuml
   protonmail-bridge
-  (python39.withPackages(ps: with ps; [pip pyflakes tomlkit]))
+  (python39.withPackages(ps: with ps; [black pip pyflakes setuptools tomlkit]))
   racket
   radix-wallet
   rar
