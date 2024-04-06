@@ -185,6 +185,7 @@ in with pkgs; [
   sbcl
   scrcpy
   shntool
+  sieveshell
   silver-searcher
   slic3r
   smartmontools
