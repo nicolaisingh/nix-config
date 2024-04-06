@@ -107,6 +107,11 @@ in {
 
   services.flatpak.enable = true;
 
+  # To include systemd timer units
+  # systemctl --user start offlineimap.service
+  # systemctl --user start offlineimap.timer
+  services.offlineimap.enable = true;
+
   services.openssh.enable = true;
 
   services.postgresql.enable = false;
