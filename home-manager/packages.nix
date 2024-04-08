@@ -213,6 +213,7 @@ in with pkgs; [
   vlc
   vorbis-tools
   vorbisgain
+  w3m
   webcamoid
   wget
   wirelesstools
