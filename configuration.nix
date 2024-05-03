@@ -162,8 +162,8 @@ in {
 
     # Permit disk spin down for HDD (set to 128 to disable)
     DISK_DEVICES = ''"nvme0n1 sda"'';
-    DISK_APM_LEVEL_ON_AC = ''"254 254"'';
-    DISK_APM_LEVEL_ON_BAT = ''"254 254"'';
+    DISK_APM_LEVEL_ON_AC = ''"128 254"'';
+    DISK_APM_LEVEL_ON_BAT = ''"128 254"'';
 
     # Disable wifi power saving
     WIFI_PWR_ON_AC = ''"off"'';

@@ -108,6 +108,7 @@ in with pkgs; [
   dmidecode
   docker-compose
   dragon
+  emacsPackages.cask
   evince
   exfat
   exiftool
@@ -151,6 +152,7 @@ in with pkgs; [
   lshw
   lsof
   lxmenu-data
+  mairix
   masterpdfeditor
   mitscheme
   mmc-utils
@@ -178,10 +180,11 @@ in with pkgs; [
   picom
   plantuml
   protonmail-bridge
-  (python39.withPackages(ps: with ps; [black pip pyflakes setuptools tomlkit]))
+  (python39.withPackages(ps: with ps; [black pip pyflakes setuptools tomlkit virtualenv]))
   racket
   radix-wallet
   rar
+  ripgrep
   sbcl
   scrcpy
   shntool

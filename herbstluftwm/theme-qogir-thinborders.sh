@@ -25,7 +25,7 @@ hc set frame_border_active_color $(hc attr theme.my_normal_accent_2)
 hc set frame_border_normal_color $(hc attr theme.my_normal)
 hc set frame_bg_normal_color $(hc attr theme.my_normal)
 hc set frame_bg_active_color $(hc attr theme.my_normal)
-hc set frame_border_width 1
+hc set frame_border_width 0
 hc set frame_bg_transparent on
 hc set frame_transparent_width 0
 hc set frame_gap 0
