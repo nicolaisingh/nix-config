@@ -165,6 +165,14 @@ in {
     enableSshSupport = true;
   };
 
+  home.file.".mairixrc".text = ''
+    base=~/Maildir
+    maildir=proton/*...
+    mformat=maildir
+    omit=zz_mairix-*
+    database=~/.mairixdatabase
+  '';
+
   xfconf.settings = {
     xsettings = {
       "Gtk/KeyThemeName" = "Emacs";

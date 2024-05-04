@@ -239,6 +239,25 @@ in {
     "ll" = "ls -lh";
   };
 
+  systemd.user.services.mairix = {
+    description = "Mairix: Index and search mail folders";
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.mairix}/bin/mairix";
+      TimeoutSec = 120;  #;FIXME
+    };
+  };
+
+  systemd.user.timers.mairix = {
+    description = "Timer for mairix";
+    wantedBy = [ "default.target" ];
+    timerConfig = {
+      Unit = "mairix.service";
+      OnCalendar = "*:00:00"; # Every hour
+      Persistent = true;
+    };
+  };
+
   virtualisation.docker.rootless = {
     enable = true;
     setSocketVariable = true;
