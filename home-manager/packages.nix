@@ -166,6 +166,7 @@ in with pkgs; [
   nixos-option
   nmap
   nicotine-plus
+  nil
   nodejs
   nodePackages.pyright
   nomacs
