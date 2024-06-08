@@ -182,6 +182,8 @@ in with pkgs; [
   plantuml
   protonmail-bridge
   (python39.withPackages(ps: with ps; [black pip pyflakes setuptools tomlkit virtualenv]))
+  qmk
+  qmk-udev-rules
   racket
   radix-wallet
   rar

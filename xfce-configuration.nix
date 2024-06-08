@@ -39,6 +39,7 @@ in {
     xfce.xfce4-sensors-plugin
     xfce.xfce4-systemload-plugin
     xfce.xfce4-timer-plugin
+    xfce.xfce4-xkb-plugin
     xfce.catfish
     xfce.gigolo
     xfce.thunar

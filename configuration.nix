@@ -207,6 +207,9 @@ in {
     libinput.touchpad.naturalScrolling = true;
   };
 
+  # Keyboard/QMK
+  hardware.keyboard.qmk.enable = true;
+
   # Sound
   sound.enable = true;
   hardware.pulseaudio.enable = true;
