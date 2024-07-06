@@ -178,6 +178,8 @@ in {
     USB_AUTOSUSPEND = ''"0"'';
   };
 
+  services.udev.packages = [ pkgs.via ];
+
   # X11 windowing system
   services.xserver = {
     enable = true;
@@ -234,6 +236,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     ntfs3g # Needs to be installed in the system config
+    via
   ];
 
   environment.shellAliases = {
