@@ -200,6 +200,7 @@ in with pkgs; [
   syncthing
   tcpdump
   tdesktop
+  teams-for-linux
   texlive-pkg
   thermald
   thunderbird
