@@ -187,6 +187,7 @@ in {
     # Keymap
     layout = "us";
     xkbOptions = "ctrl:nocaps,shift:both_capslock";
+    xkbVariant = "dvorak";
 
     # See nixos-option `displayManager.session` for possible values
     displayManager.defaultSession = "xfce+my-herbstluftwm";
