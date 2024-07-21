@@ -99,6 +99,8 @@ in {
     ];
   };
 
+  programs.zsh.enable = true;
+
   services.dbus.enable = true;
 
   services.emacs.enable = true;

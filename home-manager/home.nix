@@ -111,6 +111,9 @@ in {
 
   programs.offlineimap.enable = true;
 
+  programs.zsh = {
+    enable = true;
+  };
   accounts.email = {
     accounts.proton = {
       primary = true;
