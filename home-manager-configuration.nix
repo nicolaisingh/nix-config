@@ -6,8 +6,8 @@ let
   # Load home-manager here instead of using nix-channel
   # To get sha256: nix-prefetch-url --unpack URL
   homeManager = fetchTarball {
-    url = "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
-    sha256 = "0x7lvvzi0lv7yvp97s0lkdiapxxpwqz8a86w2lk0dm14y1az23aq";
+    url = "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
+    sha256 = "0c83di08nhkzq0cwc3v7aax3x8y5m7qahyzxppinzwxi3r8fnjq3";
   };
 in {
   imports = [

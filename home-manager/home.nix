@@ -120,6 +120,7 @@ in {
       userName = "nicolaisingh@pm.me";
       address = "nicolaisingh@pm.me";
       aliases = [ "nicolaisingh@protonmail.com" ];
+      realName = host.fullname;
       passwordCommand = ["echo" "${host.secrets.proton}"];
 
       imap = {

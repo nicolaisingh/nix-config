@@ -14,28 +14,6 @@ let
     '';
   };
 
-  # freezer-extracted = pkgs.appimageTools.extractType2 {
-  #   name = "freezer";
-  #   src = /. + builtins.toPath "/home/${host.username}/sw/Freezer-1.1.21.AppImage";
-  # };
-
-  # freezer = pkgs.appimageTools.wrapType2 {
-  #   name = "freezer";
-  #   src = /. + builtins.toPath "/home/${host.username}/sw/Freezer-1.1.21.AppImage";
-  #   profile = with pkgs; ''
-  #     export XDG_DATA_DIRS=${gsettings-desktop-schemas}/share/gsettings-schemas/${gsettings-desktop-schemas.name}:${gtk3}/share/gsettings-schemas/${gtk3.name}:$XDG_DATA_DIRS
-  #   '';
-
-  #   extraInstallCommands = ''
-  #     install -m 444 -D ${freezer-extracted}/freezer.png $out/share/icons/hicolor/256x256/apps/freezer.png
-  #     ${pkgs.desktop-file-utils}/bin/desktop-file-install --dir $out/share/applications \
-  #       --set-key Exec --set-value $out/bin/freezer \
-  #       ${freezer-extracted}/freezer.desktop
-  #   '';
-
-  #   extraPkgs = pkgs: with pkgs; [ xorg.libxshmfence ];
-  # };
-
   guarda = pkgs.appimageTools.wrapType2 {
     # Use wrapType1 if `file -k' on the AppImage shows an ISO 9660
     # CD-ROM filesystem
@@ -74,15 +52,6 @@ let
       wrapfig;
   };
 
-  # Downgrade gnupg temporarily due to an issue with Emacs org-crypt
-  gnupg-oldver = with pkgs; gnupg.overrideAttrs (oldAttrs: rec {
-    version = "2.4.0";
-    src = pkgs.fetchurl {
-      url = "mirror://gnupg/gnupg/gnupg-2.4.0.tar.bz2";
-      hash = "sha256-HXkVjdAdmSQx3S4/rLif2slxJ/iXhOosthDGAPsMFIM=";
-    };
-  });
-
 in with pkgs; [
   appimage-run
   at
@@ -92,6 +61,7 @@ in with pkgs; [
   bc
   bind
   binutils
+  black
   calc
   calibre
   ccl
@@ -101,7 +71,7 @@ in with pkgs; [
   clojure
   colorpicker
   cura-appimage
-  dbeaver
+  dbeaver-bin
   dbus
   dbus-broker
   ditaa
@@ -117,14 +87,13 @@ in with pkgs; [
   ffmpeg-full
   file
   freecad
-  # freezer
   gcc
   gimp
   git-filter-repo
   glxinfo
   gnome3.adwaita-icon-theme
   gnumake
-  gnupg-oldver
+  gnupg
   gnutls
   google-cloud-sdk
   gparted
@@ -157,7 +126,7 @@ in with pkgs; [
   mitscheme
   mmc-utils
   mp3gain
-  mpg321
+  mpg123
   mtr
   multimarkdown
   mupdf
@@ -179,9 +148,10 @@ in with pkgs; [
   pcmanfm
   picard
   picom
+  pinentry-all
   plantuml
   protonmail-bridge
-  (python39.withPackages(ps: with ps; [black pip pyflakes setuptools tomlkit virtualenv]))
+  (python39.withPackages(ps: with ps; [pip pyflakes setuptools tomlkit virtualenv]))
   qmk
   qmk-udev-rules
   racket
@@ -210,7 +180,7 @@ in with pkgs; [
   unstable.androidStudioPackages.beta # android-studio
   unstable.android-tools
   unstable.nyxt
-  unstable.quodlibet-full
+  quodlibet-full
   unstable.tor-browser-bundle-bin
   unzip
   usbutils
@@ -232,7 +202,7 @@ in with pkgs; [
   xorg.xev
   xorg.xwininfo
   xsel
-  youtube-dl
+  yt-dlp
   zip
   zlib
   zoom-us
@@ -247,7 +217,6 @@ in with pkgs; [
   # golang
   go
   go-swagger
-  gocode # Code completion
   godef  # Code definition
   gopls  # Language server
 

@@ -9,7 +9,7 @@ let
   # To get sha256: nix-prefetch-url --unpack URL
   nurPkgs = import (fetchTarball {
     url = "https://github.com/nix-community/NUR/archive/master.tar.gz";
-    sha256 = "1m0j5qd7nsw2ayyx6lg6za944fs4xkl9n6hj6d3hnv3l86dsf9jv";
+    sha256 = "03cr3vr466lplarzs7q7qi6na0m5f84y652zxmfz28k0va0d807j";
   }) {
     inherit pkgs;
   };
@@ -17,7 +17,7 @@ let
   # nixos-unstable
   unstablePkgs = import (fetchTarball {
     url = "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
-    sha256 = "1dbsi2ccq8x0hyl8n0hisigj8q19amvj9irzfbgy4b3szb6x2y6l";
+    sha256 = "17d5m1s3nibxcz84ac3gxin287ihv50gbgbvnccmkvh9z64j1igh";
   }) {
     config = config.nixpkgs.config;
   };
@@ -99,6 +99,11 @@ in {
     ];
   };
 
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
   programs.zsh.enable = true;
 
   services.dbus.enable = true;
@@ -122,7 +127,7 @@ in {
   services.printing.enable = true;
   services.avahi = {
     enable = true;
-    nssmdns = true;
+    nssmdns4 = true;
     openFirewall = true;
   };
 
@@ -182,34 +187,37 @@ in {
 
   services.udev.packages = [ pkgs.via ];
 
+  services.libinput = {
+    enable = true;
+    touchpad.tappingDragLock = false;
+    touchpad.disableWhileTyping = true;
+    touchpad.naturalScrolling = true;
+  };
+
+  services.displayManager = {
+    # See nixos-option `displayManager.session` for possible values
+    defaultSession = "xfce+my-herbstluftwm";
+
+    # Autologin
+    autoLogin.enable = true;
+    autoLogin.user = host.username;
+  };
+
   # X11 windowing system
   services.xserver = {
     enable = true;
 
-    # Keymap
-    layout = "us";
-    xkbOptions = "ctrl:nocaps,shift:both_capslock";
-    xkbVariant = "dvorak";
+    xkb = {
+      layout = "us";
+      variant = "dvorak";
+      options = "ctrl:nocaps,shift:both_capslock";
+    };
 
-    # See nixos-option `displayManager.session` for possible values
-    displayManager.defaultSession = "xfce+my-herbstluftwm";
-
-    # Autologin
-    displayManager.autoLogin.enable = true;
-    displayManager.autoLogin.user = host.username;
-
-    # Key repetition rate
     autoRepeatDelay = 250;
     autoRepeatInterval = 50;
     displayManager.sessionCommands = ''
       ${pkgs.xorg.xset}/bin/xset r rate 250 50
     '';
-
-    # Touchpad
-    libinput.enable = true;
-    libinput.touchpad.tappingDragLock = false;
-    libinput.touchpad.disableWhileTyping = true;
-    libinput.touchpad.naturalScrolling = true;
   };
 
   # Keyboard/QMK
