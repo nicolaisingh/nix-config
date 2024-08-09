@@ -177,9 +177,10 @@ in {
     database=~/.mairixdatabase
   '';
 
-  xfconf.settings = {
-    xsettings = {
-      "Gtk/KeyThemeName" = "Emacs";
-    };
-  };
+  # XFCE-specific
+  # xfconf.settings = {
+  #   xsettings = {
+  #     "Gtk/KeyThemeName" = "Emacs";
+  #   };
+  # };
 }

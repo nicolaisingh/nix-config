@@ -28,8 +28,11 @@ in {
     ./nvidia-configuration.nix
 
     # herbstluftwm (hlwm) + XFCE desktop
-    ./herbstluftwm-configuration.nix
-    ./xfce-configuration.nix
+    # ./herbstluftwm-configuration.nix
+    # ./xfce-configuration.nix
+
+    # KDE desktop
+    ./kde-configuration.nix
 
     ./home-manager-configuration.nix
   ];
@@ -163,7 +166,7 @@ in {
     incomplete-dir = "/home/${host.username}/Downloads/torrent";
   };
 
-  services.tlp.enable = true;
+  services.tlp.enable = false;
   services.tlp.settings = {
     TLP_DEFAULT_MODE = ''"AC"'';
 
@@ -195,9 +198,6 @@ in {
   };
 
   services.displayManager = {
-    # See nixos-option `displayManager.session` for possible values
-    defaultSession = "xfce+my-herbstluftwm";
-
     # Autologin
     autoLogin.enable = true;
     autoLogin.user = host.username;

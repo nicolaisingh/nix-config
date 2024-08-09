@@ -11,6 +11,9 @@ in {
     enableXfwm = false;
   };
 
+  # See nixos-option `displayManager.session` for possible values
+  services.displayManager.defaultSession = "xfce+my-herbstluftwm";
+
   # Compositor
   services.picom.enable = true;
 
