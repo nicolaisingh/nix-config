@@ -179,7 +179,6 @@ in with pkgs; [
   tree
   unstable.androidStudioPackages.beta # android-studio
   unstable.android-tools
-  unstable.nyxt
   quodlibet-full
   unstable.tor-browser-bundle-bin
   unzip

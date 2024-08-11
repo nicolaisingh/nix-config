@@ -17,7 +17,7 @@ let
   # nixos-unstable
   unstablePkgs = import (fetchTarball {
     url = "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
-    sha256 = "17d5m1s3nibxcz84ac3gxin287ihv50gbgbvnccmkvh9z64j1igh";
+    sha256 = "0wjfikwmnk105bxwwxmkqcbf0nz5n7qp8f4z8lgwwlf3avf4jk1k";
   }) {
     config = config.nixpkgs.config;
   };
