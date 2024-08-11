@@ -6,6 +6,10 @@
 let
   host = import <host-config>;
   packages = pkgs.callPackage ./packages.nix {};
+
+  plasmaManager = fetchTarball {
+    url = "https://github.com/nix-community/plasma-manager/archive/trunk.tar.gz";
+  };
 in {
   home.username = host.username;
   home.homeDirectory = "/home/${host.username}";
@@ -20,6 +24,10 @@ in {
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "22.11";
+
+  imports = [
+    (import "${plasmaManager}/modules") # KDE-specific
+  ];
 
   programs.home-manager.enable = true;
 
@@ -183,4 +191,7 @@ in {
   #     "Gtk/KeyThemeName" = "Emacs";
   #   };
   # };
+
+  # KDE-specific
+  programs.plasma = import ./plasma.nix;
 }
