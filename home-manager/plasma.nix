@@ -1,5 +1,6 @@
 {
   enable = true;
+
   shortcuts = {
     "KDE Keyboard Layout Switcher"."Switch to Last-Used Keyboard Layout" = [ ];
     "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = "Meta+Alt+K";
@@ -19,6 +20,7 @@
     "services/org.kde.krunner.desktop"."RunClipboard" = [ ];
     "services/org.kde.krunner.desktop"."_launch" = ["Search" "Meta+Space"];
   };
+
   configFile = {
     # Emacs window settings
     "kwinrulesrc"."53e033ce-9cec-4761-aa89-5622cfc5c6b8"."Description" = "Emacs settings";
@@ -81,4 +83,45 @@
     "dolphinrc"."General"."ShowFullPath" = true;
   };
 
+  powerdevil = {
+    AC = {
+      autoSuspend.action = "nothing";
+      dimDisplay = {
+        enable = true;
+        idleTimeOut = 180;
+      };
+      powerButtonAction = "showLogoutScreen";
+      turnOffDisplay = {
+        idleTimeout = 300;
+        idleTimeoutWhenLocked = "immediately";
+      };
+      whenLaptopLidClosed = "doNothing";
+    };
+    battery = {
+      autoSuspend.action = "nothing";
+      dimDisplay = {
+        enable = true;
+        idleTimeOut = 180;
+      };
+      powerButtonAction = "showLogoutScreen";
+      turnOffDisplay = {
+        idleTimeout = 300;
+        idleTimeoutWhenLocked = "immediately";
+      };
+      whenLaptopLidClosed = "doNothing";
+    };
+    lowBattery = {
+      autoSuspend.action = "nothing";
+      dimDisplay = {
+        enable = true;
+        idleTimeOut = 60;
+      };
+      powerButtonAction = "showLogoutScreen";
+      turnOffDisplay = {
+        idleTimeout = 120;
+        idleTimeoutWhenLocked = "immediately";
+      };
+      whenLaptopLidClosed = "doNothing";
+    };
+  };
 }
