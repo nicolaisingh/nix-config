@@ -72,6 +72,9 @@
     # Always maximize new windows
     "kwinrc"."Windows"."Placement" = "Maximizing";
 
+    # Remove borders when windows are maximized
+    "kwinrc"."Windows"."BorderlessMaximizedWindows" = true;
+
     # Keyboard layouts
     "kxkbrc"."Layout"."DisplayNames" = "DV,US";
     "kxkbrc"."Layout"."LayoutList" = "us,us";
