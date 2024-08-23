@@ -6,14 +6,14 @@
 let
   host = import <host-config>;
   packages = pkgs.callPackage ./packages.nix {};
-
+  kdePackages = pkgs.callPackage ./kde-packages.nix {};
   plasmaManager = fetchTarball {
     url = "https://github.com/nix-community/plasma-manager/archive/trunk.tar.gz";
   };
 in {
   home.username = host.username;
   home.homeDirectory = "/home/${host.username}";
-  home.packages = packages;
+  home.packages = packages ++ kdePackages;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
