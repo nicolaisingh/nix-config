@@ -143,7 +143,7 @@ in with pkgs; [
   openvpn
   p7zip
   parted
-  pass
+  (pass.withExtensions (exts: [ exts.pass-otp]))
   pciutils
   pcmanfm
   picard
@@ -151,7 +151,7 @@ in with pkgs; [
   pinentry-all
   plantuml
   protonmail-bridge
-  (python39.withPackages(ps: with ps; [pip pyflakes setuptools tomlkit virtualenv]))
+  (python39.withPackages (ps: with ps; [pip pyflakes setuptools tomlkit virtualenv]))
   qmk
   qmk-udev-rules
   racket
