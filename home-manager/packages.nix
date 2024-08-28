@@ -70,6 +70,7 @@ in with pkgs; [
   clisp
   clojure
   colorpicker
+  cups-filters
   cura-appimage
   dbeaver-bin
   dbus

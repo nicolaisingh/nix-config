@@ -128,6 +128,8 @@ in {
   services.postgresql.package = pkgs.postgresql;
 
   services.printing.enable = true;
+  services.printing.drivers = [ pkgs.epson-escpr ];
+
   services.avahi = {
     enable = true;
     nssmdns4 = true;
