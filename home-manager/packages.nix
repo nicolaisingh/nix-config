@@ -133,6 +133,7 @@ in with pkgs; [
   mupdf
   ncurses
   neofetch
+  nixfmt-rfc-style
   nixos-option
   nmap
   nicotine-plus
