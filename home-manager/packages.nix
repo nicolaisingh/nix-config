@@ -110,6 +110,7 @@ in with pkgs; [
   imagemagick
   inetutils
   inkscape
+  inotify-tools
   jansson
   jq
   kde-gtk-config
@@ -204,6 +205,7 @@ in with pkgs; [
   xorg.xwininfo
   xsel
   yt-dlp
+  z-lua
   zip
   zlib
   zoom-us
