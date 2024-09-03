@@ -234,6 +234,9 @@ in {
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = false;
 
+  # Scanners
+  hardware.sane.enable = true;
+
   users.users."${host.username}" = {
     isNormalUser = true;
     createHome = true;
