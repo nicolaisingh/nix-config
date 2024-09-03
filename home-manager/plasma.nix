@@ -70,7 +70,7 @@
     "kwinrc"."Windows"."FocusPolicy" = "FocusFollowsMouse";
 
     # Always maximize new windows
-    "kwinrc"."Windows"."Placement" = "Maximizing";
+    #"kwinrc"."Windows"."Placement" = "Maximizing";
 
     # Remove borders when windows are maximized
     "kwinrc"."Windows"."BorderlessMaximizedWindows" = true;
