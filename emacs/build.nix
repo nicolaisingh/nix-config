@@ -1,0 +1,81 @@
+{
+  nixpkgs ? <nixpkgs>,
+  ...
+}:
+
+let
+  inherit (import nixpkgs { })
+    lib
+    stdenv
+    autoreconfHook
+    pkg-config
+    Xaw3d
+    acl
+    attr
+    cairo
+    dbus
+    fetchpatch
+    giflib
+    gnutls
+    gpm
+    harfbuzz
+    jansson
+    lcms
+    libgccjit
+    libjpeg
+    libotf
+    libpng
+    librsvg
+    libselinux
+    libtiff
+    libwebp
+    libxml2
+    m17n_lib
+    ncurses
+    sqlite
+    systemd
+    texinfo
+    tree-sitter
+    substituteAll
+    xorg
+    ;
+  inherit (xorg) libXaw libXpm;
+in
+import ./emacs-dev.nix {
+  inherit
+    lib
+    stdenv
+    autoreconfHook
+    pkg-config
+    Xaw3d
+    acl
+    attr
+    cairo
+    dbus
+    fetchpatch
+    giflib
+    gnutls
+    gpm
+    harfbuzz
+    jansson
+    lcms
+    libXaw
+    libXpm
+    libgccjit
+    libjpeg
+    libotf
+    libpng
+    librsvg
+    libselinux
+    libtiff
+    libwebp
+    libxml2
+    m17n_lib
+    ncurses
+    sqlite
+    systemd
+    texinfo
+    tree-sitter
+    substituteAll
+    ;
+}

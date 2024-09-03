@@ -59,6 +59,8 @@ stdenv.mkDerivation rec {
     LIBRARY_PATH = lib.concatStringsSep ":" libGccJitLibraryPaths;
   };
 
+  enableParallelBuilding = true;
+
   buildInputs = [
     Xaw3d
     acl
@@ -116,6 +118,13 @@ stdenv.mkDerivation rec {
         ])));
     })
   ];
+
+  # TAGS should be saved at /run/current-system/sw/share/emacs/VERSION/lisp/
+  installTargets = [ "tags" "install" ];
+
+  postInstall = ''
+    ln -s ${src} $out/share/emacs/source
+  '';
 
   src = /hdd/src/emacs;
 }
