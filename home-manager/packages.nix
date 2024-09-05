@@ -120,6 +120,7 @@ in with pkgs; [
   libreoffice
   libressl
   lm_sensors
+  localsend
   lshw
   lsof
   lxmenu-data
