@@ -100,6 +100,12 @@ in {
       "hc" = "herbstclient ";
       "Less" = "less";
     };
+    bashrcExtra = ''
+      if [ $TERM = dumb ]
+      then
+          export PAGER=cat
+      fi
+    '';
   };
 
   programs.rofi = {
