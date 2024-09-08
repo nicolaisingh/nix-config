@@ -2,80 +2,16 @@
   nixpkgs ? <nixpkgs>,
   ...
 }:
-
 let
-  inherit (import nixpkgs { })
-    lib
-    stdenv
-    autoreconfHook
-    pkg-config
-    Xaw3d
-    acl
-    attr
-    cairo
-    dbus
-    fetchpatch
-    giflib
-    gnutls
-    gpm
-    harfbuzz
-    jansson
-    lcms
-    libgccjit
-    libjpeg
-    libotf
-    libpng
-    librsvg
-    libselinux
-    libtiff
-    libwebp
-    libxml2
-    m17n_lib
-    ncurses
-    sqlite
-    systemd
-    texinfo
-    tree-sitter
-    substituteAll
-    xorg
-    ;
-  inherit (xorg) libXaw libXpm;
+  pkgs = import nixpkgs {};
 in
-import ./emacs-dev.nix {
-  inherit
-    lib
-    stdenv
-    autoreconfHook
-    pkg-config
-    Xaw3d
-    acl
-    attr
-    cairo
-    dbus
-    fetchpatch
-    giflib
-    gnutls
-    gpm
-    harfbuzz
-    jansson
-    lcms
-    libXaw
-    libXpm
-    libgccjit
-    libjpeg
-    libotf
-    libpng
-    librsvg
-    libselinux
-    libtiff
-    libwebp
-    libxml2
-    m17n_lib
-    ncurses
-    sqlite
-    systemd
-    texinfo
-    tree-sitter
-    substituteAll
-    ;
+pkgs.callPackage ./emacs-dev.nix {
+  # gnulib = pkgs.gnulib.overrideAttrs (oldAttrs: rec {
+  #     version = "20240906";
+  #     src = pkgs.fetchgit {
+  #       url = "https://git.savannah.gnu.org/r/gnulib.git";
+  #       rev = "e87d09bee37eeb742b8a34c9054cd2ebde22b835";
+  #       sha256 = "GO/s0p+uATiQChC8ScAJstLWRD2EtL1LOyxoWnJZ2i4=";
+  #     };
+  # });
 }
