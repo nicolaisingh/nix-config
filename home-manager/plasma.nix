@@ -24,7 +24,7 @@
   configFile = {
     # Emacs window settings
     "kwinrulesrc"."53e033ce-9cec-4761-aa89-5622cfc5c6b8"."Description" = "Emacs settings";
-    "kwinrulesrc"."53e033ce-9cec-4761-aa89-5622cfc5c6b8"."desktopfile" = "/nix/store/hlvqgpdcqyn46mrbcrxxj18njqgp885a-emacs-dev-30.0.50/share/applications/emacs.desktop";
+    "kwinrulesrc"."53e033ce-9cec-4761-aa89-5622cfc5c6b8"."desktopfile" = "/run/current-system/sw/share/applications/emacs.desktop";
     "kwinrulesrc"."53e033ce-9cec-4761-aa89-5622cfc5c6b8"."desktopfilerule" = 4;
     "kwinrulesrc"."53e033ce-9cec-4761-aa89-5622cfc5c6b8"."strictgeometryrule" = 2;
     "kwinrulesrc"."53e033ce-9cec-4761-aa89-5622cfc5c6b8"."wmclass" = "Emacs";
@@ -46,6 +46,7 @@
 
     # No animations
     "kdeglobals"."KDE"."AnimationDurationFactor" = 0;
+    # "kdeglobals"."KDE"."AnimationDurationFactor" = 0.7071067811865475;
 
     # Klipper
     "klipperrc"."General"."IgnoreImages" = false;
