@@ -71,7 +71,7 @@ in {
 
         /* sidebar header to bottom */
         #sidebar-box {
-          -moz-box-direction: reverse;
+          flex-direction: column-reverse !important;
         }
 
         #sidebar-switcher-arrow {
@@ -81,6 +81,24 @@ in {
         /* hide sidebar close button */
         #sidebar-close {
           visibility: collapse;
+        }
+
+        /* decrease size of the sidebar header */
+        #sidebar-header {
+          font-size: 1.2em !important;
+          padding: 2px 6px 2px 3px !important;
+        }
+        #sidebar-header .toolbarbutton-icon {
+          width: 14px !important;
+          height: 14px !important;
+          opacity: 0.6 !important;
+        }
+
+        /* for private browsing mode */
+        #main-window[privatebrowsingmode="temporary"] {
+          #TabsToolbar {
+            visibility: visible !important;
+          }
         }
         '';
       };
