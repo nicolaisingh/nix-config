@@ -114,6 +114,7 @@ in with pkgs; [
   jansson
   jq
   kde-gtk-config
+  kotlin
   killall
   libavif
   libnotify
