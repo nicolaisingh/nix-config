@@ -9,6 +9,7 @@ let
   kdePackages = pkgs.callPackage ./kde-packages.nix {};
   plasmaManager = fetchTarball {
     url = "https://github.com/nix-community/plasma-manager/archive/trunk.tar.gz";
+    sha256 = "sha256:1klg72573cyy28kxr62fm72jpx5c9hwpg2zlmcw8n8xsczvm64zr";
   };
 in {
   home.username = host.username;
@@ -118,12 +119,6 @@ in {
       "hc" = "herbstclient ";
       "Less" = "less";
     };
-    bashrcExtra = ''
-      if [ $TERM = dumb ]
-      then
-          export PAGER=cat
-      fi
-    '';
   };
 
   programs.rofi = {

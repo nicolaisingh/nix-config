@@ -62,6 +62,7 @@ in with pkgs; [
   bind
   binutils
   black
+  bruno
   calc
   calibre
   ccl
@@ -87,6 +88,7 @@ in with pkgs; [
   feh
   ffmpeg-full
   file
+  flutter
   freecad
   gcc
   gimp
@@ -159,6 +161,7 @@ in with pkgs; [
   (python39.withPackages (ps: with ps; [pip pyflakes setuptools tomlkit virtualenv]))
   qmk
   qmk-udev-rules
+  qrencode
   racket
   radix-wallet
   rar
@@ -208,6 +211,7 @@ in with pkgs; [
   xsel
   yt-dlp
   z-lua
+  zbar
   zip
   zlib
   zoom-us
