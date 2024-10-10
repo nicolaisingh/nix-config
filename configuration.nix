@@ -111,6 +111,28 @@ in {
 
   services.dbus.enable = true;
 
+  services.dovecot2 = {
+    enable = true;
+    enableImap = true;
+    mailLocation = "maildir:~/Maildir:INBOX=~/Maildir/.INBOX:LAYOUT=fs";
+    enablePAM = false; # Use userdb and passdb below
+    sieve.globalExtensions = [ "fileinto" ];
+    extraConfig = ''
+      # Log a line for each authentication attempt failure.
+      auth_verbose = yes
+      passdb {
+        driver = passwd-file
+        args = /etc/dovecot/passwd
+      }
+      userdb {
+        driver = passwd-file
+        args = /etc/dovecot/passwd
+        default_fields = uid=vmail gid=vmail home=/var/vmail/%u
+      }
+    '';
+  };
+  environment.etc."dovecot/passwd".text = import ./dovecot/passwd.nix;
+
   services.emacs.enable = true;
   # services.emacs.package = pkgs.emacs29;
   services.emacs.package = pkgs.callPackage ./emacs/emacs-dev.nix {};
@@ -120,7 +142,7 @@ in {
   # To include systemd timer units
   # systemctl --user start offlineimap.service
   # systemctl --user start offlineimap.timer
-  services.offlineimap.enable = true;
+  services.offlineimap.enable = false;
 
   services.openssh.enable = true;
 
@@ -241,14 +263,25 @@ in {
     isNormalUser = true;
     createHome = true;
     extraGroups = [
-      "wheel"
-      "networkmanager"
-      "audio"
-      "syncthing"
       "adbusers"
+      "audio"
+      "networkmanager"
+      "syncthing"
       "transmission"
+      "vmail"
+      "wheel"
     ];
   };
+
+  users.users.vmail = {
+    description = "Dovecot virtual mail user";
+    isSystemUser = true;
+    group = "vmail";
+    home = "/var/vmail";
+    homeMode = "770";
+    createHome = true;
+  };
+  users.groups.vmail = {};
 
   environment.systemPackages = with pkgs; [
     ntfs3g # Needs to be installed in the system config
@@ -261,7 +294,27 @@ in {
     "ll" = "ls -lh";
   };
 
+  systemd.services.mbsync = {
+    description = "mbsync mailbox sync";
+    serviceConfig = {
+      Type = "oneshot";
+      User = "vmail";
+      ExecStart = "${pkgs.isync}/bin/mbsync -a";
+    };
+  };
+
+  systemd.timers.mbsync = {
+    description = "mbsync maibox sync timer";
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      Unit = "mbsync.service";
+      OnCalendar = "*:0/5"; # Every 5 minutes
+      Persistent = true;
+    };
+  };
+
   systemd.user.services.mairix = {
+    enable = false;
     description = "Mairix: Index and search mail folders";
     serviceConfig = {
       Type = "oneshot";
@@ -271,6 +324,7 @@ in {
   };
 
   systemd.user.timers.mairix = {
+    enable = false;
     description = "Timer for mairix";
     wantedBy = [ "default.target" ];
     timerConfig = {

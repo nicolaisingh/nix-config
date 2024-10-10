@@ -113,6 +113,7 @@ in with pkgs; [
   inetutils
   inkscape
   inotify-tools
+  isync # mbsync
   jansson
   jq
   kde-gtk-config
@@ -127,7 +128,7 @@ in with pkgs; [
   lshw
   lsof
   lxmenu-data
-  mairix
+  # mairix
   masterpdfeditor
   mitscheme
   mmc-utils
@@ -158,6 +159,7 @@ in with pkgs; [
   pinentry-all
   plantuml
   protonmail-bridge
+  protonmail-bridge-gui
   (python39.withPackages (ps: with ps; [pip pyflakes setuptools tomlkit virtualenv]))
   qmk
   qmk-udev-rules

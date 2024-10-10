@@ -16,4 +16,5 @@ in {
 
   home-manager.useGlobalPkgs = true;
   home-manager.users."${host.username}" = import ./home-manager/home.nix;
+  home-manager.users.vmail = import ./home-manager/home-vmail.nix;
 }

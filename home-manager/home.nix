@@ -136,7 +136,7 @@ in {
 
   programs.msmtp.enable = true;
 
-  programs.offlineimap.enable = true;
+  programs.offlineimap.enable = false;
 
   programs.zsh = {
     enable = true;
@@ -160,7 +160,7 @@ in {
       };
 
       offlineimap = {
-        enable = true;
+        enable = false;
         extraConfig = {
           remote = {
             type = "IMAP";
