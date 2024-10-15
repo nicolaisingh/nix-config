@@ -309,7 +309,6 @@ in {
     timerConfig = {
       Unit = "mbsync.service";
       OnCalendar = "*:0/5"; # Every 5 minutes
-      Persistent = true;
     };
   };
 

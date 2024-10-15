@@ -37,6 +37,8 @@ in {
     Near :protonmail-local:
     Patterns "*" "!All Mail" "!/INBOX"
     Create Near
+    Remove Both
+    Expunge Both
 
     Group protonmail
     Channel protonmail-channel
