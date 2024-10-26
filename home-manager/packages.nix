@@ -130,6 +130,7 @@ in with pkgs; [
   lxmenu-data
   # mairix
   masterpdfeditor
+  mermaid-cli
   mitscheme
   mmc-utils
   mp3gain
