@@ -9,7 +9,7 @@ echo "- System config: $nixosconfig"
 echo "- Host config: $hostconfig"
 
 sudo -v -p 'need password for admin privileges: '
-sudo nixos-rebuild -I nixos-config=$nixosconfig -I host-config=$hostconfig switch
+sudo nixos-rebuild -I nixos-config=$nixosconfig -I host-config=$hostconfig switch --upgrade
 sudo -k
 
 exit 0

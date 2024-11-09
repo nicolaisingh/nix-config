@@ -39,6 +39,10 @@
     "kcminputrc"."Keyboard"."RepeatDelay" = 250;
     "kcminputrc"."Keyboard"."RepeatRate" = 50;
 
+    # Mouse/touchpad settings
+    "kcminputrc"."Libinput/1149/32934/Kensington ORBIT WIRELESS TB Mouse"."NaturalScroll" = true;
+    "kcminputrc"."Libinput/1739/32382/DELL0828:00 06CB:7E7E Touchpad"."NaturalScroll" = true;
+
     # Font settings
     "kdeglobals"."General"."XftAntialias" = true;
     "kdeglobals"."General"."XftHintStyle" = "hintfull";
@@ -60,6 +64,10 @@
     "krunnerrc"."Plugins"."browserhistoryEnabled" = false;
     "krunnerrc"."Plugins"."browsertabsEnabled" = false;
 
+    # Lock screen
+    "kscreenlockerrc"."Greeter"."WallpaperPlugin" = "org.kde.color";
+    "kscreenlockerrc"."Greeter/Wallpaper/org.kde.color/General"."Color" = "0,0,0";
+
     # Splash screen
     "ksplashrc"."KSplash"."Engine" = "none";
     "ksplashrc"."KSplash"."Theme" = "None";
@@ -68,7 +76,7 @@
     "kwinrc"."TabBox"."HighlightWindows" = false;
 
     # Focus follows mouse
-    "kwinrc"."Windows"."FocusPolicy" = "FocusFollowsMouse";
+    # "kwinrc"."Windows"."FocusPolicy" = "FocusFollowsMouse";
 
     # Always maximize new windows
     #"kwinrc"."Windows"."Placement" = "Maximizing";

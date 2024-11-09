@@ -161,7 +161,7 @@ in with pkgs; [
   plantuml
   protonmail-bridge
   protonmail-bridge-gui
-  (python39.withPackages (ps: with ps; [pip pyflakes setuptools tomlkit virtualenv]))
+  (python311.withPackages (ps: with ps; [pip pyflakes setuptools tomlkit virtualenv]))
   qmk
   qmk-udev-rules
   qrencode
@@ -201,6 +201,7 @@ in with pkgs; [
   vorbis-tools
   vorbisgain
   w3m
+  wayland-utils
   webcamoid
   wget
   wirelesstools
