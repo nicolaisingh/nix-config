@@ -145,8 +145,9 @@ in with pkgs; [
   nmap
   nicotine-plus
   nil
-  nodejs
   nodePackages.pyright
+  nodePackages.typescript-language-server
+  nodejs
   nomacs
   obs-studio
   openvpn
