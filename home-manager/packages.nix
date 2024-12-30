@@ -54,6 +54,7 @@ let
 
 in with pkgs; [
   appimage-run
+  asciidoctor-with-extensions
   at
   awscli2
   aws-sam-cli
@@ -133,6 +134,7 @@ in with pkgs; [
   mermaid-cli
   mitscheme
   mmc-utils
+  monaspace
   mp3gain
   mpg123
   mtr
@@ -152,6 +154,7 @@ in with pkgs; [
   obs-studio
   openvpn
   p7zip
+  pandoc
   parted
   (pass.withExtensions (exts: [ exts.pass-otp]))
   pciutils
@@ -170,6 +173,7 @@ in with pkgs; [
   radix-wallet
   rar
   ripgrep
+  rubyPackages.rdoc
   sbcl
   scrcpy
   shntool
