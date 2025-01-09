@@ -121,9 +121,12 @@ in with pkgs; [
   kotlin
   killall
   libavif
+  liberation-sans-narrow
+  liberation_ttf
   libnotify
   libreoffice
   libressl
+  librewolf
   lm_sensors
   localsend
   lshw

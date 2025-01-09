@@ -68,6 +68,7 @@ in {
   # Networking
   networking.hostName = "yaldabaoth";
   networking.networkmanager.enable = true;
+  networking.enableIPv6 = false;
 
   ## Setting random will prevent connecting to some Bluetooth devices
   # networking.networkmanager.wifi.macAddress = "random";
