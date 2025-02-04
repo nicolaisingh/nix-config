@@ -63,4 +63,6 @@ in {
     intelBusId = "PCI:00:02:0";
     nvidiaBusId = "PCI:01:00:0";
   };
+
+  hardware.nvidia.open = false;
 }

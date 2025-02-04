@@ -53,6 +53,7 @@ let
   };
 
 in with pkgs; [
+  adwaita-icon-theme
   appimage-run
   asciidoctor-with-extensions
   at
@@ -71,7 +72,6 @@ in with pkgs; [
   cifs-utils
   clisp
   clojure
-  colorpicker
   cups-filters
   cura-appimage
   dbeaver-bin
@@ -86,6 +86,7 @@ in with pkgs; [
   exfat
   exiftool
   exiv2
+  eyedropper
   feh
   ffmpeg-full
   file
@@ -95,7 +96,7 @@ in with pkgs; [
   gimp
   git-filter-repo
   glxinfo
-  gnome3.adwaita-icon-theme
+  gnucash
   gnumake
   gnupg
   gnutls
@@ -150,7 +151,6 @@ in with pkgs; [
   nmap
   nicotine-plus
   nil
-  nodePackages.pyright
   nodePackages.typescript-language-server
   nodejs
   nomacs
@@ -169,6 +169,7 @@ in with pkgs; [
   protonmail-bridge
   protonmail-bridge-gui
   (python311.withPackages (ps: with ps; [pip pyflakes setuptools tomlkit virtualenv]))
+  pyright
   qmk
   qmk-udev-rules
   qrencode

@@ -9,7 +9,7 @@ let
   # To get sha256: nix-prefetch-url --unpack URL
   nurPkgs = import (fetchTarball {
     url = "https://github.com/nix-community/NUR/archive/master.tar.gz";
-    sha256 = "03cr3vr466lplarzs7q7qi6na0m5f84y652zxmfz28k0va0d807j";
+    sha256 = "sha256:0mbjsaras0x4c999znc79c29d48i36qs28gym9b3hb8m8db9vv8h";
   }) {
     inherit pkgs;
   };
@@ -161,19 +161,21 @@ in {
 
   services.samba = {
     enable = true;
-    enableNmbd = false;
+    nmbd.enable = false;
     openFirewall = true;
-    extraConfig = ''
     # Don't forget to do smbpasswd -a USER to set the user's samba password.
-    [global]
-      server role = standalone server
-      hosts allow = 192.168.70.100 127.
-    [public]
-      comment = Public stuff
-      path = /hdd/pub
-      writable = no
-      printable = no
-    '';
+    settings = {
+      "global" = {
+        "server role" = "standalone server";
+        "hosts allow" = "192.168.70.100 127.";
+      };
+      "public" = {
+        "comment" = "Public stuff";
+        "path" = "/hdd/pub";
+        "writable" = "no";
+        "printable" = "no";
+      };
+    };
   };
 
   services.syncthing = {
@@ -247,11 +249,6 @@ in {
 
   # Keyboard/QMK
   hardware.keyboard.qmk.enable = true;
-
-  # Sound
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.package = pkgs.pulseaudioFull;
 
   # Bluetooth
   hardware.bluetooth.enable = true;
