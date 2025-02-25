@@ -141,6 +141,7 @@ in with pkgs; [
   monaspace
   mp3gain
   mpg123
+  mpv
   mtr
   multimarkdown
   mupdf
@@ -195,7 +196,6 @@ in with pkgs; [
   thermald
   thunderbird
   tlp
-  transmission
   tree
   unstable.androidStudioPackages.beta # android-studio
   unstable.android-tools
