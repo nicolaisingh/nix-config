@@ -12,7 +12,6 @@
   gnutls,
   gpm,
   harfbuzz,
-  jansson,
   lcms,
   lib,
   libXaw,
@@ -51,11 +50,11 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "emacs-dev";
-  version = "30.0.90";
+  version = "30.1";
   src = builtins.fetchGit {
     name = "emacs";
     url = /home/${host.username}/src/emacs;
-    rev = "89c99891b2b3ab087cd7e824cef391ef26800ab4";
+    rev = "8ac894e2246f25d2a2a97d866b10e6e0b0fede5a";
   };
 
   nativeBuildInputs = [
@@ -85,7 +84,6 @@ stdenv.mkDerivation rec {
     gnutls
     gpm
     harfbuzz
-    jansson
     lcms
     libXaw
     libXpm
@@ -117,7 +115,6 @@ stdenv.mkDerivation rec {
 
   configureFlags = [
     "--with-small-ja-dic"
-    "--with-native-compilation"
     # "--program-transform-name='s/$/-dev/'"
   ];
 
