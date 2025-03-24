@@ -57,6 +57,7 @@ in with pkgs; [
   appimage-run
   asciidoctor-with-extensions
   at
+  audacity
   awscli2
   aws-sam-cli
   bandwhich
@@ -81,6 +82,7 @@ in with pkgs; [
   dmidecode
   docker-compose
   dragon
+  easyeffects
   emacsPackages.cask
   evince
   exfat
@@ -141,17 +143,16 @@ in with pkgs; [
   monaspace
   mp3gain
   mpg123
-  mpv
   mtr
   multimarkdown
   mupdf
   ncurses
   neofetch
+  nicotine-plus
+  nil
   nixfmt-rfc-style
   nixos-option
   nmap
-  nicotine-plus
-  nil
   nodePackages.typescript-language-server
   nodejs
   nomacs

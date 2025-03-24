@@ -134,6 +134,13 @@ in {
     };
   };
 
+  programs.mpv = {
+    enable = true;
+    scripts = with pkgs.mpvScripts; [
+      mpris
+    ];
+  };
+
   programs.msmtp.enable = true;
 
   programs.offlineimap.enable = false;

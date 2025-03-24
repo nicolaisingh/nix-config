@@ -35,7 +35,11 @@ in {
     ./kde-configuration.nix
 
     ./home-manager-configuration.nix
+
+    # ./musnix
   ];
+
+  # musnix.enable = true;
 
   nix.nixPath = (builtins.filter (x: doesNotMatch "(nixos-config=.+)" x) options.nix.nixPath.default) ++
                 [ "nixos-config=${configPath}/configuration.nix" ] ++

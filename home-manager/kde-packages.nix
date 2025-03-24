@@ -10,6 +10,7 @@
   kmouth
   kolourpaint
   krdc
+  krecorder
   ktimer
   ktorrent
   okular
