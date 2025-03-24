@@ -54,6 +54,7 @@ let
 
 in with pkgs; [
   adwaita-icon-theme
+  aider-chat
   appimage-run
   asciidoctor-with-extensions
   at

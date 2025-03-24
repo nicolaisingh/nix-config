@@ -9,7 +9,7 @@ let
   kdePackages = pkgs.callPackage ./kde-packages.nix {};
   plasmaManager = fetchTarball {
     url = "https://github.com/nix-community/plasma-manager/archive/trunk.tar.gz";
-    sha256 = "sha256:0ahcg978m7wf05xy7jjnwqv9n7376sy0skq6zfm0hy2sbyk7g6in";
+    sha256 = "sha256:1bxk2ny02134dhvprl7c32n4l8zabs7pj0pq360a2bvbca3lixfs";
   };
 in {
   home.username = host.username;
@@ -209,6 +209,16 @@ in {
     mformat=maildir
     omit=zz_mairix-*
     database=~/.mairixdatabase
+  '';
+
+  home.file.".aider.model.settings.yml".text = ''
+    - name: o3-mini
+      edit_format: diff
+      weak_model_name: gpt-4o-mini
+      use_repo_map: true
+      use_temperature: false
+      editor_model_name: gpt-4o
+      editor_edit_format: editor-diff
   '';
 
   # XFCE-specific

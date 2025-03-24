@@ -7,7 +7,7 @@ let
   # To get sha256: nix-prefetch-url --unpack URL
   homeManager = fetchTarball {
     url = "https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz";
-    sha256 = "sha256:15k41il0mvmwyv6jns4z8k6khhmb22jk5gpcqs1paym3l01g6abn";
+    sha256 = "sha256:156hc11bb6xiypj65q6gzkhw1gw31dwv6dfh6rnv20hgig1sbfld";
   };
 in {
   imports = [
