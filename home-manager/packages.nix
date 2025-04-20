@@ -56,6 +56,7 @@ in with pkgs; [
   adwaita-icon-theme
   aider-chat
   appimage-run
+  ardour
   asciidoctor-with-extensions
   at
   audacity
