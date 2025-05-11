@@ -172,7 +172,7 @@ in with pkgs; [
   plantuml
   protonmail-bridge
   protonmail-bridge-gui
-  (python311.withPackages (ps: with ps; [pip pyflakes setuptools tomlkit virtualenv]))
+  (python311.withPackages (ps: with ps; [flask pip pyflakes setuptools tomlkit virtualenv]))
   pyright
   qmk
   qmk-udev-rules

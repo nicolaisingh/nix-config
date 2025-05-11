@@ -36,10 +36,10 @@ in {
 
     ./home-manager-configuration.nix
 
-    # ./musnix
+    ./musnix
   ];
 
-  # musnix.enable = true;
+  musnix.enable = true;
 
   nix.nixPath = (builtins.filter (x: doesNotMatch "(nixos-config=.+)" x) options.nix.nixPath.default) ++
                 [ "nixos-config=${configPath}/configuration.nix" ] ++
@@ -154,13 +154,19 @@ in {
   services.postgresql.enable = false;
   services.postgresql.package = pkgs.postgresql;
 
-  services.printing.enable = true;
-  services.printing.drivers = [ pkgs.epson-escpr ];
+  services.printing = {
+    enable = true;
+    drivers = [ pkgs.epson-escpr ];
+  };
 
   services.avahi = {
     enable = true;
     nssmdns4 = true;
     openFirewall = true;
+    publish = {
+      enable = true;
+      userServices = true;
+    };
   };
 
   services.samba = {

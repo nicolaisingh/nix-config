@@ -1,4 +1,5 @@
 # For Nvidia Optimus laptops
+# https://nixos.wiki/wiki/Nvidia
 { pkgs, lib, ... }:
 
 let
@@ -58,11 +59,20 @@ in {
   ];
 
   services.xserver.videoDrivers = [ "nvidia" ];
+
   hardware.nvidia.prime = {
+    # Offload mode
     offload.enable = true;
+
+    # Sync mode
+    # sync.enable = true;
+
     intelBusId = "PCI:00:02:0";
     nvidiaBusId = "PCI:01:00:0";
   };
 
-  hardware.nvidia.open = false;
+  hardware.nvidia = {
+    modesetting.enable = true;
+    open = false;
+  };
 }
