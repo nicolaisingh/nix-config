@@ -25,7 +25,10 @@ in {
   imports = [
     ./hardware-configuration.nix
     ./luks-configuration.nix
-    ./nvidia-configuration.nix
+
+    # Nvidia Optimus
+    ./nvidia-off-configuration.nix
+    # ./nvidia-configuration.nix
 
     # herbstluftwm (hlwm) + XFCE desktop
     # ./herbstluftwm-configuration.nix
@@ -47,6 +50,7 @@ in {
 
   nixpkgs.config = {
     allowUnfree = true;
+    android_sdk.accept_license = true;
     packageOverrides = pkgs: rec {
       unstable = unstablePkgs;
       nur = nurPkgs;
@@ -143,6 +147,8 @@ in {
   services.emacs.package = pkgs.callPackage ./emacs/emacs-dev.nix {};
 
   services.flatpak.enable = true;
+
+  services.fwupd.enable = true;
 
   # To include systemd timer units
   # systemctl --user start offlineimap.service

@@ -53,6 +53,10 @@ let
   };
 
 in with pkgs; [
+  (android-studio.withSdk (androidenv.composeAndroidPackages {
+    platformVersions = ["33" "34" "35"];
+    includeSources = true;
+  }).androidsdk)
   adwaita-icon-theme
   aider-chat
   appimage-run
@@ -177,6 +181,7 @@ in with pkgs; [
   qmk
   qmk-udev-rules
   qrencode
+  quodlibet-full
   racket
   radix-wallet
   rar
@@ -200,9 +205,6 @@ in with pkgs; [
   thunderbird
   tlp
   tree
-  unstable.androidStudioPackages.beta # android-studio
-  unstable.android-tools
-  quodlibet-full
   unstable.tor-browser-bundle-bin
   unzip
   usbutils

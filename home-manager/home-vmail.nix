@@ -21,7 +21,7 @@ in {
     Port 1143
     User nicolaisingh@pm.me
     Pass ${host.secrets.proton}
-    SSLType STARTTLS
+    TLSType STARTTLS
     CertificateFile ~/cert.pem
 
     IMAPStore protonmail-remote
@@ -31,6 +31,7 @@ in {
     Path ~/nicolaisingh@pm.me/Maildir/
     Inbox ~/nicolaisingh@pm.me/Maildir/.INBOX/
     Flatten .
+    AltMap yes
 
     Channel protonmail-channel
     Far :protonmail-remote:
