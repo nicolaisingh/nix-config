@@ -159,6 +159,7 @@ in with pkgs; [
   nixfmt-rfc-style
   nixos-option
   nmap
+  nodePackages.prettier
   nodePackages.typescript-language-server
   nodejs
   nomacs
@@ -186,6 +187,7 @@ in with pkgs; [
   radix-wallet
   rar
   ripgrep
+  rst2pdf
   rubyPackages.rdoc
   sbcl
   scrcpy

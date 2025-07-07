@@ -105,9 +105,13 @@ in {
       inconsolata
       libertine
       lmodern
+      noto-fonts
+      noto-fonts-color-emoji
+      noto-fonts-monochrome-emoji
       source-code-pro
       source-sans-pro
       source-serif-pro
+      symbola
     ];
   };
 

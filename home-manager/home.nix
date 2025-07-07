@@ -45,6 +45,11 @@ in {
       dlog = "log --graph --format=format:'%C(red)%h%C(reset)%C(auto)%d%C(reset)%n'";
       dummy-commit = "!f() { echo 'this is a sample edit' >> `git rev-parse --abbrev-ref HEAD`; git commit -a -m 'test commit'; }; f";
     };
+    extraConfig = {
+      # For emacs forge:
+      # https://magit.vc/manual/forge.html#Set-your-Username-1
+      github.user = "nicolaisingh";
+    };
   };
 
   programs.firefox = {
