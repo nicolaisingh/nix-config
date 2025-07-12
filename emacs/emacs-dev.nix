@@ -12,10 +12,12 @@
   gnutls,
   gpm,
   harfbuzz,
+  imagemagick,
   lcms,
   lib,
   libXaw,
   libXpm,
+  libXrandr,
   libgcc,
   libgccjit,
   libjpeg,
@@ -36,6 +38,7 @@
   systemd,
   texinfo,
   tree-sitter,
+  zlib,
 }:
 
 let
@@ -84,9 +87,11 @@ stdenv.mkDerivation rec {
     gnutls
     gpm
     harfbuzz
+    imagemagick
     lcms
     libXaw
     libXpm
+    libXrandr
     libgcc
     libgccjit
     libjpeg
@@ -104,6 +109,7 @@ stdenv.mkDerivation rec {
     sqlite
     systemd
     tree-sitter
+    zlib
   ];
 
   postUnpack = ''
@@ -115,6 +121,7 @@ stdenv.mkDerivation rec {
 
   configureFlags = [
     "--with-small-ja-dic"
+    "--with-imagemagick"
     # "--program-transform-name='s/$/-dev/'"
   ];
 

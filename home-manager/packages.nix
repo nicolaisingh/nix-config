@@ -4,10 +4,11 @@ let
   host = import <host-config>;
 
   cura-appimage = pkgs.appimageTools.wrapType2 {
-    name = "cura";
+    pname = "cura";
+    version = "5.10.1";
     src = pkgs.fetchurl {
-      url = "https://github.com/Ultimaker/Cura/releases/download/5.4.0/UltiMaker-Cura-5.4.0-linux-modern.AppImage";
-      sha256 = "sha256-QVv7Wkfo082PH6n6rpsB79st2xK2+Np9ivBg/PYZd74=";
+      url = "https://github.com/Ultimaker/Cura/releases/download/5.10.1/UltiMaker-Cura-5.10.1-linux-X64.AppImage";
+      sha256 = "sha256-c89GkgfOSY4hriY66GUCgBYiiJJspM9Fg07lne+KXgw=";
     };
     profile = with pkgs; ''
       export XDG_DATA_DIRS=${gsettings-desktop-schemas}/share/gsettings-schemas/${gsettings-desktop-schemas.name}:${gtk3}/share/gsettings-schemas/${gtk3.name}:$XDG_DATA_DIRS
@@ -17,7 +18,8 @@ let
   guarda = pkgs.appimageTools.wrapType2 {
     # Use wrapType1 if `file -k' on the AppImage shows an ISO 9660
     # CD-ROM filesystem
-    name = "guarda";
+    pname = "guarda";
+    version = "1.0.20";
     src = /. + builtins.toPath "/home/${host.username}/ct/Guarda-1.0.20.AppImage";
     profile = with pkgs; ''
       export XDG_DATA_DIRS=${gsettings-desktop-schemas}/share/gsettings-schemas/${gsettings-desktop-schemas.name}:${gtk3}/share/gsettings-schemas/${gtk3.name}:$XDG_DATA_DIRS
@@ -29,7 +31,8 @@ let
   };
 
   radix-wallet = pkgs.appimageTools.wrapType2 {
-    name = "radix-wallet";
+    pname = "radix-wallet";
+    version = "1.6.0";
     src = /. + builtins.toPath "/home/${host.username}/ct/Radix-Wallet-1.6.0.AppImage";
     profile = with pkgs; ''
       export XDG_DATA_DIRS=${gsettings-desktop-schemas}/share/gsettings-schemas/${gsettings-desktop-schemas.name}:${gtk3}/share/gsettings-schemas/${gtk3.name}:$XDG_DATA_DIRS
@@ -58,7 +61,6 @@ in with pkgs; [
     includeSources = true;
   }).androidsdk)
   adwaita-icon-theme
-  aider-chat
   appimage-run
   ardour
   asciidoctor-with-extensions
@@ -87,7 +89,6 @@ in with pkgs; [
   ditaa
   dmidecode
   docker-compose
-  dragon
   easyeffects
   emacsPackages.cask
   evince
@@ -126,7 +127,6 @@ in with pkgs; [
   isync # mbsync
   jansson
   jq
-  kde-gtk-config
   kotlin
   killall
   libavif
@@ -194,7 +194,6 @@ in with pkgs; [
   shntool
   sieveshell
   silver-searcher
-  slic3r
   smartmontools
   sqlite
   sweethome3d.application
@@ -207,6 +206,7 @@ in with pkgs; [
   thunderbird
   tlp
   tree
+  unstable.aider-chat
   unstable.tor-browser-bundle-bin
   unzip
   usbutils

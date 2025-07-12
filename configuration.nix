@@ -9,7 +9,7 @@ let
   # To get sha256: nix-prefetch-url --unpack URL
   nurPkgs = import (fetchTarball {
     url = "https://github.com/nix-community/NUR/archive/master.tar.gz";
-    sha256 = "sha256:0mbjsaras0x4c999znc79c29d48i36qs28gym9b3hb8m8db9vv8h";
+    sha256 = "sha256:1vkjm7wbvazfdbi7xhb92046cx48xg85mdxx9larkmxsmaxkr3fz";
   }) {
     inherit pkgs;
   };
@@ -17,7 +17,7 @@ let
   # nixos-unstable
   unstablePkgs = import (fetchTarball {
     url = "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
-    sha256 = "sha256:0k4kimyk5065sb5l0hzabhbk5579dnj2fhkqzdqw8pfbwlagx68v";
+    sha256 = "sha256:1g9qc3n5zx16h129dqs5ixfrsff0dsws9lixfja94r208fq9219g";
   }) {
     config = config.nixpkgs.config;
   };
@@ -147,7 +147,7 @@ in {
   environment.etc."dovecot/passwd".text = import ./dovecot/passwd.nix;
 
   services.emacs.enable = true;
-  # services.emacs.package = pkgs.emacs29;
+  # services.emacs.package = pkgs.emacs;
   services.emacs.package = pkgs.callPackage ./emacs/emacs-dev.nix {};
 
   services.flatpak.enable = true;

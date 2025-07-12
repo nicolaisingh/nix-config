@@ -1,8 +1,10 @@
 { pkgs }: with pkgs.kdePackages; [
   ark
+  dragon
   kalarm
   kcalc
   kcolorchooser
+  kde-gtk-config
   kdeconnect-kde
   kdenlive
   kdf

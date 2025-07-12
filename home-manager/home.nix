@@ -9,7 +9,7 @@ let
   kdePackages = pkgs.callPackage ./kde-packages.nix {};
   plasmaManager = fetchTarball {
     url = "https://github.com/nix-community/plasma-manager/archive/trunk.tar.gz";
-    sha256 = "sha256:1bxk2ny02134dhvprl7c32n4l8zabs7pj0pq360a2bvbca3lixfs";
+    sha256 = "sha256:05gw226063jbklfgcyr01a04278v7shn8a4imjg47rdzgsqf68fn";
   };
 in {
   home.username = host.username;
