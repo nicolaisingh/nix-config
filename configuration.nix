@@ -1,4 +1,10 @@
-{ config, pkgs, lib, options, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  options,
+  ...
+}:
 
 let
   host = import <host-config>;
@@ -7,21 +13,28 @@ let
 
   # NUR
   # To get sha256: nix-prefetch-url --unpack URL
-  nurPkgs = import (fetchTarball {
-    url = "https://github.com/nix-community/NUR/archive/master.tar.gz";
-    sha256 = "sha256:1vkjm7wbvazfdbi7xhb92046cx48xg85mdxx9larkmxsmaxkr3fz";
-  }) {
-    inherit pkgs;
-  };
+  nurPkgs =
+    import
+      (fetchTarball {
+        url = "https://github.com/nix-community/NUR/archive/master.tar.gz";
+        sha256 = "sha256:1vkjm7wbvazfdbi7xhb92046cx48xg85mdxx9larkmxsmaxkr3fz";
+      })
+      {
+        inherit pkgs;
+      };
 
   # nixos-unstable
-  unstablePkgs = import (fetchTarball {
-    url = "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
-    sha256 = "sha256:1g9qc3n5zx16h129dqs5ixfrsff0dsws9lixfja94r208fq9219g";
-  }) {
-    config = config.nixpkgs.config;
-  };
-in {
+  unstablePkgs =
+    import
+      (fetchTarball {
+        url = "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
+        sha256 = "sha256:1g9qc3n5zx16h129dqs5ixfrsff0dsws9lixfja94r208fq9219g";
+      })
+      {
+        config = config.nixpkgs.config;
+      };
+in
+{
   imports = [
     ./hardware-configuration.nix
     ./luks-configuration.nix
@@ -44,9 +57,10 @@ in {
 
   musnix.enable = true;
 
-  nix.nixPath = (builtins.filter (x: doesNotMatch "(nixos-config=.+)" x) options.nix.nixPath.default) ++
-                [ "nixos-config=${configPath}/configuration.nix" ] ++
-                [ "host-config=${configPath}/host-configuration.nix" ];
+  nix.nixPath =
+    (builtins.filter (x: doesNotMatch "(nixos-config=.+)" x) options.nix.nixPath.default)
+    ++ [ "nixos-config=${configPath}/configuration.nix" ]
+    ++ [ "host-config=${configPath}/host-configuration.nix" ];
 
   nixpkgs.config = {
     allowUnfree = true;
@@ -82,7 +96,10 @@ in {
   # networking.networkmanager.wifi.macAddress = "random";
   # networking.networkmanager.ethernet.macAddress = "random";
   networking.networkmanager.dns = "none";
-  networking.nameservers = [ "1.1.1.1" "8.8.8.8" ];
+  networking.nameservers = [
+    "1.1.1.1"
+    "8.8.8.8"
+  ];
 
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [ 8080 ];
@@ -97,12 +114,16 @@ in {
 
   fonts = {
     packages = with pkgs; [
+      atkinson-hyperlegible-mono
+      atkinson-hyperlegible-next
+      courier-prime
       dina-font
       gohufont
       fantasque-sans-mono
       fira
       hermit
       inconsolata
+      intel-one-mono
       libertine
       lmodern
       noto-fonts
@@ -148,7 +169,7 @@ in {
 
   services.emacs.enable = true;
   # services.emacs.package = pkgs.emacs;
-  services.emacs.package = pkgs.callPackage ./emacs/emacs-dev.nix {};
+  services.emacs.package = pkgs.callPackage ./emacs/emacs-dev.nix { };
 
   services.flatpak.enable = true;
 
@@ -299,7 +320,7 @@ in {
     homeMode = "770";
     createHome = true;
   };
-  users.groups.vmail = {};
+  users.groups.vmail = { };
 
   environment.systemPackages = with pkgs; [
     ntfs3g # Needs to be installed in the system config
