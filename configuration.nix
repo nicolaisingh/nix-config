@@ -52,10 +52,10 @@ in
 
     ./home-manager-configuration.nix
 
-    ./musnix
+    # ./musnix
   ];
 
-  musnix.enable = true;
+  # musnix.enable = true;
 
   nix.nixPath =
     (builtins.filter (x: doesNotMatch "(nixos-config=.+)" x) options.nix.nixPath.default)
@@ -185,6 +185,8 @@ in
   services.postgresql.enable = false;
   services.postgresql.package = pkgs.postgresql;
 
+  services.power-profiles-daemon.enable = false;
+
   services.printing = {
     enable = true;
     drivers = [ pkgs.epson-escpr ];
@@ -234,9 +236,10 @@ in
     incomplete-dir = "/home/${host.username}/Downloads/torrent";
   };
 
-  services.tlp.enable = false;
+  services.tlp.enable = true;
   services.tlp.settings = {
     TLP_DEFAULT_MODE = ''"AC"'';
+    # CPU_SCALING_GOVERNOR_ON_AC = ''"performance"'';
 
     # Permit disk spin down for HDD (set to 128 to disable)
     DISK_DEVICES = ''"nvme0n1 sda"'';

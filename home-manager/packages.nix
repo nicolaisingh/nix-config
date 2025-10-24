@@ -26,9 +26,11 @@ let
     '';
   };
 
-  idea-community-pkg = with pkgs; jetbrains.idea-community.override {
-    jdk = jdk; # JDK isn't detected without this
-  };
+  idea-community-pkg =
+    with pkgs;
+    jetbrains.idea-community.override {
+      jdk = jdk; # JDK isn't detected without this
+    };
 
   radix-wallet = pkgs.appimageTools.wrapType2 {
     pname = "radix-wallet";
@@ -39,27 +41,38 @@ let
     '';
   };
 
-  texlive-pkg = with pkgs; texlive.combine {
-    inherit (texlive)
-      booktabs
-      cabin
-      capt-of
-      enumitem
-      geometry
-      hyperref
-      libertine
-      lipsum
-      ly1
-      mathdesign
-      scheme-medium
-      wrapfig;
-  };
+  texlive-pkg =
+    with pkgs;
+    texlive.combine {
+      inherit (texlive)
+        booktabs
+        cabin
+        capt-of
+        enumitem
+        geometry
+        hyperref
+        libertine
+        lipsum
+        ly1
+        mathdesign
+        scheme-medium
+        wrapfig
+        ;
+    };
 
-in with pkgs; [
-  (android-studio.withSdk (androidenv.composeAndroidPackages {
-    platformVersions = ["33" "34" "35"];
-    includeSources = true;
-  }).androidsdk)
+in
+with pkgs;
+[
+  (android-studio.withSdk
+    (androidenv.composeAndroidPackages {
+      platformVersions = [
+        "33"
+        "34"
+        "35"
+      ];
+      includeSources = true;
+    }).androidsdk
+  )
   adwaita-icon-theme
   appimage-run
   ardour
@@ -75,6 +88,7 @@ in with pkgs; [
   black
   bruno
   calc
+  calf
   calibre
   ccl
   chiaki
@@ -162,13 +176,14 @@ in with pkgs; [
   nodePackages.prettier
   nodePackages.typescript-language-server
   nodejs
+  noise-repellent
   nomacs
   obs-studio
   openvpn
   p7zip
   pandoc
   parted
-  (pass.withExtensions (exts: [ exts.pass-otp]))
+  (pass.withExtensions (exts: [ exts.pass-otp ]))
   pciutils
   pcmanfm
   picard
@@ -177,7 +192,16 @@ in with pkgs; [
   plantuml
   protonmail-bridge
   protonmail-bridge-gui
-  (python311.withPackages (ps: with ps; [flask pip pyflakes setuptools tomlkit virtualenv]))
+  (python311.withPackages (
+    ps: with ps; [
+      flask
+      pip
+      pyflakes
+      setuptools
+      tomlkit
+      virtualenv
+    ]
+  ))
   pyright
   qmk
   qmk-udev-rules
@@ -246,7 +270,7 @@ in with pkgs; [
   # golang
   go
   go-swagger
-  godef  # Code definition
-  gopls  # Language server
+  godef # Code definition
+  gopls # Language server
 
 ]
