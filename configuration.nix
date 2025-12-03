@@ -40,8 +40,8 @@ in
     ./luks-configuration.nix
 
     # Nvidia Optimus
-    ./nvidia-off-configuration.nix
-    # ./nvidia-configuration.nix
+    # ./nvidia-off-configuration.nix
+    ./nvidia-configuration.nix
 
     # herbstluftwm (hlwm) + XFCE desktop
     # ./herbstluftwm-configuration.nix
@@ -139,6 +139,10 @@ in
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
+  };
+
+  programs.nix-ld = {
+    enable = true;
   };
 
   programs.zsh.enable = true;
@@ -243,20 +247,27 @@ in
 
     # Permit disk spin down for HDD (set to 128 to disable)
     DISK_DEVICES = ''"nvme0n1 sda"'';
-    DISK_APM_LEVEL_ON_AC = ''"127 254"'';
-    DISK_APM_LEVEL_ON_BAT = ''"127 254"'';
+    DISK_APM_LEVEL_ON_AC = ''"128 192"'';
+    DISK_APM_LEVEL_ON_BAT = ''"128 128"'';
 
     # Disable wifi power saving
     WIFI_PWR_ON_AC = ''"off"'';
     WIFI_PWR_ON_BAT = ''"off"'';
 
     # Disable sound power saving
-    SOUND_POWER_SAVE_ON_AC = ''"0"'';
-    SOUND_POWER_SAVE_ON_BAT = ''"0"'';
-    SOUND_POWER_SAVE_CONTROLLER = ''"N"'';
+    # SOUND_POWER_SAVE_ON_AC = ''"0"'';
+    # SOUND_POWER_SAVE_ON_BAT = ''"0"'';
+    # SOUND_POWER_SAVE_CONTROLLER = ''"N"'';
 
     # Disable USB autosuspending
     USB_AUTOSUSPEND = ''"0"'';
+
+    # Disable NMI watchdog
+    NMI_WATCHDOG = ''"0"'';
+
+    # Power down idle PCIe devices
+    RUNTIME_PM_ON_AC = ''"auto"'';
+    RUNTIME_PM_ON_BAT = ''"auto"'';
   };
 
   services.udev.packages = [ pkgs.via ];

@@ -234,6 +234,7 @@ with pkgs;
   unstable.tor-browser-bundle-bin
   unzip
   usbutils
+  uv
   vim
   vivaldi
   vivaldi-ffmpeg-codecs
