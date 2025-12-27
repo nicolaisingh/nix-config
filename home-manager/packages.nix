@@ -26,12 +26,6 @@ let
     '';
   };
 
-  idea-community-pkg =
-    with pkgs;
-    jetbrains.idea-community.override {
-      jdk = jdk; # JDK isn't detected without this
-    };
-
   radix-wallet = pkgs.appimageTools.wrapType2 {
     pname = "radix-wallet";
     version = "1.6.0";
@@ -80,7 +74,6 @@ with pkgs;
   at
   audacity
   awscli2
-  aws-sam-cli
   bandwhich
   bc
   bind
@@ -118,7 +111,6 @@ with pkgs;
   gcc
   gimp
   git-filter-repo
-  glxinfo
   gnucash
   gnumake
   gnupg
@@ -133,13 +125,13 @@ with pkgs;
   home-manager
   hsetroot
   htop
-  idea-community-pkg
   imagemagick
   inetutils
   inkscape
   inotify-tools
   isync # mbsync
   jansson
+  jetbrains.idea
   jq
   kotlin
   killall
@@ -158,6 +150,7 @@ with pkgs;
   # mairix
   masterpdfeditor
   mermaid-cli
+  mesa-demos
   mitscheme
   mmc-utils
   monaspace
@@ -170,7 +163,7 @@ with pkgs;
   neofetch
   nicotine-plus
   nil
-  nixfmt-rfc-style
+  nixfmt
   nixos-option
   nmap
   nodePackages.prettier
@@ -223,15 +216,15 @@ with pkgs;
   sweethome3d.application
   syncthing
   tcpdump
-  tdesktop
   teams-for-linux
+  telegram-desktop
   texlive-pkg
   thermald
   thunderbird
   tlp
+  tor-browser
   tree
   unstable.aider-chat
-  unstable.tor-browser-bundle-bin
   unzip
   usbutils
   uv

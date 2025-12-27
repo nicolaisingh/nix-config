@@ -32,9 +32,9 @@
   m17n_lib,
   ncurses,
   pkg-config,
+  replaceVars,
   sqlite,
   stdenv,
-  substituteAll,
   systemd,
   texinfo,
   tree-sitter,
@@ -131,8 +131,7 @@ stdenv.mkDerivation rec {
 
   # Also copied from nixpkgs emacs
   patches = [
-    (substituteAll {
-      src = ./native-comp-driver-options.patch;
+    (replaceVars ./native-comp-driver-options.patch {
       backendPath = (
         lib.concatStringsSep " " (
           builtins.map (x: ''"-B${x}"'') (

@@ -17,7 +17,7 @@ let
     import
       (fetchTarball {
         url = "https://github.com/nix-community/NUR/archive/master.tar.gz";
-        sha256 = "sha256:1vkjm7wbvazfdbi7xhb92046cx48xg85mdxx9larkmxsmaxkr3fz";
+        sha256 = "sha256:0xn6gnr91mvckpm1lmlnzkn3f3fv5qjn79cppfnq2mm0m60gkxdz";
       })
       {
         inherit pkgs;
@@ -28,7 +28,7 @@ let
     import
       (fetchTarball {
         url = "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
-        sha256 = "sha256:1g9qc3n5zx16h129dqs5ixfrsff0dsws9lixfja94r208fq9219g";
+        sha256 = "sha256:1x9xnf6wpmxh6xvi2nv59gn950pll298bplzlj9qmj70wp8n8j20";
       })
       {
         config = config.nixpkgs.config;
@@ -61,6 +61,11 @@ in
     (builtins.filter (x: doesNotMatch "(nixos-config=.+)" x) options.nix.nixPath.default)
     ++ [ "nixos-config=${configPath}/configuration.nix" ]
     ++ [ "host-config=${configPath}/host-configuration.nix" ];
+
+  nix.settings = {
+    # Manually run using `nix-store --optimise`
+    auto-optimise-store = true;
+  };
 
   nixpkgs.config = {
     allowUnfree = true;
@@ -233,11 +238,14 @@ in
 
   services.thermald.enable = true;
 
-  services.transmission.enable = true;
-  services.transmission.settings = {
-    download-dir = "/home/${host.username}/Downloads/torrent/completed";
-    incomplete-dir-enabled = true;
-    incomplete-dir = "/home/${host.username}/Downloads/torrent";
+  services.transmission = {
+    enable = true;
+    package = pkgs.transmission_4;
+    settings = {
+      download-dir = "/home/${host.username}/Downloads/torrent/completed";
+      incomplete-dir-enabled = true;
+      incomplete-dir = "/home/${host.username}/Downloads/torrent";
+    };
   };
 
   services.tlp.enable = true;

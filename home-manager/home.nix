@@ -1,17 +1,23 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 # home-manager options:
 # https://nix-community.github.io/home-manager/options.html
 
 let
   host = import <host-config>;
-  packages = pkgs.callPackage ./packages.nix {};
-  kdePackages = pkgs.callPackage ./kde-packages.nix {};
+  packages = pkgs.callPackage ./packages.nix { };
+  kdePackages = pkgs.callPackage ./kde-packages.nix { };
   plasmaManager = fetchTarball {
     url = "https://github.com/nix-community/plasma-manager/archive/trunk.tar.gz";
-    sha256 = "sha256:05gw226063jbklfgcyr01a04278v7shn8a4imjg47rdzgsqf68fn";
+    sha256 = "sha256:1iy69k2557mg4lfaif4nncm3ji3ap8hjrfbzh5hz2pskkmbz18p7";
   };
-in {
+in
+{
   home.username = host.username;
   home.homeDirectory = "/home/${host.username}";
   home.packages = packages ++ kdePackages;
@@ -37,15 +43,16 @@ in {
 
   programs.git = {
     enable = true;
-    userName = host.fullname;
-    userEmail = host.email;
-    aliases = {
-      s = "status";
-      plog = "log --graph --format=format:'%C(red)%h%C(reset)%C(auto)%d%C(reset) %s%C(blue) -- %an %C(magenta)(%ar)%C(reset)'";
-      dlog = "log --graph --format=format:'%C(red)%h%C(reset)%C(auto)%d%C(reset)%n'";
-      dummy-commit = "!f() { echo 'this is a sample edit' >> `git rev-parse --abbrev-ref HEAD`; git commit -a -m 'test commit'; }; f";
-    };
-    extraConfig = {
+    settings = {
+      alias = {
+        s = "status";
+        plog = "log --graph --format=format:'%C(red)%h%C(reset)%C(auto)%d%C(reset) %s%C(blue) -- %an %C(magenta)(%ar)%C(reset)'";
+        dlog = "log --graph --format=format:'%C(red)%h%C(reset)%C(auto)%d%C(reset)%n'";
+        dummy-commit = "!f() { echo 'this is a sample edit' >> `git rev-parse --abbrev-ref HEAD`; git commit -a -m 'test commit'; }; f";
+      };
+      user.name = host.fullname;
+      user.email = host.email;
+
       # For emacs forge:
       # https://magit.vc/manual/forge.html#Set-your-Username-1
       github.user = "nicolaisingh";
@@ -70,42 +77,42 @@ in {
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         };
         userChrome = ''
-        /* hide tab bar */
-        #TabsToolbar {
-          visibility: collapse !important;
-        }
-
-        /* sidebar header to bottom */
-        #sidebar-box {
-          flex-direction: column-reverse !important;
-        }
-
-        #sidebar-switcher-arrow {
-          transform: rotate(180deg);
-        }
-
-        /* hide sidebar close button */
-        #sidebar-close {
-          visibility: collapse;
-        }
-
-        /* decrease size of the sidebar header */
-        #sidebar-header {
-          font-size: 1.2em !important;
-          padding: 2px 6px 2px 3px !important;
-        }
-        #sidebar-header .toolbarbutton-icon {
-          width: 14px !important;
-          height: 14px !important;
-          opacity: 0.6 !important;
-        }
-
-        /* for private browsing mode */
-        #main-window[privatebrowsingmode="temporary"] {
+          /* hide tab bar */
           #TabsToolbar {
-            visibility: visible !important;
+            visibility: collapse !important;
           }
-        }
+
+          /* sidebar header to bottom */
+          #sidebar-box {
+            flex-direction: column-reverse !important;
+          }
+
+          #sidebar-switcher-arrow {
+            transform: rotate(180deg);
+          }
+
+          /* hide sidebar close button */
+          #sidebar-close {
+            visibility: collapse;
+          }
+
+          /* decrease size of the sidebar header */
+          #sidebar-header {
+            font-size: 1.2em !important;
+            padding: 2px 6px 2px 3px !important;
+          }
+          #sidebar-header .toolbarbutton-icon {
+            width: 14px !important;
+            height: 14px !important;
+            opacity: 0.6 !important;
+          }
+
+          /* for private browsing mode */
+          #main-window[privatebrowsingmode="temporary"] {
+            #TabsToolbar {
+              visibility: visible !important;
+            }
+          }
         '';
       };
     };
@@ -160,7 +167,10 @@ in {
       address = "nicolaisingh@pm.me";
       aliases = [ "nicolaisingh@protonmail.com" ];
       realName = host.fullname;
-      passwordCommand = ["echo" "${host.secrets.proton}"];
+      passwordCommand = [
+        "echo"
+        "${host.secrets.proton}"
+      ];
 
       imap = {
         host = "127.0.0.1";
