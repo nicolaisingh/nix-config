@@ -52,10 +52,10 @@ in
 
     ./home-manager-configuration.nix
 
-    # ./musnix
+    ./musnix
   ];
 
-  # musnix.enable = true;
+  musnix.enable = true;
 
   nix.nixPath =
     (builtins.filter (x: doesNotMatch "(nixos-config=.+)" x) options.nix.nixPath.default)
@@ -78,6 +78,7 @@ in
 
   nixpkgs.overlays = [
     # (import ./overlays/emacs-localbuild.nix)
+    (import ./overlays/reaper.nix)
   ];
 
   # Use the systemd-boot EFI boot loader.

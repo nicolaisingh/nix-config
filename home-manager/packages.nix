@@ -68,6 +68,7 @@ with pkgs;
     }).androidsdk
   )
   adwaita-icon-theme
+  android-tools
   appimage-run
   ardour
   asciidoctor-with-extensions
@@ -203,6 +204,7 @@ with pkgs;
   racket
   radix-wallet
   rar
+  reaper
   ripgrep
   rst2pdf
   rubyPackages.rdoc
