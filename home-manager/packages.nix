@@ -226,6 +226,7 @@ with pkgs;
   tlp
   tor-browser
   tree
+  # unstable.tuxguitar
   unstable.aider-chat
   unzip
   usbutils

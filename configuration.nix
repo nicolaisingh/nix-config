@@ -52,10 +52,10 @@ in
 
     ./home-manager-configuration.nix
 
-    ./musnix
+    # ./musnix
   ];
 
-  musnix.enable = true;
+  # musnix.enable = true;
 
   nix.nixPath =
     (builtins.filter (x: doesNotMatch "(nixos-config=.+)" x) options.nix.nixPath.default)
@@ -252,7 +252,13 @@ in
   services.tlp.enable = true;
   services.tlp.settings = {
     TLP_DEFAULT_MODE = ''"AC"'';
-    # CPU_SCALING_GOVERNOR_ON_AC = ''"performance"'';
+
+    # CPU
+    # Check tlp-stat -p
+    # CPU_SCALING_GOVERNOR_ON_AC = ''"powersave"'';
+    # CPU_SCALING_GOVERNOR_ON_BAT = ''"powersave"'';
+    # CPU_ENERGY_PERF_POLICY_ON_AC = ''"balance_power"'';
+    # CPU_ENERGY_PERF_POLICY_ON_BAT = ''"balance_power"'';
 
     # Permit disk spin down for HDD (set to 128 to disable)
     DISK_DEVICES = ''"nvme0n1 sda"'';
