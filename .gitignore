@@ -1,4 +1,0 @@
-hardware-configuration.nix
-host-configuration.nix
-luks-configuration.nix
-passwd.nix

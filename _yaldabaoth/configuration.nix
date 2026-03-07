@@ -11,61 +11,10 @@ let
   doesNotMatch = regex: str: builtins.match regex str == null;
   configPath = "/home/${host.username}/nix";
 
-  # NUR
-  # To get sha256: nix-prefetch-url --unpack URL
-  nurPkgs =
-    import
-      (fetchTarball {
-        url = "https://github.com/nix-community/NUR/archive/master.tar.gz";
-        sha256 = "sha256:0xn6gnr91mvckpm1lmlnzkn3f3fv5qjn79cppfnq2mm0m60gkxdz";
-      })
-      {
-        inherit pkgs;
-      };
-
-  # nixos-unstable
-  unstablePkgs =
-    import
-      (fetchTarball {
-        url = "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
-        sha256 = "sha256:1x9xnf6wpmxh6xvi2nv59gn950pll298bplzlj9qmj70wp8n8j20";
-      })
-      {
-        config = config.nixpkgs.config;
-      };
 in
 {
-  imports = [
-    ./hardware-configuration.nix
-    ./luks-configuration.nix
-
-    # Nvidia Optimus
-    # ./nvidia-off-configuration.nix
-    ./nvidia-configuration.nix
-
-    # herbstluftwm (hlwm) + XFCE desktop
-    # ./herbstluftwm-configuration.nix
-    # ./xfce-configuration.nix
-
-    # KDE desktop
-    ./kde-configuration.nix
-
-    ./home-manager-configuration.nix
-
-    ./musnix
-  ];
 
   musnix.enable = true;
-
-  nix.nixPath =
-    (builtins.filter (x: doesNotMatch "(nixos-config=.+)" x) options.nix.nixPath.default)
-    ++ [ "nixos-config=${configPath}/configuration.nix" ]
-    ++ [ "host-config=${configPath}/host-configuration.nix" ];
-
-  nix.settings = {
-    # Manually run using `nix-store --optimise`
-    auto-optimise-store = true;
-  };
 
   nixpkgs.config = {
     allowUnfree = true;
@@ -81,79 +30,8 @@ in
     (import ./overlays/reaper.nix)
   ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.timeout = 3;
-
-  # Kernel parameters
-  boot.kernel.sysctl = {
-    "kernel.sysrq" = 1;
-    "kernel.nmi_watchdog" = 0;
-    "kernel.watchdog" = 0;
-  };
-
-  # Networking
-  networking.hostName = "yaldabaoth";
-  networking.networkmanager.enable = true;
-  networking.enableIPv6 = false;
-
-  ## Setting random will prevent connecting to some Bluetooth devices
-  # networking.networkmanager.wifi.macAddress = "random";
-  # networking.networkmanager.ethernet.macAddress = "random";
-  networking.networkmanager.dns = "none";
-  networking.nameservers = [
-    "1.1.1.1"
-    "8.8.8.8"
-  ];
-
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [ 8080 ];
-
-  time.timeZone = "Asia/Manila";
-  i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    #   font = "Lat2-Terminus16";
-    #   keyMap = "us";
-    useXkbConfig = true; # use xkbOptions in tty.
-  };
-
-  fonts = {
-    packages = with pkgs; [
-      atkinson-hyperlegible-mono
-      atkinson-hyperlegible-next
-      courier-prime
-      dina-font
-      gohufont
-      fantasque-sans-mono
-      fira
-      hermit
-      inconsolata
-      intel-one-mono
-      libertine
-      lmodern
-      noto-fonts
-      noto-fonts-color-emoji
-      noto-fonts-monochrome-emoji
-      source-code-pro
-      source-sans-pro
-      source-serif-pro
-      symbola
-    ];
-  };
-
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
-
-  programs.nix-ld = {
-    enable = true;
-  };
-
-  programs.zsh.enable = true;
-
-  services.dbus.enable = true;
 
   services.dovecot2 = {
     enable = true;
@@ -189,11 +67,6 @@ in
   # systemctl --user start offlineimap.service
   # systemctl --user start offlineimap.timer
   services.offlineimap.enable = false;
-
-  services.openssh.enable = true;
-
-  services.postgresql.enable = false;
-  services.postgresql.package = pkgs.postgresql;
 
   services.power-profiles-daemon.enable = false;
 
@@ -237,8 +110,6 @@ in
     dataDir = "/home/${host.username}/sync";
   };
 
-  services.thermald.enable = true;
-
   services.transmission = {
     enable = true;
     package = pkgs.transmission_4;
@@ -249,49 +120,11 @@ in
     };
   };
 
-  services.tlp.enable = true;
-  services.tlp.settings = {
-    TLP_DEFAULT_MODE = ''"AC"'';
-    # CPU_SCALING_GOVERNOR_ON_AC = ''"performance"'';
-
-    # Permit disk spin down for HDD (set to 128 to disable)
-    DISK_DEVICES = ''"nvme0n1 sda"'';
-    DISK_APM_LEVEL_ON_AC = ''"128 192"'';
-    DISK_APM_LEVEL_ON_BAT = ''"128 128"'';
-
-    # Disable wifi power saving
-    WIFI_PWR_ON_AC = ''"off"'';
-    WIFI_PWR_ON_BAT = ''"off"'';
-
-    # Disable sound power saving
-    # SOUND_POWER_SAVE_ON_AC = ''"0"'';
-    # SOUND_POWER_SAVE_ON_BAT = ''"0"'';
-    # SOUND_POWER_SAVE_CONTROLLER = ''"N"'';
-
-    # Disable USB autosuspending
-    USB_AUTOSUSPEND = ''"0"'';
-
-    # Disable NMI watchdog
-    NMI_WATCHDOG = ''"0"'';
-
-    # Power down idle PCIe devices
-    RUNTIME_PM_ON_AC = ''"auto"'';
-    RUNTIME_PM_ON_BAT = ''"auto"'';
-  };
-
-  services.udev.packages = [ pkgs.via ];
-
   services.libinput = {
     enable = true;
     touchpad.tappingDragLock = false;
     touchpad.disableWhileTyping = true;
     touchpad.naturalScrolling = true;
-  };
-
-  services.displayManager = {
-    # Autologin
-    autoLogin.enable = true;
-    autoLogin.user = host.username;
   };
 
   # X11 windowing system
@@ -310,9 +143,6 @@ in
       ${pkgs.xorg.xset}/bin/xset r rate 250 50
     '';
   };
-
-  # Keyboard/QMK
-  hardware.keyboard.qmk.enable = true;
 
   # Bluetooth
   hardware.bluetooth.enable = true;
@@ -347,14 +177,7 @@ in
 
   environment.systemPackages = with pkgs; [
     ntfs3g # Needs to be installed in the system config
-    via
   ];
-
-  environment.shellAliases = {
-    ".." = "cd ..";
-    "df" = "df -h";
-    "ll" = "ls -lh";
-  };
 
   systemd.services.mbsync = {
     description = "mbsync mailbox sync";
@@ -400,16 +223,4 @@ in
     setSocketVariable = true;
   };
 
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  system.copySystemConfiguration = true;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.11"; # Did you read the comment?
 }
